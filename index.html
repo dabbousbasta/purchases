@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>بحث فواتير الشراء</title>
+  <script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
+  <style>
+    :root {
+      --primary: #0056b3;
+      --bg: #f5f7fb;
+      --text: #222;
+      --card: #fff;
+      --border: #ddd;
+      --ok: #28a745;
+      --danger: #dc3545;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+      direction: rtl;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    main {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 14px;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 10px;
+      padding: 14px;
+      box-shadow: 0 2px 4px rgba(0,0,0,.05);
+      margin-bottom: 14px;
+    }
+
+    .title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      align-items: end;
+    }
+
+    .field label {
+      display: block;
+      font-size: 12px;
+      margin-bottom: 4px;
+      color: #555;
+    }
+
+    .field input {
+      width: 100%;
+      padding: 10px 12px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      outline: none;
+    }
+
+    .field input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px rgba(0,86,179,.12);
+    }
+
+    .actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      border: none;
+      border-radius: 999px;
+      padding: 10px 16px;
+      font-size: 14px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .btn-secondary {
+      background: #eee;
+      color: #333;
+    }
+
+    .btn-primary:active,
+    .btn-secondary:active {
+      transform: translateY(1px);
+    }
+
+    .status {
+      font-size: 13px;
+      margin-top: 8px;
+      padding: 8px 12px;
+      border-radius: 8px;
+      display: none;
+    }
+
+    .status.ok {
+      display: block;
+      color: #155724;
+      background: #d4edda;
+      border: 1px solid #c3e6cb;
+    }
+
+    .status.err {
+      display: block;
+      color: #721c24;
+      background: #f8d7da;
+      border: 1px solid #f5c6cb;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      width: 100%;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 900px;
+      margin-top: 8px;
+    }
+
+    th, td {
+      border: 1px solid var(--border);
+      padding: 8px 6px;
+      font-size: 13px;
+      vertical-align: top;
+    }
+
+    th {
+      background: var(--primary);
+      color: #fff;
+      position: sticky;
+      top: 0;
+      z-index: 1;
+    }
+
+    tbody tr:nth-child(even) {
+      background: #fafafa;
+    }
+
+    .no-results {
+      text-align: center;
+      color: #c00;
+      padding: 16px;
+    }
+
+    .small {
+      font-size: 12px;
+      color: #666;
+      margin-top: 6px;
+    }
+
+    @media (max-width: 768px) {
+      main { padding: 10px; }
+      .grid { grid-template-columns: 1fr; }
+      table { min-width: 760px; }
+      th, td { font-size: 12px; padding: 6px 4px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="card">
+      <div class="title">بحث فواتير الشراء</div>
+
+      <div class="grid">
+        <div class="field">
+          <label for="searchAll">اسم الصنف</label>
+          <input type="text" id="searchAll" placeholder="اكتب اسم الصنف أو جزء منه..." />
+        </div>
+
+        <div class="actions">
+          <button class="btn-primary" id="exportExcel">تصدير Excel</button>
+          <button class="btn-secondary" id="clearSearch">مسح البحث</button>
+        </div>
+      </div>
+
+      <div id="status" class="status"></div>
+      <div class="small" id="countInfo">... جاري تحميل البيانات</div>
+    </section>
+
+    <section class="card">
+      <div class="title">النتائج</div>
+      <div class="table-wrap">
+        <table id="resultsTable">
+          <thead>
+            <tr>
+              <th>رقم الفاتورة</th>
+              <th>التاريخ</th>
+              <th>العملة</th>
+              <th>المورد</th>
+              <th>الصنف</th>
+              <th>العدد</th>
+              <th>السعر الافرادي</th>
+            </tr>
+          </thead>
+          <tbody id="resultsBody"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    let allData = [];
+    let currentResults = [];
+
+    function esc(v) {
+      return String(v ?? '').replace(/[&<>"']/g, s => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;'
+      })[s]);
+    }
+
+    function numFmt(v) {
+      if (v === null || v === undefined || v === '') return '';
+      const n = Number(String(v).replace(/,/g, ''));
+      if (Number.isNaN(n)) return String(v);
+      return n.toLocaleString('en-US', { maximumFractionDigits: 2 });
+    }
+
+    function sortByInvoiceDesc(a, b) {
+      return String(b.invoiceNo || '').localeCompare(String(a.invoiceNo || ''), undefined, {
+        numeric: true,
+        sensitivity: 'base'
+      });
+    }
+
+    async function loadData() {
+      const status = document.getElementById('status');
+      try {
+        const res = await fetch('purchases-data/purchases.json?v=' + Date.now());
+        if (!res.ok) throw new Error('تعذر تحميل ملف البيانات');
+
+        allData = await res.json();
+        allData.sort(sortByInvoiceDesc);
+
+        document.getElementById('countInfo').textContent =
+          `تم تحميل ${allData.length} سجل.`;
+
+        status.className = 'status ok';
+        status.textContent = '✅ تم تحميل البيانات بنجاح';
+        status.style.display = 'block';
+
+        render(allData);
+      } catch (e) {
+        status.className = 'status err';
+        status.textContent = '❌ خطأ في تحميل البيانات';
+        status.style.display = 'block';
+        document.getElementById('countInfo').textContent = 'فشل تحميل البيانات';
+        document.getElementById('resultsBody').innerHTML =
+          '<tr><td colspan="7" class="no-results">لم يتم تحميل البيانات</td></tr>';
+      }
+    }
+
+    function render(rows) {
+      const tbody = document.getElementById('resultsBody');
+      tbody.innerHTML = '';
+
+      if (!rows.length) {
+        tbody.innerHTML = '<tr><td colspan="7" class="no-results">لا توجد نتائج مطابقة</td></tr>';
+        return;
+      }
+
+      const html = rows.map(row => `
+        <tr>
+          <td>${esc(row.invoiceNo)}</td>
+          <td>${esc(row.date)}</td>
+          <td>${esc(row.currency)}</td>
+          <td>${esc(row.supplier)}</td>
+          <td>${esc(row.item)}</td>
+          <td>${esc(numFmt(row.qty))}</td>
+          <td>${esc(numFmt(row.uprice))}</td>
+        </tr>
+      `).join('');
+
+      tbody.innerHTML = html;
+    }
+
+    function search() {
+      const q = document.getElementById('searchAll').value.trim().toLowerCase();
+
+      if (!q) {
+        currentResults = [...allData];
+      } else {
+        currentResults = allData.filter(row =>
+          String(row.item || '').toLowerCase().includes(q)
+        );
+      }
+
+      currentResults.sort(sortByInvoiceDesc);
+      render(currentResults);
+      document.getElementById('countInfo').textContent =
+        `عدد النتائج: ${currentResults.length}`;
+    }
+
+    function exportExcel() {
+      if (!currentResults.length) {
+        alert('لا توجد نتائج للتصدير');
+        return;
+      }
+
+      const rows = currentResults.map(r => ({
+        'رقم الفاتورة': r.invoiceNo || '',
+        'التاريخ': r.date || '',
+        'العملة': r.currency || '',
+        'المورد': r.supplier || '',
+        'الصنف': r.item || '',
+        'العدد': r.qty || '',
+        'السعر الافرادي': r.uprice || ''
+      }));
+
+      const ws = XLSX.utils.json_to_sheet(rows);
+      const wb = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, 'Results');
+      XLSX.writeFile(wb, 'purchase-results.xlsx');
+    }
+
+    document.getElementById('searchAll').addEventListener('input', search);
+    document.getElementById('clearSearch').addEventListener('click', () => {
+      document.getElementById('searchAll').value = '';
+      search();
+      document.getElementById('searchAll').focus();
+    });
+    document.getElementById('exportExcel').addEventListener('click', exportExcel);
+
+    loadData();
+  </script>
+</body>
+</html>

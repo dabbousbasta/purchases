@@ -129,7 +129,7 @@
 
     .table-wrap {
       width: 100%;
-      overflow-x: auto; /* بس أفقياً، بدون تقليص الارتفاع */
+      overflow-x: auto; /* فقط أفقياً على الديسكتوب */
     }
 
     table {
@@ -180,10 +180,75 @@
       }
     }
 
+    /* عرض موبايل: تحويل الصف إلى بطاقة من سطرين */
     @media (max-width: 768px) {
       main { padding: 10px; }
-      table { min-width: 760px; }
-      th, td { font-size: 12px; padding: 6px 4px; }
+
+      .table-wrap {
+        overflow-x: visible; /* ما نحتاج سحب أفقي */
+      }
+
+      table {
+        min-width: 100%;
+      }
+
+      thead {
+        display: none; /* نخفي رؤوس الأعمدة على الموبايل */
+      }
+
+      tbody tr {
+        display: block;
+        margin-bottom: 10px;
+        border-radius: 10px;
+        overflow: hidden;
+      }
+
+      tbody tr td {
+        display: block;
+        border: none;
+        padding: 6px 8px;
+        font-size: 13px;
+      }
+
+      /* سطر 1: رقم الفاتورة - التاريخ - العملة - المورد */
+      tbody tr td:nth-child(1)::before {
+        content: "رقم الفاتورة: ";
+        font-weight: 600;
+      }
+      tbody tr td:nth-child(2)::before {
+        content: "التاريخ: ";
+        font-weight: 600;
+      }
+      tbody tr td:nth-child(3)::before {
+        content: "العملة: ";
+        font-weight: 600;
+      }
+      tbody tr td:nth-child(4)::before {
+        content: "المورد: ";
+        font-weight: 600;
+      }
+
+      /* سطر 2: الصنف - العدد - السعر الافرادي */
+      tbody tr td:nth-child(5)::before {
+        content: "الصنف: ";
+        font-weight: 600;
+      }
+      tbody tr td:nth-child(6)::before {
+        content: "العدد: ";
+        font-weight: 600;
+      }
+      tbody tr td:nth-child(7)::before {
+        content: "السعر الافرادي: ";
+        font-weight: 600;
+      }
+
+      /* ترتيب بصري: نخلي أول أربع خلايا على شكل سطر أول، والباقي تحتها */
+      tbody tr td:nth-child(1),
+      tbody tr td:nth-child(2),
+      tbody tr td:nth-child(3),
+      tbody tr td:nth-child(4) {
+        border-bottom: 1px solid #e0e0e0;
+      }
     }
   </style>
 </head>

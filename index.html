@@ -128,8 +128,8 @@
     }
 
     .table-wrap {
-      overflow-x: auto;
       width: 100%;
+      overflow-x: auto; /* بس أفقياً، بدون تقليص الارتفاع */
     }
 
     table {
@@ -194,16 +194,16 @@
 
       <div class="filters-grid">
         <div class="field">
-          <label for="searchItem">كلمات بحث عن الصنف</label>
-          <input type="text" id="searchItem" placeholder="مثال: قسطل 25 تلحيم (كل كلمة تفصلها مسافة)" />
+          <label for="searchInvoice">كلمات بحث عن رقم الفاتورة</label>
+          <input type="text" id="searchInvoice" placeholder="مثال: 796 أو PI 796" />
         </div>
         <div class="field">
           <label for="searchSupplier">كلمات بحث عن المورد</label>
           <input type="text" id="searchSupplier" placeholder="مثال: الحنون 204160" />
         </div>
         <div class="field">
-          <label for="searchInvoice">كلمات بحث عن رقم الفاتورة</label>
-          <input type="text" id="searchInvoice" placeholder="مثال: 796 أو PI 796" />
+          <label for="searchItem">كلمات بحث عن الصنف</label>
+          <input type="text" id="searchItem" placeholder="مثال: قسطل 25 تلحيم (كل كلمة تفصلها مسافة)" />
         </div>
       </div>
 
@@ -294,6 +294,9 @@
 
         currentResults = [...allData];
         render(currentResults);
+
+        // تركيز افتراضي على خانة الصنف
+        document.getElementById('searchItem').focus();
       } catch (e) {
         status.className = 'status err';
         status.textContent = '❌ خطأ في تحميل البيانات';
@@ -390,9 +393,9 @@
     document.getElementById('searchInvoice').addEventListener('input', search);
 
     document.getElementById('clearSearch').addEventListener('click', () => {
-      document.getElementById('searchItem').value = '';
-      document.getElementById('searchSupplier').value = '';
       document.getElementById('searchInvoice').value = '';
+      document.getElementById('searchSupplier').value = '';
+      document.getElementById('searchItem').value = '';
       search();
       document.getElementById('searchItem').focus();
     });

@@ -45,11 +45,11 @@
       margin-bottom: 10px;
     }
 
-    .grid {
+    .filters-grid {
       display: grid;
-      grid-template-columns: 1fr auto;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 10px;
-      align-items: end;
+      margin-bottom: 8px;
     }
 
     .field label {
@@ -78,6 +78,7 @@
       gap: 8px;
       flex-wrap: wrap;
       justify-content: flex-start;
+      margin-top: 8px;
     }
 
     button {
@@ -173,9 +174,14 @@
       margin-top: 6px;
     }
 
+    @media (max-width: 900px) {
+      .filters-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
     @media (max-width: 768px) {
       main { padding: 10px; }
-      .grid { grid-template-columns: 1fr; }
       table { min-width: 760px; }
       th, td { font-size: 12px; padding: 6px 4px; }
     }
@@ -186,16 +192,24 @@
     <section class="card">
       <div class="title">بحث فواتير الشراء</div>
 
-      <div class="grid">
+      <div class="filters-grid">
         <div class="field">
-          <label for="searchAll">كلمات بحث عن الصنف</label>
-          <input type="text" id="searchAll" placeholder="مثال: قسطل 25 تلحيم (كل كلمة تفصلها مسافة)" />
+          <label for="searchItem">كلمات بحث عن الصنف</label>
+          <input type="text" id="searchItem" placeholder="مثال: قسطل 25 تلحيم (كل كلمة تفصلها مسافة)" />
         </div>
+        <div class="field">
+          <label for="searchSupplier">كلمات بحث عن المورد</label>
+          <input type="text" id="searchSupplier" placeholder="مثال: الحنون 204160" />
+        </div>
+        <div class="field">
+          <label for="searchInvoice">كلمات بحث عن رقم الفاتورة</label>
+          <input type="text" id="searchInvoice" placeholder="مثال: 796 أو PI 796" />
+        </div>
+      </div>
 
-        <div class="actions">
-          <button class="btn-primary" id="exportExcel">تصدير Excel</button>
-          <button class="btn-secondary" id="clearSearch">مسح البحث</button>
-        </div>
+      <div class="actions">
+        <button class="btn-primary" id="exportExcel">تصدير Excel</button>
+        <button class="btn-secondary" id="clearSearch">مسح كل الفلاتر</button>
       </div>
 
       <div id="status" class="status"></div>
@@ -223,7 +237,7 @@
     </section>
   </main>
 
-    <script>
+  <script>
     let allData = [];
     let currentResults = [];
 
@@ -278,8 +292,8 @@
         status.textContent = '✅ تم تحميل البيانات بنجاح';
         status.style.display = 'block';
 
-        render(allData);
         currentResults = [...allData];
+        render(currentResults);
       } catch (e) {
         status.className = 'status err';
         status.textContent = '❌ خطأ في تحميل البيانات';
@@ -315,18 +329,33 @@
     }
 
     function search() {
-      const raw = document.getElementById('searchAll').value.trim();
-      const normalizedQuery = normalizeForSearch(raw);
-      const words = normalizedQuery.split(/\s+/).filter(Boolean);
+      const rawItem     = document.getElementById('searchItem').value.trim();
+      const rawSupplier = document.getElementById('searchSupplier').value.trim();
+      const rawInvoice  = document.getElementById('searchInvoice').value.trim();
 
-      if (!words.length) {
-        currentResults = [...allData];
-      } else {
-        currentResults = allData.filter(row => {
-          const name = normalizeForSearch(row.item || '');
-          return words.every(w => name.includes(w));
-        });
-      }
+      const itemWords     = normalizeForSearch(rawItem).split(/\s+/).filter(Boolean);
+      const supplierWords = normalizeForSearch(rawSupplier).split(/\s+/).filter(Boolean);
+      const invoiceWords  = normalizeForSearch(rawInvoice).split(/\s+/).filter(Boolean);
+
+      currentResults = allData.filter(row => {
+        const nameItem     = normalizeForSearch(row.item || '');
+        const nameSupplier = normalizeForSearch(row.supplier || '');
+        const nameInvoice  = normalizeForSearch(row.invoiceNo || '');
+
+        const matchItem = itemWords.length === 0
+          ? true
+          : itemWords.every(w => nameItem.includes(w));
+
+        const matchSupplier = supplierWords.length === 0
+          ? true
+          : supplierWords.every(w => nameSupplier.includes(w));
+
+        const matchInvoice = invoiceWords.length === 0
+          ? true
+          : invoiceWords.every(w => nameInvoice.includes(w));
+
+        return matchItem && matchSupplier && matchInvoice;
+      });
 
       currentResults.sort(sortByInvoiceDesc);
       render(currentResults);
@@ -356,12 +385,18 @@
       XLSX.writeFile(wb, 'purchase-results.xlsx');
     }
 
-    document.getElementById('searchAll').addEventListener('input', search);
+    document.getElementById('searchItem').addEventListener('input', search);
+    document.getElementById('searchSupplier').addEventListener('input', search);
+    document.getElementById('searchInvoice').addEventListener('input', search);
+
     document.getElementById('clearSearch').addEventListener('click', () => {
-      document.getElementById('searchAll').value = '';
+      document.getElementById('searchItem').value = '';
+      document.getElementById('searchSupplier').value = '';
+      document.getElementById('searchInvoice').value = '';
       search();
-      document.getElementById('searchAll').focus();
+      document.getElementById('searchItem').focus();
     });
+
     document.getElementById('exportExcel').addEventListener('click', exportExcel);
 
     loadData();

@@ -129,14 +129,13 @@
 
     .table-wrap {
       width: 100%;
-      overflow-x: auto; /* فقط أفقياً على الديسكتوب */
     }
 
     table {
       width: 100%;
       border-collapse: collapse;
-      min-width: 900px;
       margin-top: 8px;
+      table-layout: fixed; /* توزيع العرض بالتساوي تقريباً */
     }
 
     th, td {
@@ -144,6 +143,9 @@
       padding: 8px 6px;
       font-size: 13px;
       vertical-align: top;
+      white-space: normal;        /* السماح بالكسر */
+      word-wrap: break-word;      /* كسر السطر في الكلمات الطويلة */
+      word-break: break-word;
     }
 
     th {
@@ -153,6 +155,22 @@
       top: 0;
       z-index: 1;
     }
+
+    /* نسب عرض الأعمدة على الشاشات الكبيرة */
+    thead th:nth-child(1),
+    tbody td:nth-child(1) { width: 12%; } /* رقم الفاتورة */
+    thead th:nth-child(2),
+    tbody td:nth-child(2) { width: 12%; } /* التاريخ */
+    thead th:nth-child(3),
+    tbody td:nth-child(3) { width: 8%; }  /* العملة */
+    thead th:nth-child(4),
+    tbody td:nth-child(4) { width: 18%; } /* المورد */
+    thead th:nth-child(5),
+    tbody td:nth-child(5) { width: 30%; } /* الصنف */
+    thead th:nth-child(6),
+    tbody td:nth-child(6) { width: 10%; } /* العدد */
+    thead th:nth-child(7),
+    tbody td:nth-child(7) { width: 10%; } /* السعر */
 
     tbody tr:nth-child(odd) {
       background: #fff3e0; /* برتقالي فاتح */
@@ -180,75 +198,33 @@
       }
     }
 
-    /* عرض موبايل: تحويل الصف إلى بطاقة من سطرين */
     @media (max-width: 768px) {
       main { padding: 10px; }
-
-      .table-wrap {
-        overflow-x: visible; /* ما نحتاج سحب أفقي */
-      }
 
       table {
         min-width: 100%;
       }
 
-      thead {
-        display: none; /* نخفي رؤوس الأعمدة على الموبايل */
+      th, td {
+        font-size: 12px;
+        padding: 6px 4px;
       }
 
-      tbody tr {
-        display: block;
-        margin-bottom: 10px;
-        border-radius: 10px;
-        overflow: hidden;
-      }
-
-      tbody tr td {
-        display: block;
-        border: none;
-        padding: 6px 8px;
-        font-size: 13px;
-      }
-
-      /* سطر 1: رقم الفاتورة - التاريخ - العملة - المورد */
-      tbody tr td:nth-child(1)::before {
-        content: "رقم الفاتورة: ";
-        font-weight: 600;
-      }
-      tbody tr td:nth-child(2)::before {
-        content: "التاريخ: ";
-        font-weight: 600;
-      }
-      tbody tr td:nth-child(3)::before {
-        content: "العملة: ";
-        font-weight: 600;
-      }
-      tbody tr td:nth-child(4)::before {
-        content: "المورد: ";
-        font-weight: 600;
-      }
-
-      /* سطر 2: الصنف - العدد - السعر الافرادي */
-      tbody tr td:nth-child(5)::before {
-        content: "الصنف: ";
-        font-weight: 600;
-      }
-      tbody tr td:nth-child(6)::before {
-        content: "العدد: ";
-        font-weight: 600;
-      }
-      tbody tr td:nth-child(7)::before {
-        content: "السعر الافرادي: ";
-        font-weight: 600;
-      }
-
-      /* ترتيب بصري: نخلي أول أربع خلايا على شكل سطر أول، والباقي تحتها */
-      tbody tr td:nth-child(1),
-      tbody tr td:nth-child(2),
-      tbody tr td:nth-child(3),
-      tbody tr td:nth-child(4) {
-        border-bottom: 1px solid #e0e0e0;
-      }
+      /* إعادة توزيع العرض على الموبايل */
+      thead th:nth-child(1),
+      tbody td:nth-child(1) { width: 18%; }
+      thead th:nth-child(2),
+      tbody td:nth-child(2) { width: 18%; }
+      thead th:nth-child(3),
+      tbody td:nth-child(3) { width: 10%; }
+      thead th:nth-child(4),
+      tbody td:nth-child(4) { width: 24%; }
+      thead th:nth-child(5),
+      tbody td:nth-child(5) { width: 20%; }
+      thead th:nth-child(6),
+      tbody td:nth-child(6) { width: 5%; }
+      thead th:nth-child(7),
+      tbody td:nth-child(7) { width: 5%; }
     }
   </style>
 </head>

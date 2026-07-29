@@ -269,11 +269,32 @@
       return n.toLocaleString('en-US', { maximumFractionDigits: 2 });
     }
 
-    function sortByInvoiceDesc(a, b) {
-      return String(b.invoiceNo || '').localeCompare(String(a.invoiceNo || ''), undefined, {
+    function parseDate(d) {
+      if (!d) return 0;
+      const parts = String(d).split('/');
+      if (parts.length !== 3) return 0;
+      const day = parseInt(parts[0], 10);
+      const month = parseInt(parts[1], 10);
+      const year = parseInt(parts[2], 10);
+      if (Number.isNaN(day) || Number.isNaN(month) || Number.isNaN(year)) return 0;
+      return year * 10000 + month * 100 + day;
+    }
+
+    function sortRows(a, b) {
+      const da = parseDate(a.date);
+      const db = parseDate(b.date);
+
+      if (db !== da) return db - da;
+
+      const ia = String(a.invoiceNo || '');
+      const ib = String(b.invoiceNo || '');
+      const cInvoice = ib.localeCompare(ia, undefined, {
         numeric: true,
         sensitivity: 'base'
       });
+      if (cInvoice !== 0) return cInvoice;
+
+      return 0;
     }
 
     async function loadData() {
@@ -283,7 +304,7 @@
         if (!res.ok) throw new Error('تعذر تحميل ملف البيانات');
 
         allData = await res.json();
-        allData.sort(sortByInvoiceDesc);
+        allData.sort(sortRows);
 
         document.getElementById('countInfo').textContent =
           `تم تحميل ${allData.length} سجل.`;
@@ -295,7 +316,6 @@
         currentResults = [...allData];
         render(currentResults);
 
-        // تركيز افتراضي على خانة الصنف
         document.getElementById('searchItem').focus();
       } catch (e) {
         status.className = 'status err';
@@ -360,7 +380,7 @@
         return matchItem && matchSupplier && matchInvoice;
       });
 
-      currentResults.sort(sortByInvoiceDesc);
+      currentResults.sort(sortRows);
       render(currentResults);
       document.getElementById('countInfo').textContent =
         `عدد النتائج: ${currentResults.length}`;

@@ -135,7 +135,7 @@
       width: 100%;
       border-collapse: collapse;
       margin-top: 8px;
-      table-layout: fixed; /* توزيع العرض بالتساوي تقريباً */
+      table-layout: fixed;
     }
 
     th, td {
@@ -143,8 +143,8 @@
       padding: 8px 6px;
       font-size: 13px;
       vertical-align: top;
-      white-space: normal;        /* السماح بالكسر */
-      word-wrap: break-word;      /* كسر السطر في الكلمات الطويلة */
+      white-space: normal;
+      word-wrap: break-word;
       word-break: break-word;
     }
 
@@ -173,11 +173,11 @@
     tbody td:nth-child(7) { width: 10%; } /* السعر */
 
     tbody tr:nth-child(odd) {
-      background: #fff3e0; /* برتقالي فاتح */
+      background: #fff3e0;
     }
 
     tbody tr:nth-child(even) {
-      background: #f3e5f5; /* بنفسجي فاتح */
+      background: #f3e5f5;
     }
 
     .no-results {
@@ -210,21 +210,21 @@
         padding: 6px 4px;
       }
 
-      /* إعادة توزيع العرض على الموبايل */
+      /* موبايل: ضبط عرض الأعمدة بدقة */
       thead th:nth-child(1),
-      tbody td:nth-child(1) { width: 18%; }
+      tbody td:nth-child(1) { width: 14%; }  /* رقم الفاتورة: يكفي PI1-158 */
       thead th:nth-child(2),
-      tbody td:nth-child(2) { width: 18%; }
+      tbody td:nth-child(2) { width: 18%; }  /* التاريخ: يكفي 29/07/2026 */
       thead th:nth-child(3),
-      tbody td:nth-child(3) { width: 10%; }
+      tbody td:nth-child(3) { width: 8%; }   /* العملة: يكفي USD */
       thead th:nth-child(4),
-      tbody td:nth-child(4) { width: 24%; }
+      tbody td:nth-child(4) { width: 22%; }  /* المورد */
       thead th:nth-child(5),
-      tbody td:nth-child(5) { width: 20%; }
+      tbody td:nth-child(5) { width: 18%; }  /* الصنف */
       thead th:nth-child(6),
-      tbody td:nth-child(6) { width: 5%; }
+      tbody td:nth-child(6) { width: 8%; }   /* العدد */
       thead th:nth-child(7),
-      tbody td:nth-child(7) { width: 5%; }
+      tbody td:nth-child(7) { width: 12%; }  /* السعر الافرادي: أوسع ليظهر 5 أرقام أو أكثر */
     }
   </style>
 </head>

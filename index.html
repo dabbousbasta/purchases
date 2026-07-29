@@ -7,13 +7,11 @@
   <script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
   <style>
     :root {
-      --primary: #0056b3;
+      --primary: #5e35b1;
       --bg: #f5f7fb;
       --text: #222;
       --card: #fff;
       --border: #ddd;
-      --ok: #28a745;
-      --danger: #dc3545;
     }
 
     * { box-sizing: border-box; }
@@ -72,13 +70,14 @@
 
     .field input:focus {
       border-color: var(--primary);
-      box-shadow: 0 0 0 2px rgba(0,86,179,.12);
+      box-shadow: 0 0 0 2px rgba(94,53,177,.12);
     }
 
     .actions {
       display: flex;
       gap: 8px;
       flex-wrap: wrap;
+      justify-content: flex-start;
     }
 
     button {
@@ -91,13 +90,13 @@
     }
 
     .btn-primary {
-      background: var(--primary);
+      background: #5e35b1;
       color: #fff;
     }
 
     .btn-secondary {
-      background: #eee;
-      color: #333;
+      background: #ffe0b2;
+      color: #5d4037;
     }
 
     .btn-primary:active,
@@ -147,15 +146,19 @@
     }
 
     th {
-      background: var(--primary);
+      background: #6a1b9a;
       color: #fff;
       position: sticky;
       top: 0;
       z-index: 1;
     }
 
+    tbody tr:nth-child(odd) {
+      background: #fff3e0; /* برتقالي فاتح */
+    }
+
     tbody tr:nth-child(even) {
-      background: #fafafa;
+      background: #f3e5f5; /* بنفسجي فاتح */
     }
 
     .no-results {
@@ -185,8 +188,8 @@
 
       <div class="grid">
         <div class="field">
-          <label for="searchAll">اسم الصنف</label>
-          <input type="text" id="searchAll" placeholder="اكتب اسم الصنف أو جزء منه..." />
+          <label for="searchAll">كلمات بحث عن الصنف</label>
+          <input type="text" id="searchAll" placeholder="مثال: قسطل 25 تلحيم (كل كلمة تفصلها مسافة)" />
         </div>
 
         <div class="actions">
@@ -220,9 +223,20 @@
     </section>
   </main>
 
-  <script>
+   <script>
     let allData = [];
     let currentResults = [];
+
+    const arabicDigits = ['٠','١','٢','٣','٤','٥','٦','٧','٨','٩'];
+    const latinDigits  = ['0','1','2','3','4','5','6','7','8','9'];
+
+    function normalizeForSearch(str) {
+      let s = String(str ?? '').toLowerCase();
+      arabicDigits.forEach((ad, i) => {
+        s = s.split(ad).join(latinDigits[i]);
+      });
+      return s;
+    }
 
     function esc(v) {
       return String(v ?? '').replace(/[&<>"']/g, s => ({
@@ -265,6 +279,7 @@
         status.style.display = 'block';
 
         render(allData);
+        currentResults = [...allData];
       } catch (e) {
         status.className = 'status err';
         status.textContent = '❌ خطأ في تحميل البيانات';
@@ -300,14 +315,17 @@
     }
 
     function search() {
-      const q = document.getElementById('searchAll').value.trim().toLowerCase();
+      const raw = document.getElementById('searchAll').value.trim();
+      const normalizedQuery = normalizeForSearch(raw);
+      const words = normalizedQuery.split(/\s+/).filter(Boolean);
 
-      if (!q) {
+      if (!words.length) {
         currentResults = [...allData];
       } else {
-        currentResults = allData.filter(row =>
-          String(row.item || '').toLowerCase().includes(q)
-        );
+        currentResults = allData.filter(row => {
+          const name = normalizeForSearch(row.item || '');
+          return words.every(w => name.includes(w));
+        });
       }
 
       currentResults.sort(sortByInvoiceDesc);

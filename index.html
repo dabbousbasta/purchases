@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html dir="rtl" lang="ar">
-<head>
+head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>بحث فواتير الشراء</title>
@@ -129,15 +129,15 @@
 
     .table-wrap {
       width: 100%;
-      max-height: 70vh;           /* حاوية فيها تمرير عمودي */
-      overflow-x: auto;           /* تمرير أفقي */
-      overflow-y: auto;           /* تمرير عمودي */
+      max-height: 70vh;
+      overflow-x: auto;
+      overflow-y: auto;
     }
 
     table {
       border-collapse: collapse;
       margin-top: 8px;
-      width: max-content;         /* الجدول يأخذ عرضه الطبيعي، ولو كان أكبر من الشاشة يظهر شريط أفقي */
+      width: max-content;
       background-color: #fff;
     }
 
@@ -146,7 +146,7 @@
       padding: 8px 6px;
       font-size: 13px;
       vertical-align: top;
-      white-space: nowrap;        /* لا يكسر السطر، الأرقام تبقى على سطر واحد */
+      white-space: nowrap;
     }
 
     th {
@@ -232,11 +232,11 @@
             <tr>
               <th>رقم الفاتورة</th>
               <th>التاريخ</th>
-              <th>العملة</th>
-              <th>المورد</th>
-              <th>الصنف</th>
               <th>العدد</th>
               <th>السعر الافرادي</th>
+              <th>الصنف</th>
+              <th>المورد</th>
+              <th>العملة</th>
             </tr>
           </thead>
           <tbody id="resultsBody"></tbody>
@@ -348,11 +348,11 @@
         <tr>
           <td>${esc(row.invoiceNo)}</td>
           <td>${esc(row.date)}</td>
-          <td>${esc(row.currency)}</td>
-          <td>${esc(row.supplier)}</td>
-          <td>${esc(row.item)}</td>
           <td>${esc(numFmt(row.qty))}</td>
           <td>${esc(numFmt(row.uprice))}</td>
+          <td>${esc(row.item)}</td>
+          <td>${esc(row.supplier)}</td>
+          <td>${esc(row.currency)}</td>
         </tr>
       `).join('');
 
@@ -403,11 +403,11 @@
       const rows = currentResults.map(r => ({
         'رقم الفاتورة': r.invoiceNo || '',
         'التاريخ': r.date || '',
-        'العملة': r.currency || '',
-        'المورد': r.supplier || '',
-        'الصنف': r.item || '',
         'العدد': r.qty || '',
-        'السعر الافرادي': r.uprice || ''
+        'السعر الافرادي': r.uprice || '',
+        'الصنف': r.item || '',
+        'المورد': r.supplier || '',
+        'العملة': r.currency || ''
       }));
 
       const ws = XLSX.utils.json_to_sheet(rows);

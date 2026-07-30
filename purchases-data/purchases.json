@@ -1,5 +1,192 @@
 [
   {
+    "invoiceNo": "PI1-161",
+    "date": "30/7/2026",
+    "currency": "EUR",
+    "supplier": "خوري انترناشونال - يورو / محل زين 198805",
+    "item": "AFL 1/2 كوع",
+    "qty": "100.00",
+    "uprice": "0.48",
+    "printStamp": "260730_143047",
+    "sourceFile": "PI1-161_400219_260730_143047.DOCX"
+  },
+  {
+    "invoiceNo": "PI1-161",
+    "date": "30/7/2026",
+    "currency": "EUR",
+    "supplier": "خوري انترناشونال - يورو / محل زين 198805",
+    "item": "AFL 1/2 كوع ذكر",
+    "qty": "50.00",
+    "uprice": "0.62",
+    "printStamp": "260730_143047",
+    "sourceFile": "PI1-161_400219_260730_143047.DOCX"
+  },
+  {
+    "invoiceNo": "PI1-161",
+    "date": "30/7/2026",
+    "currency": "EUR",
+    "supplier": "خوري انترناشونال - يورو / محل زين 198805",
+    "item": "AFL 1/2 شريط بعزقة",
+    "qty": "100.00",
+    "uprice": "0.52",
+    "printStamp": "260730_143047",
+    "sourceFile": "PI1-161_400219_260730_143047.DOCX"
+  },
+  {
+    "invoiceNo": "PI1-161",
+    "date": "30/7/2026",
+    "currency": "EUR",
+    "supplier": "خوري انترناشونال - يورو / محل زين 198805",
+    "item": "AFL 1/2 قطع وصل",
+    "qty": "40.00",
+    "uprice": "2.66",
+    "printStamp": "260730_143047",
+    "sourceFile": "PI1-161_400219_260730_143047.DOCX"
+  },
+  {
+    "invoiceNo": "PI1-161",
+    "date": "30/7/2026",
+    "currency": "EUR",
+    "supplier": "خوري انترناشونال - يورو / محل زين 198805",
+    "item": "AFL 1/2 تيه",
+    "qty": "50.00",
+    "uprice": "0.70",
+    "printStamp": "260730_143047",
+    "sourceFile": "PI1-161_400219_260730_143047.DOCX"
+  },
+  {
+    "invoiceNo": "PI1-161",
+    "date": "30/7/2026",
+    "currency": "EUR",
+    "supplier": "خوري انترناشونال - يورو / محل زين 198805",
+    "item": "AFL 1 1/4*1 تيه مخالف",
+    "qty": "4.00",
+    "uprice": "3.32",
+    "printStamp": "260730_143047",
+    "sourceFile": "PI1-161_400219_260730_143047.DOCX"
+  },
+  {
+    "invoiceNo": "PI1-161",
+    "date": "30/7/2026",
+    "currency": "EUR",
+    "supplier": "خوري انترناشونال - يورو / محل زين 198805",
+    "item": "AFL 1 1/2*1 1/4 شريط مخالف",
+    "qty": "10.00",
+    "uprice": "1.36",
+    "printStamp": "260730_143047",
+    "sourceFile": "PI1-161_400219_260730_143047.DOCX"
+  },
+  {
+    "invoiceNo": "PI1-161",
+    "date": "30/7/2026",
+    "currency": "EUR",
+    "supplier": "خوري انترناشونال - يورو / محل زين 198805",
+    "item": "AFL 1 شريط بعزقة",
+    "qty": "20.00",
+    "uprice": "0.96",
+    "printStamp": "260730_143047",
+    "sourceFile": "PI1-161_400219_260730_143047.DOCX"
+  },
+  {
+    "invoiceNo": "PI1-161",
+    "date": "30/7/2026",
+    "currency": "EUR",
+    "supplier": "خوري انترناشونال - يورو / محل زين 198805",
+    "item": "AFL 1 قطع وصل",
+    "qty": "10.00",
+    "uprice": "3.48",
+    "printStamp": "260730_143047",
+    "sourceFile": "PI1-161_400219_260730_143047.DOCX"
+  },
+  {
+    "invoiceNo": "PI1-161",
+    "date": "30/7/2026",
+    "currency": "EUR",
+    "supplier": "خوري انترناشونال - يورو / محل زين 198805",
+    "item": "AFL 1 1/4 قطع وصل",
+    "qty": "10.00",
+    "uprice": "5.74",
+    "printStamp": "260730_143047",
+    "sourceFile": "PI1-161_400219_260730_143047.DOCX"
+  },
+  {
+    "invoiceNo": "PI1-161",
+    "date": "30/7/2026",
+    "currency": "EUR",
+    "supplier": "خوري انترناشونال - يورو / محل زين 198805",
+    "item": "AFL 1 1/4 شريط بعزقة",
+    "qty": "20.00",
+    "uprice": "1.69",
+    "printStamp": "260730_143047",
+    "sourceFile": "PI1-161_400219_260730_143047.DOCX"
+  },
+  {
+    "invoiceNo": "PI1-161",
+    "date": "30/7/2026",
+    "currency": "EUR",
+    "supplier": "خوري انترناشونال - يورو / محل زين 198805",
+    "item": "AFL 1 1/4*1 شريط مخالف",
+    "qty": "10.00",
+    "uprice": "0.92",
+    "printStamp": "260730_143047",
+    "sourceFile": "PI1-161_400219_260730_143047.DOCX"
+  },
+  {
+    "invoiceNo": "PI1-161",
+    "date": "30/7/2026",
+    "currency": "EUR",
+    "supplier": "خوري انترناشونال - يورو / محل زين 198805",
+    "item": "AFL 1*1/2 شريط مخالف",
+    "qty": "20.00",
+    "uprice": "0.77",
+    "printStamp": "260730_143047",
+    "sourceFile": "PI1-161_400219_260730_143047.DOCX"
+  },
+  {
+    "invoiceNo": "PI1-161",
+    "date": "30/7/2026",
+    "currency": "EUR",
+    "supplier": "خوري انترناشونال - يورو / محل زين 198805",
+    "item": "AFL 1*3/4 شريط مخالف",
+    "qty": "20.00",
+    "uprice": "0.70",
+    "printStamp": "260730_143047",
+    "sourceFile": "PI1-161_400219_260730_143047.DOCX"
+  },
+  {
+    "invoiceNo": "PI1-161",
+    "date": "30/7/2026",
+    "currency": "EUR",
+    "supplier": "خوري انترناشونال - يورو / محل زين 198805",
+    "item": "AFL 3/4*1/2 شريط مخالف",
+    "qty": "20.00",
+    "uprice": "0.52",
+    "printStamp": "260730_143047",
+    "sourceFile": "PI1-161_400219_260730_143047.DOCX"
+  },
+  {
+    "invoiceNo": "PI1-160",
+    "date": "30/7/2026",
+    "currency": "USD",
+    "supplier": "خوري انترناشونال - دولار / محل زين 198804",
+    "item": "HE 1 1/4 شريط مشكل قصير",
+    "qty": "4.00",
+    "uprice": "1.04",
+    "printStamp": "260730_143039",
+    "sourceFile": "PI1-160_400227_260730_143039.DOCX"
+  },
+  {
+    "invoiceNo": "PI1-159",
+    "date": "30/7/2026",
+    "currency": "USD",
+    "supplier": "عادل بو حبيب وشركاه ش.م.ل - زين بو حبيب زين 37091-18801",
+    "item": "1/2 قسطل حديد سحب BE SCH 40",
+    "qty": "50.00",
+    "uprice": "14.72",
+    "printStamp": "260730_143024",
+    "sourceFile": "PI1-159_400231_260730_143024.DOCX"
+  },
+  {
     "invoiceNo": "PI1-158",
     "date": "29/7/2026",
     "currency": "USD",
@@ -823,6 +1010,237 @@
     "uprice": "40.49",
     "printStamp": "260729_114804",
     "sourceFile": "PI1-140_400214_260729_114804.DOCX"
+  },
+  {
+    "invoiceNo": "PI-827",
+    "date": "30/7/2026",
+    "currency": "USD",
+    "supplier": "اكوالينك 1102",
+    "item": "صباب مغسلة نحاس BONOMINI 942",
+    "qty": "20.00",
+    "uprice": "8.50",
+    "printStamp": "260730_143417",
+    "sourceFile": "PI-827_400028_260730_143417.DOCX"
+  },
+  {
+    "invoiceNo": "PI-826",
+    "date": "30/7/2026",
+    "currency": "USD",
+    "supplier": "علي قبيسي علي قبيسي 400",
+    "item": "1/2 حنفية غلة ECO",
+    "qty": "25.00",
+    "uprice": "6.00",
+    "printStamp": "260730_143407",
+    "sourceFile": "PI-826_400030_260730_143407.DOCX"
+  },
+  {
+    "invoiceNo": "PI-825",
+    "date": "29/7/2026",
+    "currency": "USD",
+    "supplier": "جمل وشعبان 17023",
+    "item": "LEO 2ACm150 2HP 220V موتير ليو توربين",
+    "qty": "2.00",
+    "uprice": "169.00",
+    "printStamp": "260730_143359",
+    "sourceFile": "PI-825_400046_260730_143359.DOCX"
+  },
+  {
+    "invoiceNo": "PI-824",
+    "date": "30/7/2026",
+    "currency": "USD",
+    "supplier": "اكوالينك 1100",
+    "item": "صباب مجلى بلاستيك كبير BONOMINI 19310 برغيستانلس",
+    "qty": "25.00",
+    "uprice": "4.50",
+    "printStamp": "260730_143351",
+    "sourceFile": "PI-824_400028_260730_143351.DOCX"
+  },
+  {
+    "invoiceNo": "PI-823",
+    "date": "30/7/2026",
+    "currency": "USD",
+    "supplier": "غنوم 12046",
+    "item": "عصاية رفش تركي",
+    "qty": "12.00",
+    "uprice": "2.25",
+    "printStamp": "260730_143318",
+    "sourceFile": "PI-823_400017_260730_143318.DOCX"
+  },
+  {
+    "invoiceNo": "PI-822",
+    "date": "30/7/2026",
+    "currency": "USD",
+    "supplier": "حسن قرمش",
+    "item": "1/2 سكر غلة",
+    "qty": "600.00",
+    "uprice": "1.75",
+    "printStamp": "260730_143257",
+    "sourceFile": "PI-822_400186_260730_143257.DOCX"
+  },
+  {
+    "invoiceNo": "PI-822",
+    "date": "30/7/2026",
+    "currency": "USD",
+    "supplier": "حسن قرمش",
+    "item": "1 سكر غلة",
+    "qty": "360.00",
+    "uprice": "3.75",
+    "printStamp": "260730_143257",
+    "sourceFile": "PI-822_400186_260730_143257.DOCX"
+  },
+  {
+    "invoiceNo": "PI-822",
+    "date": "30/7/2026",
+    "currency": "USD",
+    "supplier": "حسن قرمش",
+    "item": "1/2 سكر غلة",
+    "qty": "120.00",
+    "uprice": "1.75",
+    "printStamp": "260730_143257",
+    "sourceFile": "PI-822_400186_260730_143257.DOCX"
+  },
+  {
+    "invoiceNo": "PI-822",
+    "date": "30/7/2026",
+    "currency": "USD",
+    "supplier": "حسن قرمش",
+    "item": "تعليقة دوش متحركة",
+    "qty": "1,000.00",
+    "uprice": "0.65",
+    "printStamp": "260730_143257",
+    "sourceFile": "PI-822_400186_260730_143257.DOCX"
+  },
+  {
+    "invoiceNo": "PI-822",
+    "date": "30/7/2026",
+    "currency": "USD",
+    "supplier": "حسن قرمش",
+    "item": "1/2 سكر زاوية نحاس",
+    "qty": "500.00",
+    "uprice": "1.35",
+    "printStamp": "260730_143257",
+    "sourceFile": "PI-822_400186_260730_143257.DOCX"
+  },
+  {
+    "invoiceNo": "PI-822",
+    "date": "30/7/2026",
+    "currency": "USD",
+    "supplier": "حسن قرمش",
+    "item": "1/2 ركور حنفية غلة ستانلس ستيل",
+    "qty": "1,000.00",
+    "uprice": "0.35",
+    "printStamp": "260730_143257",
+    "sourceFile": "PI-822_400186_260730_143257.DOCX"
+  },
+  {
+    "invoiceNo": "PI-821",
+    "date": "30/7/2026",
+    "currency": "USD",
+    "supplier": "حسن حمدان حسن حمدان 2429",
+    "item": "60*60 ريغار فونت / رزين فونت سميك",
+    "qty": "2.00",
+    "uprice": "55.00",
+    "printStamp": "260730_143244",
+    "sourceFile": "PI-821_400045_260730_143244.DOCX"
+  },
+  {
+    "invoiceNo": "PI-820",
+    "date": "30/7/2026",
+    "currency": "USD",
+    "supplier": "عوض",
+    "item": "قنينة زيت بويا غالون",
+    "qty": "5.00",
+    "uprice": "8.50",
+    "printStamp": "260730_143236",
+    "sourceFile": "PI-820_400091_260730_143236.DOCX"
+  },
+  {
+    "invoiceNo": "PI-820",
+    "date": "30/7/2026",
+    "currency": "USD",
+    "supplier": "عوض",
+    "item": "قنينة زيت بويا",
+    "qty": "5.00",
+    "uprice": "3.50",
+    "printStamp": "260730_143236",
+    "sourceFile": "PI-820_400091_260730_143236.DOCX"
+  },
+  {
+    "invoiceNo": "PI-819",
+    "date": "29/7/2026",
+    "currency": "USD",
+    "supplier": "جعفر مراد 8690",
+    "item": "50 كوع فاتح ذكر تلزيق ايطالي",
+    "qty": "100.00",
+    "uprice": "1.00",
+    "printStamp": "260730_143228",
+    "sourceFile": "PI-819_400226_260730_143228.DOCX"
+  },
+  {
+    "invoiceNo": "PI-819",
+    "date": "29/7/2026",
+    "currency": "USD",
+    "supplier": "جعفر مراد 8690",
+    "item": "50 كوع زاوية ذكر تلزيق ايطالي",
+    "qty": "100.00",
+    "uprice": "1.11",
+    "printStamp": "260730_143228",
+    "sourceFile": "PI-819_400226_260730_143228.DOCX"
+  },
+  {
+    "invoiceNo": "PI-819",
+    "date": "29/7/2026",
+    "currency": "USD",
+    "supplier": "جعفر مراد 8690",
+    "item": "50 كوع فاتح ذكر بجوان تركي",
+    "qty": "100.00",
+    "uprice": "0.40",
+    "printStamp": "260730_143228",
+    "sourceFile": "PI-819_400226_260730_143228.DOCX"
+  },
+  {
+    "invoiceNo": "PI-819",
+    "date": "29/7/2026",
+    "currency": "USD",
+    "supplier": "جعفر مراد 8690",
+    "item": "50 كوع زاوية ذكر بجوان تركي",
+    "qty": "100.00",
+    "uprice": "0.48",
+    "printStamp": "260730_143228",
+    "sourceFile": "PI-819_400226_260730_143228.DOCX"
+  },
+  {
+    "invoiceNo": "PI-818",
+    "date": "29/7/2026",
+    "currency": "USD",
+    "supplier": "ايهم",
+    "item": "ديمول بدون رايحه",
+    "qty": "30.00",
+    "uprice": "1.75",
+    "printStamp": "260730_143215",
+    "sourceFile": "PI-818_400133_260730_143215.DOCX"
+  },
+  {
+    "invoiceNo": "PI-818",
+    "date": "29/7/2026",
+    "currency": "USD",
+    "supplier": "ايهم",
+    "item": "ديمول مع رائحة",
+    "qty": "20.00",
+    "uprice": "2.50",
+    "printStamp": "260730_143215",
+    "sourceFile": "PI-818_400133_260730_143215.DOCX"
+  },
+  {
+    "invoiceNo": "PI-818",
+    "date": "29/7/2026",
+    "currency": "USD",
+    "supplier": "ايهم",
+    "item": "دواء صراصير بودرة براغيث",
+    "qty": "10.00",
+    "uprice": "3.75",
+    "printStamp": "260730_143215",
+    "sourceFile": "PI-818_400133_260730_143215.DOCX"
   },
   {
     "invoiceNo": "PI-817",
@@ -2922,8 +3340,8 @@
     "item": "خلاط مغسلة فيتاس 70202 اسود",
     "qty": "4.00",
     "uprice": "16.00",
-    "printStamp": "260729_113447",
-    "sourceFile": "PI-741_410120_260729_113447.DOCX"
+    "printStamp": "260730_103505",
+    "sourceFile": "PI-741_410120_260730_103505.DOCX"
   },
   {
     "invoiceNo": "PI-741",
@@ -2933,19 +3351,19 @@
     "item": "2 سكر غلة",
     "qty": "6.00",
     "uprice": "12.50",
-    "printStamp": "260729_113447",
-    "sourceFile": "PI-741_410120_260729_113447.DOCX"
+    "printStamp": "260730_103505",
+    "sourceFile": "PI-741_410120_260730_103505.DOCX"
   },
   {
     "invoiceNo": "PI-741",
     "date": "22/7/2026",
     "currency": "USD",
     "supplier": "السادة محلات الحنون المحترمين 195",
-    "item": "مراية 50سم تبليط",
+    "item": "مجراية بكادوش 50سم تبليط",
     "qty": "5.00",
     "uprice": "16.00",
-    "printStamp": "260729_113447",
-    "sourceFile": "PI-741_410120_260729_113447.DOCX"
+    "printStamp": "260730_103505",
+    "sourceFile": "PI-741_410120_260730_103505.DOCX"
   },
   {
     "invoiceNo": "PI-740",

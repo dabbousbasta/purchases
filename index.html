@@ -129,13 +129,13 @@
 
     .table-wrap {
       width: 100%;
+      overflow-x: auto; /* نسمح بالتمرير الأفقي عند الحاجة */
     }
 
     table {
-      width: 100%;
       border-collapse: collapse;
       margin-top: 8px;
-      table-layout: fixed;
+      width: 100%;
     }
 
     th, td {
@@ -156,21 +156,14 @@
       z-index: 1;
     }
 
-    /* نسب عرض الأعمدة على الشاشات الكبيرة */
-    thead th:nth-child(1),
-    tbody td:nth-child(1) { width: 12%; } /* رقم الفاتورة */
-    thead th:nth-child(2),
-    tbody td:nth-child(2) { width: 12%; } /* التاريخ */
-    thead th:nth-child(3),
-    tbody td:nth-child(3) { width: 8%; }  /* العملة */
+    /* المورد والصنف: عرض ثابت تقريبًا لـ ~20 حرف، يكبر عموديًا إذا زاد النص */
     thead th:nth-child(4),
-    tbody td:nth-child(4) { width: 18%; } /* المورد */
+    tbody td:nth-child(4), /* المورد */
     thead th:nth-child(5),
-    tbody td:nth-child(5) { width: 30%; } /* الصنف */
-    thead th:nth-child(6),
-    tbody td:nth-child(6) { width: 10%; } /* العدد */
-    thead th:nth-child(7),
-    tbody td:nth-child(7) { width: 10%; } /* السعر */
+    tbody td:nth-child(5)  /* الصنف */
+    {
+      min-width: 180px; /* تقريبًا عرض 20 حرف على الموبايل/ديسكتوب */
+    }
 
     tbody tr:nth-child(odd) {
       background: #fff3e0;
@@ -201,30 +194,13 @@
     @media (max-width: 768px) {
       main { padding: 10px; }
 
-      table {
-        min-width: 100%;
-      }
-
       th, td {
         font-size: 12px;
         padding: 6px 4px;
       }
 
-      /* موبايل: ضبط عرض الأعمدة بدقة */
-      thead th:nth-child(1),
-      tbody td:nth-child(1) { width: 14%; }  /* رقم الفاتورة: يكفي PI1-158 */
-      thead th:nth-child(2),
-      tbody td:nth-child(2) { width: 18%; }  /* التاريخ: يكفي 29/07/2026 */
-      thead th:nth-child(3),
-      tbody td:nth-child(3) { width: 8%; }   /* العملة: يكفي USD */
-      thead th:nth-child(4),
-      tbody td:nth-child(4) { width: 22%; }  /* المورد */
-      thead th:nth-child(5),
-      tbody td:nth-child(5) { width: 18%; }  /* الصنف */
-      thead th:nth-child(6),
-      tbody td:nth-child(6) { width: 8%; }   /* العدد */
-      thead th:nth-child(7),
-      tbody td:nth-child(7) { width: 12%; }  /* السعر الافرادي: أوسع ليظهر 5 أرقام أو أكثر */
+      /* في الموبايل، نبقي الأعمدة الرقمية بدون عرض محدد، فيأخذوا عرض المحتوى تلقائياً */
+      /* المورد + الصنف يحتفظوا بالـ min-width المذكورة، ويبقى عندنا تمرير أفقي لو احتجنا */
     }
   </style>
 </head>

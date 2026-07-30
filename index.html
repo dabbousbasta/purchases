@@ -129,13 +129,16 @@
 
     .table-wrap {
       width: 100%;
-      overflow-x: auto; /* نسمح بالتمرير الأفقي عند الحاجة */
+      max-height: 70vh;           /* حاوية فيها تمرير عمودي */
+      overflow-x: auto;           /* تمرير أفقي */
+      overflow-y: auto;           /* تمرير عمودي */
     }
 
     table {
       border-collapse: collapse;
       margin-top: 8px;
-      width: 100%;
+      width: max-content;         /* الجدول يأخذ عرضه الطبيعي، ولو كان أكبر من الشاشة يظهر شريط أفقي */
+      background-color: #fff;
     }
 
     th, td {
@@ -143,9 +146,7 @@
       padding: 8px 6px;
       font-size: 13px;
       vertical-align: top;
-      white-space: normal;
-      word-wrap: break-word;
-      word-break: break-word;
+      white-space: nowrap;        /* لا يكسر السطر، الأرقام تبقى على سطر واحد */
     }
 
     th {
@@ -154,15 +155,6 @@
       position: sticky;
       top: 0;
       z-index: 1;
-    }
-
-    /* المورد والصنف: عرض ثابت تقريبًا لـ ~20 حرف، يكبر عموديًا إذا زاد النص */
-    thead th:nth-child(4),
-    tbody td:nth-child(4), /* المورد */
-    thead th:nth-child(5),
-    tbody td:nth-child(5)  /* الصنف */
-    {
-      min-width: 180px; /* تقريبًا عرض 20 حرف على الموبايل/ديسكتوب */
     }
 
     tbody tr:nth-child(odd) {
@@ -193,14 +185,13 @@
 
     @media (max-width: 768px) {
       main { padding: 10px; }
-
       th, td {
         font-size: 12px;
         padding: 6px 4px;
       }
-
-      /* في الموبايل، نبقي الأعمدة الرقمية بدون عرض محدد، فيأخذوا عرض المحتوى تلقائياً */
-      /* المورد + الصنف يحتفظوا بالـ min-width المذكورة، ويبقى عندنا تمرير أفقي لو احتجنا */
+      .table-wrap {
+        max-height: 60vh;
+      }
     }
   </style>
 </head>

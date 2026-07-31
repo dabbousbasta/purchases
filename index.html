@@ -8,6 +8,7 @@
   <style>
     :root {
       --primary: #5e35b1;
+      --primary-dark: #4527a0;
       --bg: #f5f7fb;
       --text: #222;
       --card: #fff;
@@ -52,6 +53,10 @@
       margin-bottom: 8px;
     }
 
+    .filters-grid.extra {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
     .field label {
       display: block;
       font-size: 12px;
@@ -59,16 +64,20 @@
       color: #555;
     }
 
-    .field input {
+    .field input,
+    .field select {
       width: 100%;
       padding: 10px 12px;
       font-size: 14px;
       border: 1px solid #ccc;
       border-radius: 8px;
       outline: none;
+      font-family: inherit;
+      background: #fff;
     }
 
-    .field input:focus {
+    .field input:focus,
+    .field select:focus {
       border-color: var(--primary);
       box-shadow: 0 0 0 2px rgba(94,53,177,.12);
     }
@@ -77,8 +86,15 @@
       display: flex;
       gap: 8px;
       flex-wrap: wrap;
-      justify-content: flex-start;
+      justify-content: space-between;
+      align-items: center;
       margin-top: 8px;
+    }
+
+    .actions-left {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
     }
 
     button {
@@ -105,6 +121,11 @@
       transform: translateY(1px);
     }
 
+    button:disabled {
+      opacity: .5;
+      cursor: not-allowed;
+    }
+
     .status {
       font-size: 13px;
       margin-top: 8px;
@@ -127,17 +148,32 @@
       border: 1px solid #f5c6cb;
     }
 
+    .summary-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 10px;
+      font-size: 13px;
+      color: #444;
+    }
+
+    .summary-bar b {
+      color: var(--primary);
+    }
+
     .table-wrap {
       width: 100%;
-      max-height: 70vh;
+      max-height: 65vh;
       overflow-x: auto;
       overflow-y: auto;
+      position: relative;
     }
 
     table {
       border-collapse: collapse;
       margin-top: 8px;
       width: max-content;
+      min-width: 100%;
       background-color: #fff;
     }
 
@@ -155,6 +191,14 @@
       position: sticky;
       top: 0;
       z-index: 1;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    th .arrow {
+      font-size: 11px;
+      opacity: .8;
+      margin-inline-start: 4px;
     }
 
     tbody tr:nth-child(odd) {
@@ -163,6 +207,11 @@
 
     tbody tr:nth-child(even) {
       background: #f3e5f5;
+    }
+
+    tbody tr:hover {
+      outline: 2px solid rgba(94,53,177,.25);
+      outline-offset: -2px;
     }
 
     .no-results {
@@ -177,9 +226,49 @@
       margin-top: 6px;
     }
 
+    .pagination {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    .pagination button {
+      padding: 6px 12px;
+      background: #ede7f6;
+      color: var(--primary-dark);
+      font-size: 13px;
+    }
+
+    .pagination button.active {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .pagination select {
+      padding: 6px 8px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 13px;
+    }
+
+    .skeleton-row td {
+      background: linear-gradient(90deg, #f0f0f0 25%, #e6e6e6 37%, #f0f0f0 63%);
+      background-size: 400% 100%;
+      animation: shimmer 1.4s ease infinite;
+      color: transparent;
+    }
+
+    @keyframes shimmer {
+      0% { background-position: 100% 0; }
+      100% { background-position: 0 0; }
+    }
+
     @media (max-width: 900px) {
-      .filters-grid {
-        grid-template-columns: 1fr;
+      .filters-grid, .filters-grid.extra {
+        grid-template-columns: 1fr 1fr;
       }
     }
 
@@ -191,6 +280,13 @@
       }
       .table-wrap {
         max-height: 60vh;
+      }
+      .filters-grid, .filters-grid.extra {
+        grid-template-columns: 1fr;
+      }
+      .actions {
+        flex-direction: column;
+        align-items: stretch;
       }
     }
   </style>
@@ -215,13 +311,43 @@
         </div>
       </div>
 
+      <div class="filters-grid extra">
+        <div class="field">
+          <label for="dateFrom">من تاريخ</label>
+          <input type="date" id="dateFrom" />
+        </div>
+        <div class="field">
+          <label for="dateTo">إلى تاريخ</label>
+          <input type="date" id="dateTo" />
+        </div>
+        <div class="field">
+          <label for="currencyFilter">العملة</label>
+          <select id="currencyFilter">
+            <option value="">الكل</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="pageSize">عدد الصفوف بالصفحة</label>
+          <select id="pageSize">
+            <option value="50">50</option>
+            <option value="100" selected>100</option>
+            <option value="250">250</option>
+            <option value="500">500</option>
+            <option value="all">الكل</option>
+          </select>
+        </div>
+      </div>
+
       <div class="actions">
-        <button class="btn-primary" id="exportExcel">تصدير Excel</button>
-        <button class="btn-secondary" id="clearSearch">مسح كل الفلاتر</button>
+        <div class="actions-left">
+          <button class="btn-primary" id="exportExcel">تصدير Excel</button>
+          <button class="btn-secondary" id="clearSearch">مسح كل الفلاتر</button>
+        </div>
       </div>
 
       <div id="status" class="status"></div>
       <div class="small" id="countInfo">... جاري تحميل البيانات</div>
+      <div class="summary-bar" id="summaryBar"></div>
     </section>
 
     <section class="card">
@@ -230,27 +356,33 @@
         <table id="resultsTable">
           <thead>
             <tr>
-              <th>الفاتورة</th>
-              <th>التاريخ</th>
-              <th>العدد</th>
-              <th>العملة</th>
-              <th>السعر</th>
-              <th>الصنف</th>
-              <th>المورد</th>
+              <th data-key="invoiceNo">الفاتورة<span class="arrow" data-arrow="invoiceNo"></span></th>
+              <th data-key="date">التاريخ<span class="arrow" data-arrow="date"></span></th>
+              <th data-key="qty">العدد<span class="arrow" data-arrow="qty"></span></th>
+              <th data-key="currency">العملة<span class="arrow" data-arrow="currency"></span></th>
+              <th data-key="uprice">السعر<span class="arrow" data-arrow="uprice"></span></th>
+              <th data-key="item">الصنف<span class="arrow" data-arrow="item"></span></th>
+              <th data-key="supplier">المورد<span class="arrow" data-arrow="supplier"></span></th>
             </tr>
           </thead>
           <tbody id="resultsBody"></tbody>
         </table>
       </div>
+      <div class="pagination" id="pagination"></div>
     </section>
   </main>
 
   <script>
     let allData = [];
     let currentResults = [];
+    let currentPage = 1;
+    let sortKey = null;       // null = الترتيب الافتراضي (تاريخ تنازلي)
+    let sortDir = 1;          // 1 = تصاعدي، -1 = تنازلي
 
     const arabicDigits = ['٠','١','٢','٣','٤','٥','٦','٧','٨','٩'];
     const latinDigits  = ['0','1','2','3','4','5','6','7','8','9'];
+
+    // ---------- أدوات مساعدة ----------
 
     function normalizeForSearch(str) {
       let s = String(str ?? '').toLowerCase();
@@ -270,16 +402,27 @@
       })[s]);
     }
 
+    // يقبل أرقام عادية أو فيها فواصل آلاف أو أرقام عربية، ويتجاهل أي رمز غير رقمي زائد
+    function toNumber(v) {
+      if (v === null || v === undefined || v === '') return NaN;
+      let s = normalizeForSearch(v).replace(/,/g, '').trim();
+      // يسمح فقط بالأرقام والفاصلة العشرية والإشارة السالبة
+      s = s.replace(/[^0-9.\-]/g, '');
+      if (s === '' || s === '-' ) return NaN;
+      const n = Number(s);
+      return Number.isNaN(n) ? NaN : n;
+    }
+
     function numFmt(v) {
-      if (v === null || v === undefined || v === '') return '';
-      const n = Number(String(v).replace(/,/g, ''));
-      if (Number.isNaN(n)) return String(v);
+      const n = toNumber(v);
+      if (Number.isNaN(n)) return v ? esc(v) : '';
       return n.toLocaleString('en-US', { maximumFractionDigits: 2 });
     }
 
+    // يحوّل التاريخ من صيغة day/month/year إلى رقم قابل للمقارنة YYYYMMDD
     function parseDate(d) {
       if (!d) return 0;
-      const parts = String(d).split('/');
+      const parts = normalizeForSearch(d).split('/');
       if (parts.length !== 3) return 0;
       const day = parseInt(parts[0], 10);
       const month = parseInt(parts[1], 10);
@@ -288,31 +431,97 @@
       return year * 10000 + month * 100 + day;
     }
 
-    function sortRows(a, b) {
+    // تحويل قيمة input[type=date] (YYYY-MM-DD) لنفس صيغة parseDate
+    function isoToComparable(isoStr) {
+      if (!isoStr) return null;
+      const [y, m, d] = isoStr.split('-').map(Number);
+      if (!y || !m || !d) return null;
+      return y * 10000 + m * 100 + d;
+    }
+
+    function defaultSort(a, b) {
       const da = parseDate(a.date);
       const db = parseDate(b.date);
-
       if (db !== da) return db - da;
 
       const ia = String(a.invoiceNo || '');
       const ib = String(b.invoiceNo || '');
-      const cInvoice = ib.localeCompare(ia, undefined, {
-        numeric: true,
-        sensitivity: 'base'
-      });
-      if (cInvoice !== 0) return cInvoice;
+      return ib.localeCompare(ia, undefined, { numeric: true, sensitivity: 'base' });
+    }
 
-      return 0;
+    function compareByKey(a, b, key) {
+      if (key === 'date') {
+        return (parseDate(a.date) - parseDate(b.date)) * sortDir;
+      }
+      if (key === 'qty' || key === 'uprice') {
+        const na = toNumber(a[key]);
+        const nb = toNumber(b[key]);
+        const va = Number.isNaN(na) ? -Infinity : na;
+        const vb = Number.isNaN(nb) ? -Infinity : nb;
+        return (va - vb) * sortDir;
+      }
+      // نصوص: الفاتورة، العملة، الصنف، المورد
+      const va = String(a[key] ?? '');
+      const vb = String(b[key] ?? '');
+      return va.localeCompare(vb, undefined, { numeric: true, sensitivity: 'base' }) * sortDir;
+    }
+
+    function applySort(rows) {
+      const sorted = [...rows];
+      if (sortKey) {
+        sorted.sort((a, b) => compareByKey(a, b, sortKey));
+      } else {
+        sorted.sort(defaultSort);
+      }
+      return sorted;
+    }
+
+    function debounce(fn, wait) {
+      let t = null;
+      return (...args) => {
+        clearTimeout(t);
+        t = setTimeout(() => fn(...args), wait);
+      };
+    }
+
+    // ---------- تحميل البيانات ----------
+
+    function showSkeleton() {
+      const tbody = document.getElementById('resultsBody');
+      let html = '';
+      for (let i = 0; i < 8; i++) {
+        html += `<tr class="skeleton-row"><td colspan="7">جاري التحميل...</td></tr>`;
+      }
+      tbody.innerHTML = html;
+    }
+
+    function populateCurrencyOptions() {
+      const select = document.getElementById('currencyFilter');
+      const currencies = [...new Set(allData.map(r => (r.currency || '').trim()).filter(Boolean))]
+        .sort((a, b) => a.localeCompare(b));
+
+      // احتفظ بأي اختيار حالي
+      const current = select.value;
+      select.innerHTML = '<option value="">الكل</option>' +
+        currencies.map(c => `<option value="${esc(c)}">${esc(c)}</option>`).join('');
+      if (currencies.includes(current)) select.value = current;
     }
 
     async function loadData() {
       const status = document.getElementById('status');
+      showSkeleton();
       try {
         const res = await fetch('purchases-data/purchases.json?v=' + Date.now());
-        if (!res.ok) throw new Error('تعذر تحميل ملف البيانات');
+        if (!res.ok) throw new Error('HTTP ' + res.status);
 
-        allData = await res.json();
-        allData.sort(sortRows);
+        const json = await res.json();
+
+        if (!Array.isArray(json)) {
+          throw new Error('صيغة البيانات غير صحيحة (متوقع مصفوفة)');
+        }
+
+        allData = json;
+        populateCurrencyOptions();
 
         document.getElementById('countInfo').textContent =
           `تم تحميل ${allData.length} سجل.`;
@@ -321,49 +530,144 @@
         status.textContent = '✅ تم تحميل البيانات بنجاح';
         status.style.display = 'block';
 
-        currentResults = [...allData];
-        render(currentResults);
+        currentResults = applySort(allData);
+        currentPage = 1;
+        render();
 
-        // تركيز افتراضي على خانة الصنف
         document.getElementById('searchItem').focus();
       } catch (e) {
         status.className = 'status err';
-        status.textContent = '❌ خطأ في تحميل البيانات';
+        status.textContent = '❌ خطأ في تحميل البيانات: ' + esc(e.message || e);
         status.style.display = 'block';
         document.getElementById('countInfo').textContent = 'فشل تحميل البيانات';
         document.getElementById('resultsBody').innerHTML =
-          '<tr><td colspan="7" class="no-results">لم يتم تحميل البيانات</td></tr>';
+          '<tr><td colspan="7" class="no-results">لم يتم تحميل البيانات. تحقق من مسار الملف purchases-data/purchases.json</td></tr>';
+        document.getElementById('pagination').innerHTML = '';
       }
     }
 
-    function render(rows) {
+    // ---------- العرض ----------
+
+    function getPageSize() {
+      const v = document.getElementById('pageSize').value;
+      return v === 'all' ? Infinity : parseInt(v, 10);
+    }
+
+    function updateArrows() {
+      document.querySelectorAll('.arrow').forEach(el => {
+        const key = el.getAttribute('data-arrow');
+        el.textContent = key === sortKey ? (sortDir === 1 ? '▲' : '▼') : '';
+      });
+    }
+
+    function renderSummary(rows) {
+      const bar = document.getElementById('summaryBar');
+      if (!rows.length) { bar.innerHTML = ''; return; }
+
+      const totalsByCurrency = {};
+      let totalQty = 0;
+
+      rows.forEach(r => {
+        const cur = (r.currency || 'بدون عملة').trim() || 'بدون عملة';
+        const qty = toNumber(r.qty);
+        const price = toNumber(r.uprice);
+        const lineTotal = (!Number.isNaN(qty) && !Number.isNaN(price)) ? qty * price : 0;
+        totalsByCurrency[cur] = (totalsByCurrency[cur] || 0) + lineTotal;
+        if (!Number.isNaN(qty)) totalQty += qty;
+      });
+
+      const parts = Object.entries(totalsByCurrency)
+        .map(([cur, sum]) => `<span>إجمالي ${esc(cur)}: <b>${sum.toLocaleString('en-US', {maximumFractionDigits: 2})}</b></span>`)
+        .join('');
+
+      bar.innerHTML =
+        `<span>عدد الأصناف الكلي: <b>${totalQty.toLocaleString('en-US', {maximumFractionDigits: 2})}</b></span>` + parts;
+    }
+
+    function render() {
       const tbody = document.getElementById('resultsBody');
-      tbody.innerHTML = '';
+      const pageSize = getPageSize();
+      const total = currentResults.length;
+      const totalPages = pageSize === Infinity ? 1 : Math.max(1, Math.ceil(total / pageSize));
+      if (currentPage > totalPages) currentPage = totalPages;
 
-      if (!rows.length) {
+      const start = pageSize === Infinity ? 0 : (currentPage - 1) * pageSize;
+      const end = pageSize === Infinity ? total : start + pageSize;
+      const pageRows = currentResults.slice(start, end);
+
+      if (!pageRows.length) {
         tbody.innerHTML = '<tr><td colspan="7" class="no-results">لا توجد نتائج مطابقة</td></tr>';
-        return;
+      } else {
+        tbody.innerHTML = pageRows.map(row => `
+          <tr>
+            <td>${esc(row.invoiceNo)}</td>
+            <td>${esc(row.date)}</td>
+            <td>${numFmt(row.qty)}</td>
+            <td>${esc(row.currency)}</td>
+            <td>${numFmt(row.uprice)}</td>
+            <td>${esc(row.item)}</td>
+            <td>${esc(row.supplier)}</td>
+          </tr>
+        `).join('');
       }
 
-      const html = rows.map(row => `
-        <tr>
-          <td>${esc(row.invoiceNo)}</td>
-          <td>${esc(row.date)}</td>
-          <td>${esc(numFmt(row.qty))}</td>
-          <td>${esc(row.currency)}</td>
-          <td>${esc(numFmt(row.uprice))}</td>
-          <td>${esc(row.item)}</td>
-          <td>${esc(row.supplier)}</td>
-        </tr>
-      `).join('');
+      document.getElementById('countInfo').textContent =
+        total === allData.length
+          ? `عدد النتائج: ${total} (من إجمالي ${allData.length})`
+          : `عدد النتائج: ${total} (من إجمالي ${allData.length}) — عرض ${pageRows.length ? start + 1 : 0}-${Math.min(end, total)}`;
 
-      tbody.innerHTML = html;
+      renderSummary(currentResults);
+      renderPagination(totalPages);
+      updateArrows();
     }
+
+    function renderPagination(totalPages) {
+      const el = document.getElementById('pagination');
+      if (totalPages <= 1) { el.innerHTML = ''; return; }
+
+      let html = '';
+      html += `<button ${currentPage === 1 ? 'disabled' : ''} data-page="prev">السابق</button>`;
+
+      const windowSize = 2;
+      const pagesToShow = new Set();
+      pagesToShow.add(1);
+      pagesToShow.add(totalPages);
+      for (let p = currentPage - windowSize; p <= currentPage + windowSize; p++) {
+        if (p >= 1 && p <= totalPages) pagesToShow.add(p);
+      }
+      const sortedPages = [...pagesToShow].sort((a, b) => a - b);
+
+      let prevPage = 0;
+      sortedPages.forEach(p => {
+        if (p - prevPage > 1) html += `<span>...</span>`;
+        html += `<button data-page="${p}" class="${p === currentPage ? 'active' : ''}">${p}</button>`;
+        prevPage = p;
+      });
+
+      html += `<button ${currentPage === totalPages ? 'disabled' : ''} data-page="next">التالي</button>`;
+      el.innerHTML = html;
+
+      el.querySelectorAll('button[data-page]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const p = btn.getAttribute('data-page');
+          if (p === 'prev') currentPage--;
+          else if (p === 'next') currentPage++;
+          else currentPage = parseInt(p, 10);
+          render();
+          document.querySelector('.table-wrap').scrollTo({ top: 0 });
+        });
+      });
+    }
+
+    // ---------- البحث والفلترة ----------
 
     function search() {
       const rawItem     = document.getElementById('searchItem').value.trim();
       const rawInvoice  = document.getElementById('searchInvoice').value.trim();
       const rawSupplier = document.getElementById('searchSupplier').value.trim();
+      const dateFrom    = isoToComparable(document.getElementById('dateFrom').value);
+      const dateTo      = isoToComparable(document.getElementById('dateTo').value);
+      const currency    = document.getElementById('currencyFilter').value;
 
       const itemWords     = normalizeForSearch(rawItem).split(/\s+/).filter(Boolean);
       const invoiceWords  = normalizeForSearch(rawInvoice).split(/\s+/).filter(Boolean);
@@ -373,27 +677,26 @@
         const nameItem     = normalizeForSearch(row.item || '');
         const nameInvoice  = normalizeForSearch(row.invoiceNo || '');
         const nameSupplier = normalizeForSearch(row.supplier || '');
+        const rowDate      = parseDate(row.date);
 
-        const matchItem = itemWords.length === 0
-          ? true
-          : itemWords.every(w => nameItem.includes(w));
+        const matchItem = itemWords.length === 0 || itemWords.every(w => nameItem.includes(w));
+        const matchInvoice = invoiceWords.length === 0 || invoiceWords.every(w => nameInvoice.includes(w));
+        const matchSupplier = supplierWords.length === 0 || supplierWords.every(w => nameSupplier.includes(w));
+        const matchCurrency = !currency || (row.currency || '').trim() === currency;
+        const matchDateFrom = dateFrom === null || rowDate >= dateFrom;
+        const matchDateTo = dateTo === null || rowDate <= dateTo;
 
-        const matchInvoice = invoiceWords.length === 0
-          ? true
-          : invoiceWords.every(w => nameInvoice.includes(w));
-
-        const matchSupplier = supplierWords.length === 0
-          ? true
-          : supplierWords.every(w => nameSupplier.includes(w));
-
-        return matchItem && matchInvoice && matchSupplier;
+        return matchItem && matchInvoice && matchSupplier && matchCurrency && matchDateFrom && matchDateTo;
       });
 
-      currentResults.sort(sortRows);
-      render(currentResults);
-      document.getElementById('countInfo').textContent =
-        `عدد النتائج: ${currentResults.length}`;
+      currentResults = applySort(currentResults);
+      currentPage = 1;
+      render();
     }
+
+    const debouncedSearch = debounce(search, 250);
+
+    // ---------- تصدير Excel ----------
 
     function exportExcel() {
       if (!currentResults.length) {
@@ -417,19 +720,45 @@
       XLSX.writeFile(wb, 'purchase-results.xlsx');
     }
 
-    document.getElementById('searchItem').addEventListener('input', search);
-    document.getElementById('searchInvoice').addEventListener('input', search);
-    document.getElementById('searchSupplier').addEventListener('input', search);
+    // ---------- ربط الأحداث ----------
+
+    document.getElementById('searchItem').addEventListener('input', debouncedSearch);
+    document.getElementById('searchInvoice').addEventListener('input', debouncedSearch);
+    document.getElementById('searchSupplier').addEventListener('input', debouncedSearch);
+    document.getElementById('dateFrom').addEventListener('change', search);
+    document.getElementById('dateTo').addEventListener('change', search);
+    document.getElementById('currencyFilter').addEventListener('change', search);
+    document.getElementById('pageSize').addEventListener('change', () => { currentPage = 1; render(); });
 
     document.getElementById('clearSearch').addEventListener('click', () => {
       document.getElementById('searchItem').value = '';
       document.getElementById('searchInvoice').value = '';
       document.getElementById('searchSupplier').value = '';
+      document.getElementById('dateFrom').value = '';
+      document.getElementById('dateTo').value = '';
+      document.getElementById('currencyFilter').value = '';
+      sortKey = null;
+      sortDir = 1;
       search();
       document.getElementById('searchItem').focus();
     });
 
     document.getElementById('exportExcel').addEventListener('click', exportExcel);
+
+    document.querySelectorAll('th[data-key]').forEach(th => {
+      th.addEventListener('click', () => {
+        const key = th.getAttribute('data-key');
+        if (sortKey === key) {
+          sortDir *= -1;
+        } else {
+          sortKey = key;
+          sortDir = 1;
+        }
+        currentResults = applySort(currentResults);
+        currentPage = 1;
+        render();
+      });
+    });
 
     loadData();
   </script>

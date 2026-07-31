@@ -206,7 +206,7 @@
           <input type="text" id="searchItem" placeholder="مثال: قسطل 25 تلحيم (كل كلمة تفصلها مسافة)" />
         </div>
         <div class="field">
-          <label for="searchInvoice">كلمات بحث عن رقم الفاتورة</label>
+          <label for="searchInvoice">كلمات بحث عن الفاتورة</label>
           <input type="text" id="searchInvoice" placeholder="مثال: 796 أو PI 796" />
         </div>
         <div class="field">
@@ -230,7 +230,7 @@
         <table id="resultsTable">
           <thead>
             <tr>
-              <th>رقم الفاتورة</th>
+              <th>الفاتورة</th>
               <th>التاريخ</th>
               <th>العدد</th>
               <th>العملة</th>
@@ -402,7 +402,7 @@
       }
 
       const rows = currentResults.map(r => ({
-        'رقم الفاتورة': r.invoiceNo || '',
+        'الفاتورة': r.invoiceNo || '',
         'التاريخ': r.date || '',
         'العدد': r.qty || '',
         'العملة': r.currency || '',

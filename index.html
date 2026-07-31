@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html dir="rtl" lang="ar">
-head>
+<head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>بحث فواتير الشراء</title>
@@ -202,16 +202,16 @@ head>
 
       <div class="filters-grid">
         <div class="field">
-          <label for="searchInvoice">كلمات بحث عن رقم الفاتورة</label>
+          <label for="searchItem">كلمات بحث عن الصنف</label>
+          <input type="text" id="searchItem" placeholder="مثال: قسطل 25 تلحيم (كل كلمة تفصلها مسافة)" />
+        </div>
+        <div class="field">
+          <label for="searchInvoice">كلمات بحث عن الفاتورة</label>
           <input type="text" id="searchInvoice" placeholder="مثال: 796 أو PI 796" />
         </div>
         <div class="field">
           <label for="searchSupplier">كلمات بحث عن المورد</label>
           <input type="text" id="searchSupplier" placeholder="مثال: الحنون 204160" />
-        </div>
-        <div class="field">
-          <label for="searchItem">كلمات بحث عن الصنف</label>
-          <input type="text" id="searchItem" placeholder="مثال: قسطل 25 تلحيم (كل كلمة تفصلها مسافة)" />
         </div>
       </div>
 
@@ -230,13 +230,13 @@ head>
         <table id="resultsTable">
           <thead>
             <tr>
-              <th>رقم الفاتورة</th>
+              <th>الفاتورة</th>
               <th>التاريخ</th>
               <th>العدد</th>
-              <th>السعر</th>
+              <th>العملة</th>
+              <th>السعر الافرادي</th>
               <th>الصنف</th>
               <th>المورد</th>
-              <th>العملة</th>
             </tr>
           </thead>
           <tbody id="resultsBody"></tbody>
@@ -324,6 +324,7 @@ head>
         currentResults = [...allData];
         render(currentResults);
 
+        // تركيز افتراضي على خانة الصنف
         document.getElementById('searchItem').focus();
       } catch (e) {
         status.className = 'status err';
@@ -349,10 +350,10 @@ head>
           <td>${esc(row.invoiceNo)}</td>
           <td>${esc(row.date)}</td>
           <td>${esc(numFmt(row.qty))}</td>
+          <td>${esc(row.currency)}</td>
           <td>${esc(numFmt(row.uprice))}</td>
           <td>${esc(row.item)}</td>
           <td>${esc(row.supplier)}</td>
-          <td>${esc(row.currency)}</td>
         </tr>
       `).join('');
 
@@ -361,31 +362,31 @@ head>
 
     function search() {
       const rawItem     = document.getElementById('searchItem').value.trim();
-      const rawSupplier = document.getElementById('searchSupplier').value.trim();
       const rawInvoice  = document.getElementById('searchInvoice').value.trim();
+      const rawSupplier = document.getElementById('searchSupplier').value.trim();
 
       const itemWords     = normalizeForSearch(rawItem).split(/\s+/).filter(Boolean);
-      const supplierWords = normalizeForSearch(rawSupplier).split(/\s+/).filter(Boolean);
       const invoiceWords  = normalizeForSearch(rawInvoice).split(/\s+/).filter(Boolean);
+      const supplierWords = normalizeForSearch(rawSupplier).split(/\s+/).filter(Boolean);
 
       currentResults = allData.filter(row => {
         const nameItem     = normalizeForSearch(row.item || '');
-        const nameSupplier = normalizeForSearch(row.supplier || '');
         const nameInvoice  = normalizeForSearch(row.invoiceNo || '');
+        const nameSupplier = normalizeForSearch(row.supplier || '');
 
         const matchItem = itemWords.length === 0
           ? true
           : itemWords.every(w => nameItem.includes(w));
 
-        const matchSupplier = supplierWords.length === 0
-          ? true
-          : supplierWords.every(w => nameSupplier.includes(w));
-
         const matchInvoice = invoiceWords.length === 0
           ? true
           : invoiceWords.every(w => nameInvoice.includes(w));
 
-        return matchItem && matchSupplier && matchInvoice;
+        const matchSupplier = supplierWords.length === 0
+          ? true
+          : supplierWords.every(w => nameSupplier.includes(w));
+
+        return matchItem && matchInvoice && matchSupplier;
       });
 
       currentResults.sort(sortRows);
@@ -401,13 +402,13 @@ head>
       }
 
       const rows = currentResults.map(r => ({
-        'رقم الفاتورة': r.invoiceNo || '',
+        'الفاتورة': r.invoiceNo || '',
         'التاريخ': r.date || '',
         'العدد': r.qty || '',
-        'السعر': r.uprice || '',
+        'العملة': r.currency || '',
+        'السعر الافرادي': r.uprice || '',
         'الصنف': r.item || '',
-        'المورد': r.supplier || '',
-        'العملة': r.currency || ''
+        'المورد': r.supplier || ''
       }));
 
       const ws = XLSX.utils.json_to_sheet(rows);
@@ -417,13 +418,13 @@ head>
     }
 
     document.getElementById('searchItem').addEventListener('input', search);
-    document.getElementById('searchSupplier').addEventListener('input', search);
     document.getElementById('searchInvoice').addEventListener('input', search);
+    document.getElementById('searchSupplier').addEventListener('input', search);
 
     document.getElementById('clearSearch').addEventListener('click', () => {
+      document.getElementById('searchItem').value = '';
       document.getElementById('searchInvoice').value = '';
       document.getElementById('searchSupplier').value = '';
-      document.getElementById('searchItem').value = '';
       search();
       document.getElementById('searchItem').focus();
     });

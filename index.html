@@ -57,7 +57,7 @@
     }
 
     .filters-grid.extra {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
     .field label {
@@ -167,38 +167,10 @@
 
     .table-wrap {
       width: 100%;
-      max-height: 65vh;
       overflow-x: auto;
-      overflow-y: auto;
+      overflow-y: visible;
       position: relative;
       -webkit-overflow-scrolling: touch;
-    }
-
-    /* عمود ثابت (الفاتورة) وقت التمرير الأفقي */
-    th:first-child,
-    td:first-child {
-      position: sticky;
-      right: 0;
-      z-index: 2;
-      box-shadow: -2px 0 4px rgba(0,0,0,.08);
-    }
-
-    th:first-child {
-      z-index: 3;
-      background: #6a1b9a;
-      box-shadow: -2px 0 4px rgba(0,0,0,.18);
-    }
-
-    tbody tr:nth-child(odd) td:first-child {
-      background: #fff3e0;
-    }
-
-    tbody tr:nth-child(even) td:first-child {
-      background: #f3e5f5;
-    }
-
-    tbody tr:hover td:first-child {
-      background: #ede0f7;
     }
 
     table {
@@ -258,35 +230,6 @@
       margin-top: 6px;
     }
 
-    .pagination {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      flex-wrap: wrap;
-      margin-top: 12px;
-    }
-
-    .pagination button {
-      padding: 6px 12px;
-      background: #ede7f6;
-      color: var(--primary-dark);
-      font-size: 13px;
-    }
-
-    .pagination button.active {
-      background: var(--primary);
-      color: #fff;
-    }
-
-    .pagination select {
-      padding: 6px 8px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      font-size: 13px;
-      font-family: inherit;
-    }
-
     .skeleton-row td {
       background: linear-gradient(90deg, #f0f0f0 25%, #e6e6e6 37%, #f0f0f0 63%);
       background-size: 400% 100%;
@@ -332,7 +275,7 @@
     }
 
     .extra-filters .filters-grid.extra {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       margin-top: 10px;
     }
 
@@ -356,9 +299,6 @@
       th, td {
         font-size: 12px;
         padding: 6px 8px;
-      }
-      .table-wrap {
-        max-height: 60vh;
       }
       .filters-grid, .filters-grid.extra {
         grid-template-columns: 1fr;
@@ -412,16 +352,6 @@
               <option value="">الكل</option>
             </select>
           </div>
-          <div class="field">
-            <label for="pageSize">عدد الصفوف بالصفحة</label>
-            <select id="pageSize">
-              <option value="50">50</option>
-              <option value="100" selected>100</option>
-              <option value="250">250</option>
-              <option value="500">500</option>
-              <option value="all">الكل</option>
-            </select>
-          </div>
         </div>
       </div>
 
@@ -456,14 +386,12 @@
           <tbody id="resultsBody"></tbody>
         </table>
       </div>
-      <div class="pagination" id="pagination"></div>
     </section>
   </main>
 
   <script>
     let allData = [];
     let currentResults = [];
-    let currentPage = 1;
     let sortKey = null;       // null = الترتيب الافتراضي (تاريخ تنازلي)
     let sortDir = 1;          // 1 = تصاعدي، -1 = تنازلي
 
@@ -590,7 +518,6 @@
           dateFrom: document.getElementById('dateFrom').value,
           dateTo: document.getElementById('dateTo').value,
           currency: document.getElementById('currencyFilter').value,
-          pageSize: document.getElementById('pageSize').value,
           extraOpen: !document.getElementById('extraFiltersWrap').hidden
         };
         localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
@@ -614,7 +541,6 @@
       document.getElementById('searchSupplier').value = state.searchSupplier || '';
       document.getElementById('dateFrom').value = state.dateFrom || '';
       document.getElementById('dateTo').value = state.dateTo || '';
-      if (state.pageSize) document.getElementById('pageSize').value = state.pageSize;
       if (state.currency) document.getElementById('currencyFilter').value = state.currency;
       if (state.extraOpen) setExtraFiltersOpen(true);
     }
@@ -688,16 +614,10 @@
         document.getElementById('countInfo').textContent = 'فشل تحميل البيانات';
         document.getElementById('resultsBody').innerHTML =
           '<tr><td colspan="7" class="no-results">لم يتم تحميل البيانات. تحقق من مسار الملف purchases-data/purchases.json</td></tr>';
-        document.getElementById('pagination').innerHTML = '';
       }
     }
 
     // ---------- العرض ----------
-
-    function getPageSize() {
-      const v = document.getElementById('pageSize').value;
-      return v === 'all' ? Infinity : parseInt(v, 10);
-    }
 
     function updateArrows() {
       document.querySelectorAll('.arrow').forEach(el => {
@@ -732,19 +652,12 @@
 
     function render() {
       const tbody = document.getElementById('resultsBody');
-      const pageSize = getPageSize();
       const total = currentResults.length;
-      const totalPages = pageSize === Infinity ? 1 : Math.max(1, Math.ceil(total / pageSize));
-      if (currentPage > totalPages) currentPage = totalPages;
 
-      const start = pageSize === Infinity ? 0 : (currentPage - 1) * pageSize;
-      const end = pageSize === Infinity ? total : start + pageSize;
-      const pageRows = currentResults.slice(start, end);
-
-      if (!pageRows.length) {
+      if (!total) {
         tbody.innerHTML = '<tr><td colspan="7" class="no-results">لا توجد نتائج مطابقة</td></tr>';
       } else {
-        tbody.innerHTML = pageRows.map(row => `
+        tbody.innerHTML = currentResults.map(row => `
           <tr>
             <td>${esc(row.invoiceNo)}</td>
             <td>${esc(row.date)}</td>
@@ -758,51 +671,10 @@
       }
 
       document.getElementById('countInfo').textContent =
-        total === allData.length
-          ? `عدد النتائج: ${total} (من إجمالي ${allData.length})`
-          : `عدد النتائج: ${total} (من إجمالي ${allData.length}) — عرض ${pageRows.length ? start + 1 : 0}-${Math.min(end, total)}`;
+        `عدد النتائج: ${total} (من إجمالي ${allData.length})`;
 
       renderSummary(currentResults);
-      renderPagination(totalPages);
       updateArrows();
-    }
-
-    function renderPagination(totalPages) {
-      const el = document.getElementById('pagination');
-      if (totalPages <= 1) { el.innerHTML = ''; return; }
-
-      let html = '';
-      html += `<button ${currentPage === 1 ? 'disabled' : ''} data-page="prev">السابق</button>`;
-
-      const windowSize = 2;
-      const pagesToShow = new Set();
-      pagesToShow.add(1);
-      pagesToShow.add(totalPages);
-      for (let p = currentPage - windowSize; p <= currentPage + windowSize; p++) {
-        if (p >= 1 && p <= totalPages) pagesToShow.add(p);
-      }
-      const sortedPages = [...pagesToShow].sort((a, b) => a - b);
-
-      let prevPage = 0;
-      sortedPages.forEach(p => {
-        if (p - prevPage > 1) html += `<span>...</span>`;
-        html += `<button data-page="${p}" class="${p === currentPage ? 'active' : ''}">${p}</button>`;
-        prevPage = p;
-      });
-
-      html += `<button ${currentPage === totalPages ? 'disabled' : ''} data-page="next">التالي</button>`;
-      el.innerHTML = html;
-
-      el.querySelectorAll('button[data-page]').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const p = btn.getAttribute('data-page');
-          if (p === 'prev') currentPage--;
-          else if (p === 'next') currentPage++;
-          else currentPage = parseInt(p, 10);
-          render();
-          document.querySelector('.table-wrap').scrollTo({ top: 0 });
-        });
-      });
     }
 
     // ---------- البحث والفلترة ----------
@@ -836,7 +708,6 @@
       });
 
       currentResults = applySort(currentResults);
-      currentPage = 1;
       render();
       saveFiltersState();
     }
@@ -875,11 +746,6 @@
     document.getElementById('dateFrom').addEventListener('change', search);
     document.getElementById('dateTo').addEventListener('change', search);
     document.getElementById('currencyFilter').addEventListener('change', search);
-    document.getElementById('pageSize').addEventListener('change', () => {
-      currentPage = 1;
-      render();
-      saveFiltersState();
-    });
 
     document.getElementById('toggleFiltersBtn').addEventListener('click', () => {
       const wrap = document.getElementById('extraFiltersWrap');
@@ -912,7 +778,6 @@
           sortDir = 1;
         }
         currentResults = applySort(currentResults);
-        currentPage = 1;
         render();
       });
     });

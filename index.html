@@ -238,6 +238,12 @@
       margin-top: 6px;
     }
 
+    .last-updated {
+      font-size: 11px;
+      color: #888;
+      margin-top: 2px;
+    }
+
     .skeleton-row td {
       background: linear-gradient(
         90deg,
@@ -297,24 +303,16 @@
       margin-top: 10px;
     }
 
-    .last-updated {
-      font-size: 11px;
-      color: #888;
-      margin-top: 2px;
-    }
+    /* زر الفواتير الناقصة من اليسار */
 
-    /* =========================================
-       زر ولوحة الفواتير الناقصة
-    ========================================= */
-
-.missing-invoices-btn {
-  position: fixed;
-  top: 45%;
-  left: 0;
-  right: auto;
-  z-index: 20;
-  border: none;
-  border-radius: 0 10px 10px 0;
+    .missing-invoices-btn {
+      position: fixed;
+      top: 45%;
+      left: 0;
+      right: auto;
+      z-index: 20;
+      border: none;
+      border-radius: 0 10px 10px 0;
       background: #4527a0;
       color: #fff;
       padding: 13px 10px;
@@ -331,24 +329,26 @@
       background: #311b92;
     }
 
-.missing-invoices-panel {
-  position: fixed;
-  top: 0;
-  left: -430px;
-  right: auto;
-  width: min(430px, 92vw);
-  height: 100vh;
-  z-index: 30;
-  background: #fff;
-  box-shadow: 4px 0 18px rgba(0, 0, 0, .2);
-  transition: left .25s ease;
+    /* اللوحة الجانبية من اليسار */
+
+    .missing-invoices-panel {
+      position: fixed;
+      top: 0;
+      left: -440px;
+      right: auto;
+      width: min(440px, 92vw);
+      height: 100vh;
+      z-index: 30;
+      background: #fff;
+      box-shadow: 4px 0 18px rgba(0, 0, 0, .2);
+      transition: left .25s ease;
       overflow-y: auto;
       direction: rtl;
     }
 
-.missing-invoices-panel.open {
-  left: 0;
-}
+    .missing-invoices-panel.open {
+      left: 0;
+    }
 
     .missing-panel-header {
       position: sticky;
@@ -518,16 +518,14 @@
 
 <body>
 
-  <!-- زر فتح لوحة الفواتير الناقصة -->
   <button
     type="button"
     id="missingInvoicesBtn"
     class="missing-invoices-btn"
   >
-    <span>الفواتير الناقصة</span>
+    الفواتير الناقصة
   </button>
 
-  <!-- اللوحة الجانبية -->
   <aside
     id="missingInvoicesPanel"
     class="missing-invoices-panel"
@@ -540,7 +538,7 @@
         </div>
 
         <div class="missing-panel-subtitle">
-          حسب السنة ونوع الفاتورة
+          كل سنة وكل تسلسل بشكل مستقل
         </div>
       </div>
 
@@ -807,22 +805,16 @@
       '5', '6', '7', '8', '9'
     ];
 
-    /*
-    =========================================
-    أدوات مساعدة
-    =========================================
-    */
+    function normalizeForSearch(value) {
+      let text = String(value ?? '').toLowerCase();
 
-    function normalizeForSearch(str) {
-      let s = String(str ?? '').toLowerCase();
-
-      arabicDigits.forEach((arabicDigit, index) => {
-        s = s
-          .split(arabicDigit)
+      arabicDigits.forEach((digit, index) => {
+        text = text
+          .split(digit)
           .join(latinDigits[index]);
       });
 
-      return s;
+      return text;
     }
 
     function esc(value) {
@@ -844,37 +836,37 @@
         return NaN;
       }
 
-      let stringValue = normalizeForSearch(value)
+      let text = normalizeForSearch(value)
         .replace(/,/g, '')
         .trim();
 
-      stringValue = stringValue.replace(
+      text = text.replace(
         /[^0-9.\-e+]/g,
         ''
       );
 
       if (
-        stringValue === '' ||
-        stringValue === '-'
+        text === '' ||
+        text === '-'
       ) {
         return NaN;
       }
 
-      const numberValue = Number(stringValue);
+      const number = Number(text);
 
-      return Number.isNaN(numberValue)
+      return Number.isNaN(number)
         ? NaN
-        : numberValue;
+        : number;
     }
 
     function numFmt(value) {
-      const numberValue = toNumber(value);
+      const number = toNumber(value);
 
-      if (Number.isNaN(numberValue)) {
+      if (Number.isNaN(number)) {
         return value ? esc(value) : '';
       }
 
-      return numberValue.toLocaleString(
+      return number.toLocaleString(
         'en-US',
         {
           maximumFractionDigits: 2
@@ -883,21 +875,21 @@
     }
 
     function priceFmt(value) {
-      const numberValue = toNumber(value);
+      const number = toNumber(value);
 
-      if (Number.isNaN(numberValue)) {
+      if (Number.isNaN(number)) {
         return value ? esc(value) : '';
       }
 
-      if (numberValue === 0) {
+      if (number === 0) {
         return '0';
       }
 
-      if (Math.abs(numberValue) < 1) {
-        return numberValue.toFixed(2);
+      if (Math.abs(number) < 1) {
+        return number.toFixed(2);
       }
 
-      return numberValue.toLocaleString(
+      return number.toLocaleString(
         'en-US',
         {
           maximumSignificantDigits: 6
@@ -905,18 +897,12 @@
       );
     }
 
-    /*
-    =========================================
-    التعامل مع التواريخ
-    =========================================
-    */
-
-    function parseDate(dateValue) {
-      if (!dateValue) {
+    function parseDate(value) {
+      if (!value) {
         return 0;
       }
 
-      const parts = normalizeForSearch(dateValue)
+      const parts = normalizeForSearch(value)
         .split('/');
 
       if (parts.length !== 3) {
@@ -938,12 +924,12 @@
       return year * 10000 + month * 100 + day;
     }
 
-    function isoToComparable(isoString) {
-      if (!isoString) {
+    function isoToComparable(value) {
+      if (!value) {
         return null;
       }
 
-      const parts = isoString
+      const parts = value
         .split('-')
         .map(Number);
 
@@ -969,12 +955,6 @@
         `${pad(date.getMinutes())}`;
     }
 
-    /*
-    =========================================
-    الترتيب
-    =========================================
-    */
-
     function defaultSort(a, b) {
       const dateA = parseDate(a.date);
       const dateB = parseDate(b.date);
@@ -983,17 +963,15 @@
         return dateB - dateA;
       }
 
-      const invoiceA = String(a.invoiceNo || '');
-      const invoiceB = String(b.invoiceNo || '');
-
-      return invoiceB.localeCompare(
-        invoiceA,
-        undefined,
-        {
-          numeric: true,
-          sensitivity: 'base'
-        }
-      );
+      return String(b.invoiceNo || '')
+        .localeCompare(
+          String(a.invoiceNo || ''),
+          undefined,
+          {
+            numeric: true,
+            sensitivity: 'base'
+          }
+        );
     }
 
     function compareByKey(a, b, key) {
@@ -1024,31 +1002,41 @@
         ) * sortDir;
       }
 
-      const valueA = String(a[key] ?? '');
-      const valueB = String(b[key] ?? '');
-
-      return valueA.localeCompare(
-        valueB,
-        undefined,
-        {
-          numeric: true,
-          sensitivity: 'base'
-        }
-      ) * sortDir;
+      return String(a[key] ?? '')
+        .localeCompare(
+          String(b[key] ?? ''),
+          undefined,
+          {
+            numeric: true,
+            sensitivity: 'base'
+          }
+        ) * sortDir;
     }
 
     function applySort(rows) {
-      const sortedRows = [...rows];
+      const sorted = [...rows];
 
       if (sortKey) {
-        sortedRows.sort((a, b) => {
+        sorted.sort((a, b) => {
           return compareByKey(a, b, sortKey);
         });
       } else {
-        sortedRows.sort(defaultSort);
+        sorted.sort(defaultSort);
       }
 
-      return sortedRows;
+      return sorted;
+    }
+
+    function debounce(fn, wait) {
+      let timer = null;
+
+      return (...args) => {
+        clearTimeout(timer);
+
+        timer = setTimeout(() => {
+          fn(...args);
+        }, wait);
+      };
     }
 
     function updateArrows() {
@@ -1066,22 +1054,112 @@
         });
     }
 
-    /*
-    =========================================
-    البحث
-    =========================================
-    */
+    function renderSummary(rows) {
+      const summaryBar =
+        document.getElementById('summaryBar');
 
-    function debounce(fn, wait) {
-      let timer = null;
+      if (!rows.length) {
+        summaryBar.innerHTML = '';
+        return;
+      }
 
-      return (...args) => {
-        clearTimeout(timer);
+      const totalsByCurrency = {};
+      let totalQty = 0;
 
-        timer = setTimeout(() => {
-          fn(...args);
-        }, wait);
-      };
+      rows.forEach(row => {
+        const currency =
+          (row.currency || 'بدون عملة')
+            .trim() || 'بدون عملة';
+
+        const qty = toNumber(row.qty);
+        const price = toNumber(row.uprice);
+
+        const lineTotal =
+          !Number.isNaN(qty) &&
+          !Number.isNaN(price)
+            ? qty * price
+            : 0;
+
+        totalsByCurrency[currency] =
+          (totalsByCurrency[currency] || 0) +
+          lineTotal;
+
+        if (!Number.isNaN(qty)) {
+          totalQty += qty;
+        }
+      });
+
+      const totals =
+        Object.entries(totalsByCurrency)
+          .map(([currency, total]) => `
+            <span>
+              إجمالي ${esc(currency)}:
+              <b>
+                ${total.toLocaleString(
+                  'en-US',
+                  {
+                    maximumFractionDigits: 2
+                  }
+                )}
+              </b>
+            </span>
+          `)
+          .join('');
+
+      summaryBar.innerHTML =
+        `<span>
+          عدد الأصناف الكلي:
+          <b>
+            ${totalQty.toLocaleString(
+              'en-US',
+              {
+                maximumFractionDigits: 2
+              }
+            )}
+          </b>
+        </span>` + totals;
+    }
+
+    function render() {
+      const tbody =
+        document.getElementById('resultsBody');
+
+      const total =
+        currentResults.length;
+
+      if (!total) {
+        tbody.innerHTML = `
+          <tr>
+            <td
+              colspan="7"
+              class="no-results"
+            >
+              لا توجد نتائج مطابقة
+            </td>
+          </tr>
+        `;
+      } else {
+        tbody.innerHTML =
+          currentResults.map(row => `
+            <tr>
+              <td>${esc(row.invoiceNo)}</td>
+              <td>${esc(row.date)}</td>
+              <td>${numFmt(row.qty)}</td>
+              <td>${esc(row.currency)}</td>
+              <td>${priceFmt(row.uprice)}</td>
+              <td>${esc(row.item)}</td>
+              <td>${esc(row.supplier)}</td>
+            </tr>
+          `).join('');
+      }
+
+      document.getElementById('countInfo')
+        .textContent =
+        `عدد النتائج: ${total} ` +
+        `(من إجمالي ${allData.length})`;
+
+      renderSummary(currentResults);
+      updateArrows();
     }
 
     function search() {
@@ -1182,137 +1260,12 @@
         );
       });
 
-      currentResults = applySort(
-        currentResults
-      );
+      currentResults =
+        applySort(currentResults);
 
       render();
       saveFiltersState();
     }
-
-    /*
-    =========================================
-    عرض النتائج والملخص
-    =========================================
-    */
-
-    function renderSummary(rows) {
-      const summaryBar =
-        document.getElementById('summaryBar');
-
-      if (!rows.length) {
-        summaryBar.innerHTML = '';
-        return;
-      }
-
-      const totalsByCurrency = {};
-      let totalQuantity = 0;
-
-      rows.forEach(row => {
-        const currency =
-          (row.currency || 'بدون عملة')
-            .trim() || 'بدون عملة';
-
-        const quantity = toNumber(row.qty);
-        const price = toNumber(row.uprice);
-
-        const lineTotal =
-          !Number.isNaN(quantity) &&
-          !Number.isNaN(price)
-            ? quantity * price
-            : 0;
-
-        totalsByCurrency[currency] =
-          (totalsByCurrency[currency] || 0) +
-          lineTotal;
-
-        if (!Number.isNaN(quantity)) {
-          totalQuantity += quantity;
-        }
-      });
-
-      const currencyParts =
-        Object.entries(totalsByCurrency)
-          .map(([currency, total]) => `
-            <span>
-              إجمالي ${esc(currency)}:
-              <b>
-                ${total.toLocaleString(
-                  'en-US',
-                  {
-                    maximumFractionDigits: 2
-                  }
-                )}
-              </b>
-            </span>
-          `)
-          .join('');
-
-      summaryBar.innerHTML =
-        `<span>
-          عدد الأصناف الكلي:
-          <b>
-            ${totalQuantity.toLocaleString(
-              'en-US',
-              {
-                maximumFractionDigits: 2
-              }
-            )}
-          </b>
-        </span>` +
-        currencyParts;
-    }
-
-    function render() {
-      const tbody =
-        document.getElementById('resultsBody');
-
-      const total =
-        currentResults.length;
-
-      if (!total) {
-        tbody.innerHTML = `
-          <tr>
-            <td
-              colspan="7"
-              class="no-results"
-            >
-              لا توجد نتائج مطابقة
-            </td>
-          </tr>
-        `;
-      } else {
-        tbody.innerHTML =
-          currentResults.map(row => `
-            <tr>
-              <td>${esc(row.invoiceNo)}</td>
-              <td>${esc(row.date)}</td>
-              <td>${numFmt(row.qty)}</td>
-              <td>${esc(row.currency)}</td>
-              <td>${priceFmt(row.uprice)}</td>
-              <td>${esc(row.item)}</td>
-              <td>${esc(row.supplier)}</td>
-            </tr>
-          `).join('');
-      }
-
-      document.getElementById('countInfo')
-        .textContent =
-        `عدد النتائج: ${total} ` +
-        `(من إجمالي ${allData.length})`;
-
-      renderSummary(currentResults);
-      updateArrows();
-    }
-
-    /*
-    =========================================
-    حفظ واستعادة الفلاتر
-    =========================================
-    */
-
-    const STORAGE_KEY =
-      'purchaseFiltersState_v1';
 
     function saveFiltersState() {
       try {
@@ -1348,11 +1301,11 @@
         };
 
         localStorage.setItem(
-          STORAGE_KEY,
+          'purchaseFiltersState_v1',
           JSON.stringify(state)
         );
       } catch (error) {
-        // تجاهل أخطاء localStorage
+        // تجاهل الخطأ
       }
     }
 
@@ -1360,8 +1313,9 @@
       let state = null;
 
       try {
-        const raw =
-          localStorage.getItem(STORAGE_KEY);
+        const raw = localStorage.getItem(
+          'purchaseFiltersState_v1'
+        );
 
         if (raw) {
           state = JSON.parse(raw);
@@ -1428,12 +1382,6 @@
           : 'فلاتر إضافية';
     }
 
-    /*
-    =========================================
-    تحميل البيانات
-    =========================================
-    */
-
     function showSkeleton() {
       const tbody =
         document.getElementById('resultsBody');
@@ -1471,18 +1419,15 @@
         a.localeCompare(b)
       );
 
-      const current =
-        select.value;
+      const current = select.value;
 
       select.innerHTML =
         '<option value="">الكل</option>' +
-        currencies
-          .map(currency => `
-            <option value="${esc(currency)}">
-              ${esc(currency)}
-            </option>
-          `)
-          .join('');
+        currencies.map(currency => `
+          <option value="${esc(currency)}">
+            ${esc(currency)}
+          </option>
+        `).join('');
 
       if (currencies.includes(current)) {
         select.value = current;
@@ -1618,27 +1563,51 @@
     استخراج نوع ورقم الفاتورة
     =========================================
 
-    أمثلة مدعومة:
+    أمثلة:
 
-    PI - 861
-    PI-861
-    PI 861
-    PI1 - 168
-    PI2/45
+    PI - 861  → prefix = PI  ، number = 861
+    PI-861    → prefix = PI  ، number = 861
+    PI 861    → prefix = PI  ، number = 861
+    PI1 - 168 → prefix = PI1 ، number = 168
+    PI2 - 45  → prefix = PI2 ، number = 45
     */
 
     function parseInvoiceSequence(invoiceNo) {
-      const value =
-        String(invoiceNo ?? '').trim();
+      let value = String(invoiceNo ?? '');
 
-      const match =
-        value.match(
-          /^([A-Za-z]+)\s*[-_/]?\s*(\d+)$/
-        );
+      /*
+        إزالة المسافات الخاصة التي قد تأتي من Excel
+        أو من ملفات Word وDOCX
+      */
+
+      value = value
+        .replace(/[\u00A0\u2007\u202F]/g, ' ')
+        .replace(/[–—−]/g, '-')
+        .replace(/\s+/g, ' ')
+        .trim();
+
+      /*
+        [A-Za-z]+[0-9]* تعني:
+
+        PI
+        PI1
+        PI2
+        ABC
+        ABC1
+      */
+
+      const match = value.match(
+        /^([A-Za-z]+[0-9]*)\s*(?:[-_/]\s*|\s+)([0-9]+)\s*$/
+      );
 
       if (!match) {
         return null;
       }
+
+      /*
+        مهم جدًا:
+        PI و PI1 و PI2 تبقى أنواعًا مستقلة
+      */
 
       const prefix =
         match[1].toUpperCase();
@@ -1663,16 +1632,6 @@
     =========================================
     حساب الفواتير الناقصة
     =========================================
-
-    يتم إنشاء مجموعة مستقلة لكل:
-
-    السنة + نوع الفاتورة
-
-    مثلًا:
-
-    2026 / PI
-    2026 / PI1
-    2025 / PI
     */
 
     function getMissingInvoiceSequences() {
@@ -1687,12 +1646,25 @@
             row.invoiceNo
           );
 
+        /*
+          لا نعتمد على date.
+          السنة تؤخذ فقط من invoiceYear.
+        */
+
         if (
           !Number.isInteger(year) ||
           !parsed
         ) {
           return;
         }
+
+        /*
+          كل سنة ونوع فاتورة لهما مجموعة مستقلة:
+
+          2026|||PI
+          2026|||PI1
+          2025|||PI
+        */
 
         const groupKey =
           `${year}|||${parsed.prefix}`;
@@ -1704,6 +1676,11 @@
             numbers: new Set()
           });
         }
+
+        /*
+          Set تمنع تكرار الرقم بسبب تعدد أصناف
+          الفاتورة نفسها في ملف JSON
+        */
 
         groups
           .get(groupKey)
@@ -1762,12 +1739,6 @@
       });
     }
 
-    /*
-    =========================================
-    عرض لوحة الفواتير الناقصة
-    =========================================
-    */
-
     function renderMissingInvoices() {
       const container =
         document.getElementById(
@@ -1810,7 +1781,7 @@
         `;
 
         yearSequences.forEach(sequence => {
-          let missingHtml = '';
+          let missingHtml;
 
           if (sequence.missing.length) {
             missingHtml =
@@ -1846,13 +1817,13 @@
                 )}
 
                 —
-                عدد الفواتير الموجودة:
+                الموجود:
                 ${sequence.existingCount.toLocaleString(
                   'en-US'
                 )}
 
                 —
-                عدد الناقصة:
+                الناقص:
                 ${sequence.missing.length.toLocaleString(
                   'en-US'
                 )}
@@ -1874,11 +1845,40 @@
       container.innerHTML = html;
     }
 
-    /*
-    =========================================
-    فتح وإغلاق اللوحة الجانبية
-    =========================================
-    */
+    function exportExcel() {
+      if (!currentResults.length) {
+        alert('لا توجد نتائج للتصدير');
+        return;
+      }
+
+      const rows =
+        currentResults.map(row => ({
+          'الفاتورة': row.invoiceNo || '',
+          'التاريخ': row.date || '',
+          'العدد': row.qty || '',
+          'العملة': row.currency || '',
+          'السعر': row.uprice || '',
+          'الصنف': row.item || '',
+          'المورد': row.supplier || ''
+        }));
+
+      const worksheet =
+        XLSX.utils.json_to_sheet(rows);
+
+      const workbook =
+        XLSX.utils.book_new();
+
+      XLSX.utils.book_append_sheet(
+        workbook,
+        worksheet,
+        'Results'
+      );
+
+      XLSX.writeFile(
+        workbook,
+        'purchase-results.xlsx'
+      );
+    }
 
     const missingInvoicesBtn =
       document.getElementById(
@@ -1956,72 +1956,22 @@
       }
     );
 
-    /*
-    =========================================
-    تصدير Excel
-    =========================================
-    */
-
-    function exportExcel() {
-      if (!currentResults.length) {
-        alert('لا توجد نتائج للتصدير');
-        return;
-      }
-
-      const rows =
-        currentResults.map(row => ({
-          'الفاتورة': row.invoiceNo || '',
-          'التاريخ': row.date || '',
-          'العدد': row.qty || '',
-          'العملة': row.currency || '',
-          'السعر': row.uprice || '',
-          'الصنف': row.item || '',
-          'المورد': row.supplier || ''
-        }));
-
-      const worksheet =
-        XLSX.utils.json_to_sheet(rows);
-
-      const workbook =
-        XLSX.utils.book_new();
-
-      XLSX.utils.book_append_sheet(
-        workbook,
-        worksheet,
-        'Results'
-      );
-
-      XLSX.writeFile(
-        workbook,
-        'purchase-results.xlsx'
-      );
-    }
-
-    /*
-    =========================================
-    ربط الأحداث
-    =========================================
-    */
-
-    const debouncedSearch =
-      debounce(search, 250);
-
     document.getElementById('searchItem')
       .addEventListener(
         'input',
-        debouncedSearch
+        debounce(search, 250)
       );
 
     document.getElementById('searchInvoice')
       .addEventListener(
         'input',
-        debouncedSearch
+        debounce(search, 250)
       );
 
     document.getElementById('searchSupplier')
       .addEventListener(
         'input',
-        debouncedSearch
+        debounce(search, 250)
       );
 
     document.getElementById('dateFrom')
@@ -2125,12 +2075,6 @@
           }
         );
       });
-
-    /*
-    =========================================
-    بدء تحميل البيانات
-    =========================================
-    */
 
     loadData();
   </script>

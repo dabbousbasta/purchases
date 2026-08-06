@@ -3,15 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-
   <title>بحث فواتير الشراء</title>
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
   <script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
-
   <style>
     :root {
       --primary: #5e35b1;
@@ -22,9 +18,7 @@
       --border: #ddd;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -44,7 +38,7 @@
       background: var(--card);
       border-radius: 10px;
       padding: 14px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, .05);
+      box-shadow: 0 2px 4px rgba(0,0,0,.05);
       margin-bottom: 14px;
     }
 
@@ -88,7 +82,7 @@
     .field input:focus,
     .field select:focus {
       border-color: var(--primary);
-      box-shadow: 0 0 0 2px rgba(94, 53, 177, .12);
+      box-shadow: 0 0 0 2px rgba(94,53,177,.12);
     }
 
     .actions {
@@ -187,8 +181,7 @@
       background-color: #fff;
     }
 
-    th,
-    td {
+    th, td {
       border: 1px solid var(--border);
       padding: 8px 10px;
       font-size: 13px;
@@ -222,7 +215,7 @@
     }
 
     tbody tr:hover {
-      outline: 2px solid rgba(94, 53, 177, .25);
+      outline: 2px solid rgba(94,53,177,.25);
       outline-offset: -2px;
     }
 
@@ -238,32 +231,16 @@
       margin-top: 6px;
     }
 
-    .last-updated {
-      font-size: 11px;
-      color: #888;
-      margin-top: 2px;
-    }
-
     .skeleton-row td {
-      background: linear-gradient(
-        90deg,
-        #f0f0f0 25%,
-        #e6e6e6 37%,
-        #f0f0f0 63%
-      );
+      background: linear-gradient(90deg, #f0f0f0 25%, #e6e6e6 37%, #f0f0f0 63%);
       background-size: 400% 100%;
       animation: shimmer 1.4s ease infinite;
       color: transparent;
     }
 
     @keyframes shimmer {
-      0% {
-        background-position: 100% 0;
-      }
-
-      100% {
-        background-position: 0 0;
-      }
+      0% { background-position: 100% 0; }
+      100% { background-position: 0 0; }
     }
 
     .filters-toggle {
@@ -303,1221 +280,358 @@
       margin-top: 10px;
     }
 
-    /* زر الفواتير الناقصة من اليسار */
-
-    .missing-invoices-btn {
-      position: fixed;
-      top: 45%;
-      left: 0;
-      right: auto;
-      z-index: 20;
-      border: none;
-      border-radius: 0 10px 10px 0;
-      background: #4527a0;
-      color: #fff;
-      padding: 13px 10px;
-      cursor: pointer;
-      font-family: inherit;
-      font-size: 13px;
-      font-weight: 700;
-      writing-mode: vertical-rl;
-      text-orientation: mixed;
-      box-shadow: 0 3px 12px rgba(0, 0, 0, .2);
-    }
-
-    .missing-invoices-btn:hover {
-      background: #311b92;
-    }
-
-    /* اللوحة الجانبية من اليسار */
-
-    .missing-invoices-panel {
-      position: fixed;
-      top: 0;
-      left: -440px;
-      right: auto;
-      width: min(440px, 92vw);
-      height: 100vh;
-      z-index: 30;
-      background: #fff;
-      box-shadow: 4px 0 18px rgba(0, 0, 0, .2);
-      transition: left .25s ease;
-      overflow-y: auto;
-      direction: rtl;
-    }
-
-    .missing-invoices-panel.open {
-      left: 0;
-    }
-
-    .missing-panel-header {
-      position: sticky;
-      top: 0;
-      z-index: 1;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      padding: 16px;
-      color: #fff;
-      background: #5e35b1;
-    }
-
-    .missing-panel-title {
-      font-size: 17px;
-      font-weight: 800;
-    }
-
-    .missing-panel-subtitle {
-      margin-top: 3px;
+    .last-updated {
       font-size: 11px;
-      opacity: .85;
-    }
-
-    .close-missing-btn {
-      width: 34px;
-      height: 34px;
-      padding: 0;
-      border-radius: 50%;
-      color: #fff;
-      background: rgba(255, 255, 255, .18);
-      font-size: 25px;
-      line-height: 1;
-    }
-
-    .close-missing-btn:hover {
-      background: rgba(255, 255, 255, .3);
-    }
-
-    .missing-invoices-summary {
-      padding: 14px;
-    }
-
-    .missing-year-block {
-      margin-bottom: 14px;
-      overflow: hidden;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      background: #fafafa;
-    }
-
-    .missing-year-title {
-      padding: 10px 12px;
-      color: #4527a0;
-      background: #ede7f6;
-      font-size: 15px;
-      font-weight: 800;
-    }
-
-    .missing-sequence {
-      padding: 10px 12px;
-      border-top: 1px solid #e5e5e5;
-    }
-
-    .missing-sequence-title {
-      margin-bottom: 7px;
-      color: #333;
-      font-size: 13px;
-      font-weight: 700;
-    }
-
-    .missing-sequence-info {
-      margin-bottom: 7px;
-      color: #777;
-      font-size: 11px;
-    }
-
-    .missing-numbers {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 5px;
-    }
-
-    .missing-number {
-      display: inline-block;
-      padding: 3px 8px;
-      border-radius: 999px;
-      color: #8b0000;
-      background: #ffebee;
-      border: 1px solid #ffcdd2;
-      font-family: Arial, sans-serif;
-      font-size: 12px;
-      direction: ltr;
-    }
-
-    .no-missing-invoices {
-      padding: 20px 10px;
-      color: #27733a;
-      text-align: center;
-      font-size: 14px;
-      font-weight: 700;
-    }
-
-    .missing-invoices-overlay {
-      position: fixed;
-      inset: 0;
-      z-index: 25;
-      display: none;
-      background: rgba(0, 0, 0, .32);
-    }
-
-    .missing-invoices-overlay.show {
-      display: block;
+      color: #888;
+      margin-top: 2px;
     }
 
     @media (max-width: 900px) {
-      .filters-grid,
-      .filters-grid.extra {
+      .filters-grid, .filters-grid.extra {
         grid-template-columns: 1fr 1fr;
       }
-
       .extra-filters .filters-grid.extra {
         grid-template-columns: 1fr 1fr;
       }
     }
 
     @media (max-width: 768px) {
-      main {
-        padding: 10px;
-      }
-
-      th,
-      td {
+      main { padding: 10px; }
+      th, td {
         font-size: 12px;
         padding: 6px 8px;
       }
-
       .table-wrap {
         max-height: 60vh;
       }
-
-      .filters-grid,
-      .filters-grid.extra {
+      .filters-grid, .filters-grid.extra {
         grid-template-columns: 1fr;
       }
-
       .actions {
         flex-direction: column;
         align-items: stretch;
       }
     }
-
-    @media (max-width: 600px) {
-      .missing-invoices-btn {
-        top: 40%;
-        padding: 11px 8px;
-        font-size: 12px;
-      }
-
-      .missing-invoices-panel {
-        width: 92vw;
-      }
-    }
   </style>
 </head>
-
 <body>
-
-  <button
-    type="button"
-    id="missingInvoicesBtn"
-    class="missing-invoices-btn"
-  >
-    الفواتير الناقصة
-  </button>
-
-  <aside
-    id="missingInvoicesPanel"
-    class="missing-invoices-panel"
-    aria-hidden="true"
-  >
-    <div class="missing-panel-header">
-      <div>
-        <div class="missing-panel-title">
-          الفواتير الناقصة
-        </div>
-
-        <div class="missing-panel-subtitle">
-          كل سنة وكل تسلسل بشكل مستقل
-        </div>
-      </div>
-
-      <button
-        type="button"
-        id="closeMissingPanel"
-        class="close-missing-btn"
-        aria-label="إغلاق"
-      >
-        ×
-      </button>
-    </div>
-
-    <div
-      id="missingInvoicesSummary"
-      class="missing-invoices-summary"
-    ></div>
-  </aside>
-
-  <div
-    id="missingInvoicesOverlay"
-    class="missing-invoices-overlay"
-  ></div>
-
   <main>
-
     <section class="card">
-      <div class="title">
-        بحث فواتير الشراء
-      </div>
+      <div class="title">بحث فواتير الشراء</div>
 
       <div class="field">
-        <label for="searchItem">
-          بحث عن الصنف
-        </label>
-
-        <input
-          type="text"
-          id="searchItem"
-          placeholder="مثال: قسطل 25 تلحيم (كل كلمة تفصلها مسافة)"
-        />
+        <label for="searchItem">بحث عن الصنف</label>
+        <input type="text" id="searchItem" placeholder="مثال: قسطل 25 تلحيم (كل كلمة تفصلها مسافة)" />
       </div>
 
-      <button
-        type="button"
-        class="filters-toggle"
-        id="toggleFiltersBtn"
-        aria-expanded="false"
-      >
-        <span id="toggleFiltersText">
-          فلاتر إضافية
-        </span>
-
-        <span class="arrow">
-          ▾
-        </span>
+      <button type="button" class="filters-toggle" id="toggleFiltersBtn" aria-expanded="false">
+        <span id="toggleFiltersText">فلاتر إضافية</span>
+        <span class="arrow">▾</span>
       </button>
 
-      <div
-        class="extra-filters"
-        id="extraFiltersWrap"
-        hidden
-      >
+      <div class="extra-filters" id="extraFiltersWrap" hidden>
         <div class="filters-grid">
-
           <div class="field">
-            <label for="searchInvoice">
-              كلمات بحث عن الفاتورة
-            </label>
-
-            <input
-              type="text"
-              id="searchInvoice"
-              placeholder="مثال: 796 أو PI 796"
-            />
+            <label for="searchInvoice">كلمات بحث عن الفاتورة</label>
+            <input type="text" id="searchInvoice" placeholder="مثال: 796 أو PI 796" />
           </div>
-
           <div class="field">
-            <label for="searchSupplier">
-              كلمات بحث عن المورد
-            </label>
-
-            <input
-              type="text"
-              id="searchSupplier"
-              placeholder="مثال: الحنون 204160"
-            />
+            <label for="searchSupplier">كلمات بحث عن المورد</label>
+            <input type="text" id="searchSupplier" placeholder="مثال: الحنون 204160" />
           </div>
-
         </div>
 
         <div class="filters-grid extra">
-
           <div class="field">
-            <label for="dateFrom">
-              من تاريخ
-            </label>
-
-            <input
-              type="date"
-              id="dateFrom"
-            />
+            <label for="dateFrom">من تاريخ</label>
+            <input type="date" id="dateFrom" />
           </div>
-
           <div class="field">
-            <label for="dateTo">
-              إلى تاريخ
-            </label>
-
-            <input
-              type="date"
-              id="dateTo"
-            />
+            <label for="dateTo">إلى تاريخ</label>
+            <input type="date" id="dateTo" />
           </div>
-
           <div class="field">
-            <label for="currencyFilter">
-              العملة
-            </label>
-
+            <label for="currencyFilter">العملة</label>
             <select id="currencyFilter">
-              <option value="">
-                الكل
-              </option>
+              <option value="">الكل</option>
             </select>
           </div>
-
         </div>
       </div>
 
       <div class="actions">
         <div class="actions-left">
-
-          <button
-            class="btn-primary"
-            id="exportExcel"
-          >
-            تصدير Excel
-          </button>
-
-          <button
-            class="btn-secondary"
-            id="clearSearch"
-          >
-            مسح كل الفلاتر
-          </button>
-
+          <button class="btn-primary" id="exportExcel">تصدير Excel</button>
+          <button class="btn-secondary" id="clearSearch">مسح كل الفلاتر</button>
         </div>
       </div>
 
-      <div
-        id="status"
-        class="status"
-      ></div>
-
-      <div
-        class="small"
-        id="countInfo"
-      >
-        ... جاري تحميل البيانات
-      </div>
-
-      <div
-        class="last-updated"
-        id="lastUpdated"
-      ></div>
-
-      <div
-        class="summary-bar"
-        id="summaryBar"
-      ></div>
+      <div id="status" class="status"></div>
+      <div class="small" id="countInfo">... جاري تحميل البيانات</div>
+      <div class="last-updated" id="lastUpdated"></div>
+      <div class="summary-bar" id="summaryBar"></div>
     </section>
 
     <section class="card">
-      <div class="title">
-        النتائج
-      </div>
-
+      <div class="title">النتائج</div>
       <div class="table-wrap">
         <table id="resultsTable">
-
           <thead>
             <tr>
-              <th data-key="invoiceNo">
-                الفاتورة
-                <span
-                  class="arrow"
-                  data-arrow="invoiceNo"
-                ></span>
-              </th>
-
-              <th data-key="date">
-                التاريخ
-                <span
-                  class="arrow"
-                  data-arrow="date"
-                ></span>
-              </th>
-
-              <th data-key="qty">
-                العدد
-                <span
-                  class="arrow"
-                  data-arrow="qty"
-                ></span>
-              </th>
-
-              <th data-key="currency">
-                العملة
-                <span
-                  class="arrow"
-                  data-arrow="currency"
-                ></span>
-              </th>
-
-              <th data-key="uprice">
-                السعر
-                <span
-                  class="arrow"
-                  data-arrow="uprice"
-                ></span>
-              </th>
-
-              <th data-key="item">
-                الصنف
-                <span
-                  class="arrow"
-                  data-arrow="item"
-                ></span>
-              </th>
-
-              <th data-key="supplier">
-                المورد
-                <span
-                  class="arrow"
-                  data-arrow="supplier"
-                ></span>
-              </th>
+              <th data-key="invoiceNo">الفاتورة<span class="arrow" data-arrow="invoiceNo"></span></th>
+              <th data-key="date">التاريخ<span class="arrow" data-arrow="date"></span></th>
+              <th data-key="qty">العدد<span class="arrow" data-arrow="qty"></span></th>
+              <th data-key="currency">العملة<span class="arrow" data-arrow="currency"></span></th>
+              <th data-key="uprice">السعر<span class="arrow" data-arrow="uprice"></span></th>
+              <th data-key="item">الصنف<span class="arrow" data-arrow="item"></span></th>
+              <th data-key="supplier">المورد<span class="arrow" data-arrow="supplier"></span></th>
             </tr>
           </thead>
-
           <tbody id="resultsBody"></tbody>
-
         </table>
       </div>
     </section>
-
   </main>
 
   <script>
     let allData = [];
     let currentResults = [];
+    let sortKey = null;       // null = الترتيب الافتراضي (تاريخ تنازلي)
+    let sortDir = 1;          // 1 = تصاعدي، -1 = تنازلي
 
-    let sortKey = null;
-    let sortDir = 1;
+    const arabicDigits = ['٠','١','٢','٣','٤','٥','٦','٧','٨','٩'];
+    const latinDigits  = ['0','1','2','3','4','5','6','7','8','9'];
 
-    const arabicDigits = [
-      '٠', '١', '٢', '٣', '٤',
-      '٥', '٦', '٧', '٨', '٩'
-    ];
+    // ---------- أدوات مساعدة ----------
 
-    const latinDigits = [
-      '0', '1', '2', '3', '4',
-      '5', '6', '7', '8', '9'
-    ];
-
-    function normalizeForSearch(value) {
-      let text = String(value ?? '').toLowerCase();
-
-      arabicDigits.forEach((digit, index) => {
-        text = text
-          .split(digit)
-          .join(latinDigits[index]);
+    function normalizeForSearch(str) {
+      let s = String(str ?? '').toLowerCase();
+      arabicDigits.forEach((ad, i) => {
+        s = s.split(ad).join(latinDigits[i]);
       });
-
-      return text;
+      return s;
     }
 
-    function esc(value) {
-      return String(value ?? '').replace(/[&<>"']/g, char => ({
+    function esc(v) {
+      return String(v ?? '').replace(/[&<>"']/g, s => ({
         '&': '&amp;',
         '<': '&lt;',
         '>': '&gt;',
         '"': '&quot;',
         "'": '&#39;'
-      })[char]);
+      })[s]);
     }
 
-    function toNumber(value) {
-      if (
-        value === null ||
-        value === undefined ||
-        value === ''
-      ) {
-        return NaN;
-      }
-
-      let text = normalizeForSearch(value)
-        .replace(/,/g, '')
-        .trim();
-
-      text = text.replace(
-        /[^0-9.\-e+]/g,
-        ''
-      );
-
-      if (
-        text === '' ||
-        text === '-'
-      ) {
-        return NaN;
-      }
-
-      const number = Number(text);
-
-      return Number.isNaN(number)
-        ? NaN
-        : number;
+    // يقبل أرقام عادية أو فيها فواصل آلاف أو أرقام عربية أو بصيغة أسية (e/E)، ويتجاهل أي رمز غير رقمي زائد
+    function toNumber(v) {
+      if (v === null || v === undefined || v === '') return NaN;
+      let s = normalizeForSearch(v).replace(/,/g, '').trim();
+      // يسمح بالأرقام والفاصلة العشرية والإشارة السالبة والصيغة الأسية (e/E/+)
+      s = s.replace(/[^0-9.\-e+]/g, '');
+      if (s === '' || s === '-') return NaN;
+      const n = Number(s);
+      return Number.isNaN(n) ? NaN : n;
     }
 
-    function numFmt(value) {
-      const number = toNumber(value);
-
-      if (Number.isNaN(number)) {
-        return value ? esc(value) : '';
-      }
-
-      return number.toLocaleString(
-        'en-US',
-        {
-          maximumFractionDigits: 2
-        }
-      );
+    function numFmt(v) {
+      const n = toNumber(v);
+      if (Number.isNaN(n)) return v ? esc(v) : '';
+      return n.toLocaleString('en-US', { maximumFractionDigits: 2 });
     }
 
-    function priceFmt(value) {
-      const number = toNumber(value);
-
-      if (Number.isNaN(number)) {
-        return value ? esc(value) : '';
+    // تنسيق خاص بالسعر: أقصى عرض 6 أرقام، وإذا كان الرقم أصغر من واحد يعرض رقمين عشريين فقط
+    function priceFmt(v) {
+      const n = toNumber(v);
+      if (Number.isNaN(n)) return v ? esc(v) : '';
+      if (n === 0) return '0';
+      if (Math.abs(n) < 1) {
+        return n.toFixed(2);
       }
-
-      if (number === 0) {
-        return '0';
-      }
-
-      if (Math.abs(number) < 1) {
-        return number.toFixed(2);
-      }
-
-      return number.toLocaleString(
-        'en-US',
-        {
-          maximumSignificantDigits: 6
-        }
-      );
+      return n.toLocaleString('en-US', { maximumSignificantDigits: 6 });
     }
 
-    function parseDate(value) {
-      if (!value) {
-        return 0;
-      }
-
-      const parts = normalizeForSearch(value)
-        .split('/');
-
-      if (parts.length !== 3) {
-        return 0;
-      }
-
+    // يحوّل التاريخ من صيغة day/month/year إلى رقم قابل للمقارنة YYYYMMDD
+    function parseDate(d) {
+      if (!d) return 0;
+      const parts = normalizeForSearch(d).split('/');
+      if (parts.length !== 3) return 0;
       const day = parseInt(parts[0], 10);
       const month = parseInt(parts[1], 10);
       const year = parseInt(parts[2], 10);
-
-      if (
-        Number.isNaN(day) ||
-        Number.isNaN(month) ||
-        Number.isNaN(year)
-      ) {
-        return 0;
-      }
-
+      if (Number.isNaN(day) || Number.isNaN(month) || Number.isNaN(year)) return 0;
       return year * 10000 + month * 100 + day;
     }
 
-    function isoToComparable(value) {
-      if (!value) {
-        return null;
-      }
-
-      const parts = value
-        .split('-')
-        .map(Number);
-
-      const year = parts[0];
-      const month = parts[1];
-      const day = parts[2];
-
-      if (!year || !month || !day) {
-        return null;
-      }
-
-      return year * 10000 + month * 100 + day;
-    }
-
-    function formatDateTime(date) {
-      const pad = number =>
-        String(number).padStart(2, '0');
-
-      return `${pad(date.getDate())}/` +
-        `${pad(date.getMonth() + 1)}/` +
-        `${date.getFullYear()} ` +
-        `${pad(date.getHours())}:` +
-        `${pad(date.getMinutes())}`;
+    // تحويل قيمة input[type=date] (YYYY-MM-DD) لنفس صيغة parseDate
+    function isoToComparable(isoStr) {
+      if (!isoStr) return null;
+      const [y, m, d] = isoStr.split('-').map(Number);
+      if (!y || !m || !d) return null;
+      return y * 10000 + m * 100 + d;
     }
 
     function defaultSort(a, b) {
-      const dateA = parseDate(a.date);
-      const dateB = parseDate(b.date);
+      const da = parseDate(a.date);
+      const db = parseDate(b.date);
+      if (db !== da) return db - da;
 
-      if (dateB !== dateA) {
-        return dateB - dateA;
-      }
-
-      return String(b.invoiceNo || '')
-        .localeCompare(
-          String(a.invoiceNo || ''),
-          undefined,
-          {
-            numeric: true,
-            sensitivity: 'base'
-          }
-        );
+      const ia = String(a.invoiceNo || '');
+      const ib = String(b.invoiceNo || '');
+      return ib.localeCompare(ia, undefined, { numeric: true, sensitivity: 'base' });
     }
 
     function compareByKey(a, b, key) {
       if (key === 'date') {
-        return (
-          parseDate(a.date) -
-          parseDate(b.date)
-        ) * sortDir;
+        return (parseDate(a.date) - parseDate(b.date)) * sortDir;
       }
-
-      if (
-        key === 'qty' ||
-        key === 'uprice'
-      ) {
-        const numberA = toNumber(a[key]);
-        const numberB = toNumber(b[key]);
-
-        const valueA = Number.isNaN(numberA)
-          ? -Infinity
-          : numberA;
-
-        const valueB = Number.isNaN(numberB)
-          ? -Infinity
-          : numberB;
-
-        return (
-          valueA - valueB
-        ) * sortDir;
+      if (key === 'qty' || key === 'uprice') {
+        const na = toNumber(a[key]);
+        const nb = toNumber(b[key]);
+        const va = Number.isNaN(na) ? -Infinity : na;
+        const vb = Number.isNaN(nb) ? -Infinity : nb;
+        return (va - vb) * sortDir;
       }
-
-      return String(a[key] ?? '')
-        .localeCompare(
-          String(b[key] ?? ''),
-          undefined,
-          {
-            numeric: true,
-            sensitivity: 'base'
-          }
-        ) * sortDir;
+      // نصوص: الفاتورة، العملة، الصنف، المورد
+      const va = String(a[key] ?? '');
+      const vb = String(b[key] ?? '');
+      return va.localeCompare(vb, undefined, { numeric: true, sensitivity: 'base' }) * sortDir;
     }
 
     function applySort(rows) {
       const sorted = [...rows];
-
       if (sortKey) {
-        sorted.sort((a, b) => {
-          return compareByKey(a, b, sortKey);
-        });
+        sorted.sort((a, b) => compareByKey(a, b, sortKey));
       } else {
         sorted.sort(defaultSort);
       }
-
       return sorted;
     }
 
     function debounce(fn, wait) {
-      let timer = null;
-
+      let t = null;
       return (...args) => {
-        clearTimeout(timer);
-
-        timer = setTimeout(() => {
-          fn(...args);
-        }, wait);
+        clearTimeout(t);
+        t = setTimeout(() => fn(...args), wait);
       };
     }
 
-    function updateArrows() {
-      document
-        .querySelectorAll('.arrow')
-        .forEach(element => {
-          const key = element.getAttribute(
-            'data-arrow'
-          );
-
-          element.textContent =
-            key === sortKey
-              ? sortDir === 1 ? '▲' : '▼'
-              : '';
-        });
+    function formatDateTime(d) {
+      const pad = n => String(n).padStart(2, '0');
+      return `${pad(d.getDate())}/${pad(d.getMonth() + 1)}/${d.getFullYear()} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
     }
 
-    function renderSummary(rows) {
-      const summaryBar =
-        document.getElementById('summaryBar');
-
-      if (!rows.length) {
-        summaryBar.innerHTML = '';
-        return;
+    // يجلب تاريخ آخر تعديل فعلي على ملف purchases.json من GitHub (آخر commit طال الملف)
+    async function showLastFileUpdate() {
+      const el = document.getElementById('lastUpdated');
+      try {
+        const res = await fetch(
+          'https://api.github.com/repos/dabbousbasta/purchases/commits?path=purchases-data/purchases.json&per_page=1'
+        );
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const commits = await res.json();
+        const dateStr = commits && commits[0] && commits[0].commit && commits[0].commit.committer
+          ? commits[0].commit.committer.date
+          : null;
+        if (!dateStr) throw new Error('no date');
+        el.textContent = 'آخر تحديث للملف: ' + formatDateTime(new Date(dateStr));
+      } catch (e) {
+        el.textContent = '';
       }
-
-      const totalsByCurrency = {};
-      let totalQty = 0;
-
-      rows.forEach(row => {
-        const currency =
-          (row.currency || 'بدون عملة')
-            .trim() || 'بدون عملة';
-
-        const qty = toNumber(row.qty);
-        const price = toNumber(row.uprice);
-
-        const lineTotal =
-          !Number.isNaN(qty) &&
-          !Number.isNaN(price)
-            ? qty * price
-            : 0;
-
-        totalsByCurrency[currency] =
-          (totalsByCurrency[currency] || 0) +
-          lineTotal;
-
-        if (!Number.isNaN(qty)) {
-          totalQty += qty;
-        }
-      });
-
-      const totals =
-        Object.entries(totalsByCurrency)
-          .map(([currency, total]) => `
-            <span>
-              إجمالي ${esc(currency)}:
-              <b>
-                ${total.toLocaleString(
-                  'en-US',
-                  {
-                    maximumFractionDigits: 2
-                  }
-                )}
-              </b>
-            </span>
-          `)
-          .join('');
-
-      summaryBar.innerHTML =
-        `<span>
-          عدد الأصناف الكلي:
-          <b>
-            ${totalQty.toLocaleString(
-              'en-US',
-              {
-                maximumFractionDigits: 2
-              }
-            )}
-          </b>
-        </span>` + totals;
     }
 
-    function render() {
-      const tbody =
-        document.getElementById('resultsBody');
+    // ---------- حفظ واستعادة حالة الفلاتر (localStorage) ----------
 
-      const total =
-        currentResults.length;
-
-      if (!total) {
-        tbody.innerHTML = `
-          <tr>
-            <td
-              colspan="7"
-              class="no-results"
-            >
-              لا توجد نتائج مطابقة
-            </td>
-          </tr>
-        `;
-      } else {
-        tbody.innerHTML =
-          currentResults.map(row => `
-            <tr>
-              <td>${esc(row.invoiceNo)}</td>
-              <td>${esc(row.date)}</td>
-              <td>${numFmt(row.qty)}</td>
-              <td>${esc(row.currency)}</td>
-              <td>${priceFmt(row.uprice)}</td>
-              <td>${esc(row.item)}</td>
-              <td>${esc(row.supplier)}</td>
-            </tr>
-          `).join('');
-      }
-
-      document.getElementById('countInfo')
-        .textContent =
-        `عدد النتائج: ${total} ` +
-        `(من إجمالي ${allData.length})`;
-
-      renderSummary(currentResults);
-      updateArrows();
-    }
-
-    function search() {
-      const rawItem =
-        document.getElementById('searchItem')
-          .value
-          .trim();
-
-      const rawInvoice =
-        document.getElementById('searchInvoice')
-          .value
-          .trim();
-
-      const rawSupplier =
-        document.getElementById('searchSupplier')
-          .value
-          .trim();
-
-      const dateFrom =
-        isoToComparable(
-          document.getElementById('dateFrom').value
-        );
-
-      const dateTo =
-        isoToComparable(
-          document.getElementById('dateTo').value
-        );
-
-      const currency =
-        document.getElementById('currencyFilter')
-          .value;
-
-      const itemWords =
-        normalizeForSearch(rawItem)
-          .split(/\s+/)
-          .filter(Boolean);
-
-      const invoiceWords =
-        normalizeForSearch(rawInvoice)
-          .split(/\s+/)
-          .filter(Boolean);
-
-      const supplierWords =
-        normalizeForSearch(rawSupplier)
-          .split(/\s+/)
-          .filter(Boolean);
-
-      currentResults = allData.filter(row => {
-        const itemName =
-          normalizeForSearch(row.item || '');
-
-        const invoiceName =
-          normalizeForSearch(row.invoiceNo || '');
-
-        const supplierName =
-          normalizeForSearch(row.supplier || '');
-
-        const rowDate =
-          parseDate(row.date);
-
-        const matchItem =
-          itemWords.length === 0 ||
-          itemWords.every(word =>
-            itemName.includes(word)
-          );
-
-        const matchInvoice =
-          invoiceWords.length === 0 ||
-          invoiceWords.every(word =>
-            invoiceName.includes(word)
-          );
-
-        const matchSupplier =
-          supplierWords.length === 0 ||
-          supplierWords.every(word =>
-            supplierName.includes(word)
-          );
-
-        const matchCurrency =
-          !currency ||
-          (row.currency || '').trim() === currency;
-
-        const matchDateFrom =
-          dateFrom === null ||
-          rowDate >= dateFrom;
-
-        const matchDateTo =
-          dateTo === null ||
-          rowDate <= dateTo;
-
-        return (
-          matchItem &&
-          matchInvoice &&
-          matchSupplier &&
-          matchCurrency &&
-          matchDateFrom &&
-          matchDateTo
-        );
-      });
-
-      currentResults =
-        applySort(currentResults);
-
-      render();
-      saveFiltersState();
-    }
+    const STORAGE_KEY = 'purchaseFiltersState_v1';
 
     function saveFiltersState() {
       try {
         const state = {
-          searchItem:
-            document.getElementById('searchItem')
-              .value,
-
-          searchInvoice:
-            document.getElementById('searchInvoice')
-              .value,
-
-          searchSupplier:
-            document.getElementById('searchSupplier')
-              .value,
-
-          dateFrom:
-            document.getElementById('dateFrom')
-              .value,
-
-          dateTo:
-            document.getElementById('dateTo')
-              .value,
-
-          currency:
-            document.getElementById('currencyFilter')
-              .value,
-
-          extraOpen:
-            !document.getElementById(
-              'extraFiltersWrap'
-            ).hidden
+          searchItem: document.getElementById('searchItem').value,
+          searchInvoice: document.getElementById('searchInvoice').value,
+          searchSupplier: document.getElementById('searchSupplier').value,
+          dateFrom: document.getElementById('dateFrom').value,
+          dateTo: document.getElementById('dateTo').value,
+          currency: document.getElementById('currencyFilter').value,
+          extraOpen: !document.getElementById('extraFiltersWrap').hidden
         };
-
-        localStorage.setItem(
-          'purchaseFiltersState_v1',
-          JSON.stringify(state)
-        );
-      } catch (error) {
-        // تجاهل الخطأ
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      } catch (e) {
+        // تجاهل أي خطأ بالتخزين المحلي (متصفح يمنعه مثلاً)
       }
     }
 
     function restoreFiltersState() {
       let state = null;
-
       try {
-        const raw = localStorage.getItem(
-          'purchaseFiltersState_v1'
-        );
-
-        if (raw) {
-          state = JSON.parse(raw);
-        }
-      } catch (error) {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (raw) state = JSON.parse(raw);
+      } catch (e) {
         state = null;
       }
+      if (!state) return;
 
-      if (!state) {
-        return;
-      }
-
-      document.getElementById('searchItem')
-        .value = state.searchItem || '';
-
-      document.getElementById('searchInvoice')
-        .value = state.searchInvoice || '';
-
-      document.getElementById('searchSupplier')
-        .value = state.searchSupplier || '';
-
-      document.getElementById('dateFrom')
-        .value = state.dateFrom || '';
-
-      document.getElementById('dateTo')
-        .value = state.dateTo || '';
-
-      if (state.currency) {
-        document.getElementById('currencyFilter')
-          .value = state.currency;
-      }
-
-      if (state.extraOpen) {
-        setExtraFiltersOpen(true);
-      }
+      document.getElementById('searchItem').value = state.searchItem || '';
+      document.getElementById('searchInvoice').value = state.searchInvoice || '';
+      document.getElementById('searchSupplier').value = state.searchSupplier || '';
+      document.getElementById('dateFrom').value = state.dateFrom || '';
+      document.getElementById('dateTo').value = state.dateTo || '';
+      if (state.currency) document.getElementById('currencyFilter').value = state.currency;
+      if (state.extraOpen) setExtraFiltersOpen(true);
     }
 
     function setExtraFiltersOpen(open) {
-      const wrap =
-        document.getElementById(
-          'extraFiltersWrap'
-        );
-
-      const button =
-        document.getElementById(
-          'toggleFiltersBtn'
-        );
-
-      const text =
-        document.getElementById(
-          'toggleFiltersText'
-        );
-
+      const wrap = document.getElementById('extraFiltersWrap');
+      const btn = document.getElementById('toggleFiltersBtn');
+      const text = document.getElementById('toggleFiltersText');
       wrap.hidden = !open;
-
-      button.setAttribute(
-        'aria-expanded',
-        open ? 'true' : 'false'
-      );
-
-      text.textContent =
-        open
-          ? 'إخفاء الفلاتر الإضافية'
-          : 'فلاتر إضافية';
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      text.textContent = open ? 'إخفاء الفلاتر الإضافية' : 'فلاتر إضافية';
     }
 
+    // ---------- تحميل البيانات ----------
+
     function showSkeleton() {
-      const tbody =
-        document.getElementById('resultsBody');
-
+      const tbody = document.getElementById('resultsBody');
       let html = '';
-
       for (let i = 0; i < 8; i++) {
-        html += `
-          <tr class="skeleton-row">
-            <td colspan="7">
-              جاري التحميل...
-            </td>
-          </tr>
-        `;
+        html += `<tr class="skeleton-row"><td colspan="7">جاري التحميل...</td></tr>`;
       }
-
       tbody.innerHTML = html;
     }
 
     function populateCurrencyOptions() {
-      const select =
-        document.getElementById(
-          'currencyFilter'
-        );
+      const select = document.getElementById('currencyFilter');
+      const currencies = [...new Set(allData.map(r => (r.currency || '').trim()).filter(Boolean))]
+        .sort((a, b) => a.localeCompare(b));
 
-      const currencies = [
-        ...new Set(
-          allData
-            .map(row =>
-              (row.currency || '').trim()
-            )
-            .filter(Boolean)
-        )
-      ].sort((a, b) =>
-        a.localeCompare(b)
-      );
-
+      // احتفظ بأي اختيار حالي
       const current = select.value;
-
-      select.innerHTML =
-        '<option value="">الكل</option>' +
-        currencies.map(currency => `
-          <option value="${esc(currency)}">
-            ${esc(currency)}
-          </option>
-        `).join('');
-
-      if (currencies.includes(current)) {
-        select.value = current;
-      }
-    }
-
-    async function showLastFileUpdate() {
-      const element =
-        document.getElementById(
-          'lastUpdated'
-        );
-
-      try {
-        const response = await fetch(
-          'https://api.github.com/repos/' +
-          'dabbousbasta/purchases/commits' +
-          '?path=purchases-data/purchases.json' +
-          '&per_page=1'
-        );
-
-        if (!response.ok) {
-          throw new Error(
-            'HTTP ' + response.status
-          );
-        }
-
-        const commits =
-          await response.json();
-
-        const dateString =
-          commits &&
-          commits[0] &&
-          commits[0].commit &&
-          commits[0].commit.committer
-            ? commits[0].commit.committer.date
-            : null;
-
-        if (!dateString) {
-          throw new Error('no date');
-        }
-
-        element.textContent =
-          'آخر تحديث للملف: ' +
-          formatDateTime(
-            new Date(dateString)
-          );
-      } catch (error) {
-        element.textContent = '';
-      }
+      select.innerHTML = '<option value="">الكل</option>' +
+        currencies.map(c => `<option value="${esc(c)}">${esc(c)}</option>`).join('');
+      if (currencies.includes(current)) select.value = current;
     }
 
     async function loadData() {
-      const status =
-        document.getElementById('status');
-
+      const status = document.getElementById('status');
       showSkeleton();
-
       try {
-        const response = await fetch(
-          'purchases-data/purchases.json?v=' +
-          Date.now()
-        );
+        const res = await fetch('purchases-data/purchases.json?v=' + Date.now());
+        if (!res.ok) throw new Error('HTTP ' + res.status);
 
-        if (!response.ok) {
-          throw new Error(
-            'HTTP ' + response.status
-          );
-        }
-
-        const json =
-          await response.json();
+        const json = await res.json();
 
         if (!Array.isArray(json)) {
-          throw new Error(
-            'صيغة البيانات غير صحيحة ' +
-            '(متوقع مصفوفة)'
-          );
+          throw new Error('صيغة البيانات غير صحيحة (متوقع مصفوفة)');
         }
 
         allData = json;
-
         populateCurrencyOptions();
 
-        document.getElementById('countInfo')
-          .textContent =
+        document.getElementById('countInfo').textContent =
           `تم تحميل ${allData.length} سجل.`;
 
         status.className = 'status ok';
-        status.textContent =
-          '✅ تم تحميل البيانات بنجاح';
+        status.textContent = '✅ تم تحميل البيانات بنجاح';
         status.style.display = 'block';
 
         showLastFileUpdate();
@@ -1525,325 +639,115 @@
         restoreFiltersState();
         search();
 
-        document.getElementById(
-          'searchItem'
-        ).focus();
-
-      } catch (error) {
+        document.getElementById('searchItem').focus();
+      } catch (e) {
         status.className = 'status err';
-
-        status.textContent =
-          '❌ خطأ في تحميل البيانات: ' +
-          (error.message || error);
-
+        status.textContent = '❌ خطأ في تحميل البيانات: ' + esc(e.message || e);
         status.style.display = 'block';
-
-        document.getElementById('countInfo')
-          .textContent =
-          'فشل تحميل البيانات';
-
-        document.getElementById('resultsBody')
-          .innerHTML = `
-            <tr>
-              <td
-                colspan="7"
-                class="no-results"
-              >
-                لم يتم تحميل البيانات.
-                تحقق من مسار الملف
-                purchases-data/purchases.json
-              </td>
-            </tr>
-          `;
+        document.getElementById('countInfo').textContent = 'فشل تحميل البيانات';
+        document.getElementById('resultsBody').innerHTML =
+          '<tr><td colspan="7" class="no-results">لم يتم تحميل البيانات. تحقق من مسار الملف purchases-data/purchases.json</td></tr>';
       }
     }
 
-    /*
-    =========================================
-    استخراج نوع ورقم الفاتورة
-    =========================================
+    // ---------- العرض ----------
 
-    أمثلة:
-
-    PI - 861  → prefix = PI  ، number = 861
-    PI-861    → prefix = PI  ، number = 861
-    PI 861    → prefix = PI  ، number = 861
-    PI1 - 168 → prefix = PI1 ، number = 168
-    PI2 - 45  → prefix = PI2 ، number = 45
-    */
-
-    function parseInvoiceSequence(invoiceNo) {
-      let value = String(invoiceNo ?? '');
-
-      /*
-        إزالة المسافات الخاصة التي قد تأتي من Excel
-        أو من ملفات Word وDOCX
-      */
-
-      value = value
-        .replace(/[\u00A0\u2007\u202F]/g, ' ')
-        .replace(/[–—−]/g, '-')
-        .replace(/\s+/g, ' ')
-        .trim();
-
-      /*
-        [A-Za-z]+[0-9]* تعني:
-
-        PI
-        PI1
-        PI2
-        ABC
-        ABC1
-      */
-
-      const match = value.match(
-        /^([A-Za-z]+[0-9]*)\s*(?:[-_/]\s*|\s+)([0-9]+)\s*$/
-      );
-
-      if (!match) {
-        return null;
-      }
-
-      /*
-        مهم جدًا:
-        PI و PI1 و PI2 تبقى أنواعًا مستقلة
-      */
-
-      const prefix =
-        match[1].toUpperCase();
-
-      const number =
-        Number(match[2]);
-
-      if (
-        !Number.isInteger(number) ||
-        number < 1
-      ) {
-        return null;
-      }
-
-      return {
-        prefix,
-        number
-      };
-    }
-
-    /*
-    =========================================
-    حساب الفواتير الناقصة
-    =========================================
-    */
-
-    function getMissingInvoiceSequences() {
-      const groups = new Map();
-
-      allData.forEach(row => {
-        const year =
-          Number(row.invoiceYear);
-
-        const parsed =
-          parseInvoiceSequence(
-            row.invoiceNo
-          );
-
-        /*
-          لا نعتمد على date.
-          السنة تؤخذ فقط من invoiceYear.
-        */
-
-        if (
-          !Number.isInteger(year) ||
-          !parsed
-        ) {
-          return;
-        }
-
-        /*
-          كل سنة ونوع فاتورة لهما مجموعة مستقلة:
-
-          2026|||PI
-          2026|||PI1
-          2025|||PI
-        */
-
-        const groupKey =
-          `${year}|||${parsed.prefix}`;
-
-        if (!groups.has(groupKey)) {
-          groups.set(groupKey, {
-            year,
-            prefix: parsed.prefix,
-            numbers: new Set()
-          });
-        }
-
-        /*
-          Set تمنع تكرار الرقم بسبب تعدد أصناف
-          الفاتورة نفسها في ملف JSON
-        */
-
-        groups
-          .get(groupKey)
-          .numbers
-          .add(parsed.number);
-      });
-
-      const result = [];
-
-      groups.forEach(group => {
-        const existingNumbers =
-          [...group.numbers];
-
-        if (!existingNumbers.length) {
-          return;
-        }
-
-        const maxNumber =
-          Math.max(...existingNumbers);
-
-        const missing = [];
-
-        for (
-          let number = 1;
-          number <= maxNumber;
-          number++
-        ) {
-          if (!group.numbers.has(number)) {
-            missing.push(number);
-          }
-        }
-
-        result.push({
-          year: group.year,
-          prefix: group.prefix,
-          maxNumber,
-          existingCount:
-            group.numbers.size,
-          missing
-        });
-      });
-
-      return result.sort((a, b) => {
-        if (b.year !== a.year) {
-          return b.year - a.year;
-        }
-
-        return a.prefix.localeCompare(
-          b.prefix,
-          undefined,
-          {
-            numeric: true,
-            sensitivity: 'base'
-          }
-        );
+    function updateArrows() {
+      document.querySelectorAll('.arrow').forEach(el => {
+        const key = el.getAttribute('data-arrow');
+        el.textContent = key === sortKey ? (sortDir === 1 ? '▲' : '▼') : '';
       });
     }
 
-    function renderMissingInvoices() {
-      const container =
-        document.getElementById(
-          'missingInvoicesSummary'
-        );
+    function renderSummary(rows) {
+      const bar = document.getElementById('summaryBar');
+      if (!rows.length) { bar.innerHTML = ''; return; }
 
-      const sequences =
-        getMissingInvoiceSequences();
+      const totalsByCurrency = {};
+      let totalQty = 0;
 
-      if (!sequences.length) {
-        container.innerHTML = `
-          <div class="no-missing-invoices">
-            لا توجد بيانات فواتير صالحة للفحص
-          </div>
-        `;
+      rows.forEach(r => {
+        const cur = (r.currency || 'بدون عملة').trim() || 'بدون عملة';
+        const qty = toNumber(r.qty);
+        const price = toNumber(r.uprice);
+        const lineTotal = (!Number.isNaN(qty) && !Number.isNaN(price)) ? qty * price : 0;
+        totalsByCurrency[cur] = (totalsByCurrency[cur] || 0) + lineTotal;
+        if (!Number.isNaN(qty)) totalQty += qty;
+      });
 
-        return;
+      const parts = Object.entries(totalsByCurrency)
+        .map(([cur, sum]) => `<span>إجمالي ${esc(cur)}: <b>${sum.toLocaleString('en-US', {maximumFractionDigits: 2})}</b></span>`)
+        .join('');
+
+      bar.innerHTML =
+        `<span>عدد الأصناف الكلي: <b>${totalQty.toLocaleString('en-US', {maximumFractionDigits: 2})}</b></span>` + parts;
+    }
+
+    function render() {
+      const tbody = document.getElementById('resultsBody');
+      const total = currentResults.length;
+
+      if (!total) {
+        tbody.innerHTML = '<tr><td colspan="7" class="no-results">لا توجد نتائج مطابقة</td></tr>';
+      } else {
+        tbody.innerHTML = currentResults.map(row => `
+          <tr>
+            <td>${esc(row.invoiceNo)}</td>
+            <td>${esc(row.date)}</td>
+            <td>${numFmt(row.qty)}</td>
+            <td>${esc(row.currency)}</td>
+            <td>${priceFmt(row.uprice)}</td>
+            <td>${esc(row.item)}</td>
+            <td>${esc(row.supplier)}</td>
+          </tr>
+        `).join('');
       }
 
-      const years = new Map();
+      document.getElementById('countInfo').textContent =
+        `عدد النتائج: ${total} (من إجمالي ${allData.length})`;
 
-      sequences.forEach(sequence => {
-        if (!years.has(sequence.year)) {
-          years.set(sequence.year, []);
-        }
-
-        years
-          .get(sequence.year)
-          .push(sequence);
-      });
-
-      let html = '';
-
-      years.forEach((yearSequences, year) => {
-        html += `
-          <section class="missing-year-block">
-            <div class="missing-year-title">
-              سنة ${esc(year)}
-            </div>
-        `;
-
-        yearSequences.forEach(sequence => {
-          let missingHtml;
-
-          if (sequence.missing.length) {
-            missingHtml =
-              sequence.missing
-                .map(number => `
-                  <span class="missing-number">
-                    ${number}
-                  </span>
-                `)
-                .join('');
-          } else {
-            missingHtml = `
-              <div class="no-missing-invoices">
-                لا يوجد نقص حتى الرقم
-                ${sequence.maxNumber.toLocaleString(
-                  'en-US'
-                )}
-              </div>
-            `;
-          }
-
-          html += `
-            <div class="missing-sequence">
-
-              <div class="missing-sequence-title">
-                تسلسل ${esc(sequence.prefix)}
-              </div>
-
-              <div class="missing-sequence-info">
-                أكبر رقم:
-                ${sequence.maxNumber.toLocaleString(
-                  'en-US'
-                )}
-
-                —
-                الموجود:
-                ${sequence.existingCount.toLocaleString(
-                  'en-US'
-                )}
-
-                —
-                الناقص:
-                ${sequence.missing.length.toLocaleString(
-                  'en-US'
-                )}
-              </div>
-
-              <div class="missing-numbers">
-                ${missingHtml}
-              </div>
-
-            </div>
-          `;
-        });
-
-        html += `
-          </section>
-        `;
-      });
-
-      container.innerHTML = html;
+      renderSummary(currentResults);
+      updateArrows();
     }
+
+    // ---------- البحث والفلترة ----------
+
+    function search() {
+      const rawItem     = document.getElementById('searchItem').value.trim();
+      const rawInvoice  = document.getElementById('searchInvoice').value.trim();
+      const rawSupplier = document.getElementById('searchSupplier').value.trim();
+      const dateFrom    = isoToComparable(document.getElementById('dateFrom').value);
+      const dateTo      = isoToComparable(document.getElementById('dateTo').value);
+      const currency    = document.getElementById('currencyFilter').value;
+
+      const itemWords     = normalizeForSearch(rawItem).split(/\s+/).filter(Boolean);
+      const invoiceWords  = normalizeForSearch(rawInvoice).split(/\s+/).filter(Boolean);
+      const supplierWords = normalizeForSearch(rawSupplier).split(/\s+/).filter(Boolean);
+
+      currentResults = allData.filter(row => {
+        const nameItem     = normalizeForSearch(row.item || '');
+        const nameInvoice  = normalizeForSearch(row.invoiceNo || '');
+        const nameSupplier = normalizeForSearch(row.supplier || '');
+        const rowDate      = parseDate(row.date);
+
+        const matchItem = itemWords.length === 0 || itemWords.every(w => nameItem.includes(w));
+        const matchInvoice = invoiceWords.length === 0 || invoiceWords.every(w => nameInvoice.includes(w));
+        const matchSupplier = supplierWords.length === 0 || supplierWords.every(w => nameSupplier.includes(w));
+        const matchCurrency = !currency || (row.currency || '').trim() === currency;
+        const matchDateFrom = dateFrom === null || rowDate >= dateFrom;
+        const matchDateTo = dateTo === null || rowDate <= dateTo;
+
+        return matchItem && matchInvoice && matchSupplier && matchCurrency && matchDateFrom && matchDateTo;
+      });
+
+      currentResults = applySort(currentResults);
+      render();
+      saveFiltersState();
+    }
+
+    const debouncedSearch = debounce(search, 250);
+
+    // ---------- تصدير Excel ----------
 
     function exportExcel() {
       if (!currentResults.length) {
@@ -1851,233 +755,67 @@
         return;
       }
 
-      const rows =
-        currentResults.map(row => ({
-          'الفاتورة': row.invoiceNo || '',
-          'التاريخ': row.date || '',
-          'العدد': row.qty || '',
-          'العملة': row.currency || '',
-          'السعر': row.uprice || '',
-          'الصنف': row.item || '',
-          'المورد': row.supplier || ''
-        }));
+      const rows = currentResults.map(r => ({
+        'الفاتورة': r.invoiceNo || '',
+        'التاريخ': r.date || '',
+        'العدد': r.qty || '',
+        'العملة': r.currency || '',
+        'السعر': r.uprice || '',
+        'الصنف': r.item || '',
+        'المورد': r.supplier || ''
+      }));
 
-      const worksheet =
-        XLSX.utils.json_to_sheet(rows);
-
-      const workbook =
-        XLSX.utils.book_new();
-
-      XLSX.utils.book_append_sheet(
-        workbook,
-        worksheet,
-        'Results'
-      );
-
-      XLSX.writeFile(
-        workbook,
-        'purchase-results.xlsx'
-      );
+      const ws = XLSX.utils.json_to_sheet(rows);
+      const wb = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, 'Results');
+      XLSX.writeFile(wb, 'purchase-results.xlsx');
     }
 
-    const missingInvoicesBtn =
-      document.getElementById(
-        'missingInvoicesBtn'
-      );
+    // ---------- ربط الأحداث ----------
 
-    const missingInvoicesPanel =
-      document.getElementById(
-        'missingInvoicesPanel'
-      );
+    document.getElementById('searchItem').addEventListener('input', debouncedSearch);
+    document.getElementById('searchInvoice').addEventListener('input', debouncedSearch);
+    document.getElementById('searchSupplier').addEventListener('input', debouncedSearch);
+    document.getElementById('dateFrom').addEventListener('change', search);
+    document.getElementById('dateTo').addEventListener('change', search);
+    document.getElementById('currencyFilter').addEventListener('change', search);
 
-    const closeMissingPanel =
-      document.getElementById(
-        'closeMissingPanel'
-      );
+    document.getElementById('toggleFiltersBtn').addEventListener('click', () => {
+      const wrap = document.getElementById('extraFiltersWrap');
+      setExtraFiltersOpen(wrap.hidden);
+      saveFiltersState();
+    });
 
-    const missingInvoicesOverlay =
-      document.getElementById(
-        'missingInvoicesOverlay'
-      );
+    document.getElementById('clearSearch').addEventListener('click', () => {
+      document.getElementById('searchItem').value = '';
+      document.getElementById('searchInvoice').value = '';
+      document.getElementById('searchSupplier').value = '';
+      document.getElementById('dateFrom').value = '';
+      document.getElementById('dateTo').value = '';
+      document.getElementById('currencyFilter').value = '';
+      sortKey = null;
+      sortDir = 1;
+      search();
+      document.getElementById('searchItem').focus();
+    });
 
-    function openMissingInvoicesPanel() {
-      renderMissingInvoices();
+    document.getElementById('exportExcel').addEventListener('click', exportExcel);
 
-      missingInvoicesPanel.classList.add(
-        'open'
-      );
-
-      missingInvoicesPanel.setAttribute(
-        'aria-hidden',
-        'false'
-      );
-
-      missingInvoicesOverlay.classList.add(
-        'show'
-      );
-    }
-
-    function closeMissingInvoicesPanel() {
-      missingInvoicesPanel.classList.remove(
-        'open'
-      );
-
-      missingInvoicesPanel.setAttribute(
-        'aria-hidden',
-        'true'
-      );
-
-      missingInvoicesOverlay.classList.remove(
-        'show'
-      );
-    }
-
-    missingInvoicesBtn.addEventListener(
-      'click',
-      openMissingInvoicesPanel
-    );
-
-    closeMissingPanel.addEventListener(
-      'click',
-      closeMissingInvoicesPanel
-    );
-
-    missingInvoicesOverlay.addEventListener(
-      'click',
-      closeMissingInvoicesPanel
-    );
-
-    document.addEventListener(
-      'keydown',
-      event => {
-        if (event.key === 'Escape') {
-          closeMissingInvoicesPanel();
-        }
-      }
-    );
-
-    document.getElementById('searchItem')
-      .addEventListener(
-        'input',
-        debounce(search, 250)
-      );
-
-    document.getElementById('searchInvoice')
-      .addEventListener(
-        'input',
-        debounce(search, 250)
-      );
-
-    document.getElementById('searchSupplier')
-      .addEventListener(
-        'input',
-        debounce(search, 250)
-      );
-
-    document.getElementById('dateFrom')
-      .addEventListener(
-        'change',
-        search
-      );
-
-    document.getElementById('dateTo')
-      .addEventListener(
-        'change',
-        search
-      );
-
-    document.getElementById('currencyFilter')
-      .addEventListener(
-        'change',
-        search
-      );
-
-    document.getElementById(
-      'toggleFiltersBtn'
-    ).addEventListener(
-      'click',
-      () => {
-        const wrap =
-          document.getElementById(
-            'extraFiltersWrap'
-          );
-
-        setExtraFiltersOpen(wrap.hidden);
-        saveFiltersState();
-      }
-    );
-
-    document.getElementById('clearSearch')
-      .addEventListener(
-        'click',
-        () => {
-          document.getElementById(
-            'searchItem'
-          ).value = '';
-
-          document.getElementById(
-            'searchInvoice'
-          ).value = '';
-
-          document.getElementById(
-            'searchSupplier'
-          ).value = '';
-
-          document.getElementById(
-            'dateFrom'
-          ).value = '';
-
-          document.getElementById(
-            'dateTo'
-          ).value = '';
-
-          document.getElementById(
-            'currencyFilter'
-          ).value = '';
-
-          sortKey = null;
+    document.querySelectorAll('th[data-key]').forEach(th => {
+      th.addEventListener('click', () => {
+        const key = th.getAttribute('data-key');
+        if (sortKey === key) {
+          sortDir *= -1;
+        } else {
+          sortKey = key;
           sortDir = 1;
-
-          search();
-
-          document.getElementById(
-            'searchItem'
-          ).focus();
         }
-      );
-
-    document.getElementById('exportExcel')
-      .addEventListener(
-        'click',
-        exportExcel
-      );
-
-    document
-      .querySelectorAll('th[data-key]')
-      .forEach(th => {
-        th.addEventListener(
-          'click',
-          () => {
-            const key =
-              th.getAttribute('data-key');
-
-            if (sortKey === key) {
-              sortDir *= -1;
-            } else {
-              sortKey = key;
-              sortDir = 1;
-            }
-
-            currentResults =
-              applySort(currentResults);
-
-            render();
-          }
-        );
+        currentResults = applySort(currentResults);
+        render();
       });
+    });
 
     loadData();
   </script>
-
 </body>
 </html>

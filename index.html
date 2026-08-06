@@ -307,13 +307,14 @@
        زر ولوحة الفواتير الناقصة
     ========================================= */
 
-    .missing-invoices-btn {
-      position: fixed;
-      top: 45%;
-      right: 0;
-      z-index: 20;
-      border: none;
-      border-radius: 10px 0 0 10px;
+.missing-invoices-btn {
+  position: fixed;
+  top: 45%;
+  left: 0;
+  right: auto;
+  z-index: 20;
+  border: none;
+  border-radius: 0 10px 10px 0;
       background: #4527a0;
       color: #fff;
       padding: 13px 10px;
@@ -330,23 +331,24 @@
       background: #311b92;
     }
 
-    .missing-invoices-panel {
-      position: fixed;
-      top: 0;
-      right: -430px;
-      width: min(430px, 92vw);
-      height: 100vh;
-      z-index: 30;
-      background: #fff;
-      box-shadow: -4px 0 18px rgba(0, 0, 0, .2);
-      transition: right .25s ease;
+.missing-invoices-panel {
+  position: fixed;
+  top: 0;
+  left: -430px;
+  right: auto;
+  width: min(430px, 92vw);
+  height: 100vh;
+  z-index: 30;
+  background: #fff;
+  box-shadow: 4px 0 18px rgba(0, 0, 0, .2);
+  transition: left .25s ease;
       overflow-y: auto;
       direction: rtl;
     }
 
-    .missing-invoices-panel.open {
-      right: 0;
-    }
+.missing-invoices-panel.open {
+  left: 0;
+}
 
     .missing-panel-header {
       position: sticky;

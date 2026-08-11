@@ -363,6 +363,72 @@
       margin-top: 2px;
     }
 
+    /* تنسيق زر التفاصيل */
+    .toggle-detail-btn {
+      background: #5e35b1;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 4px 8px;
+      font-size: 16px;
+      line-height: 1;
+      cursor: pointer;
+      font-weight: 700;
+      font-family: inherit;
+      transition: transform .12s ease, background .12s ease;
+    }
+
+    .toggle-detail-btn:hover {
+      background: #4527a0;
+      transform: scale(1.06);
+    }
+
+    .toggle-detail-btn:active {
+      transform: scale(0.96);
+    }
+
+    /* الصف المدمج للتفاصيل */
+    .detail-row {
+      display: none;
+    }
+
+    .detail-row.open {
+      display: table-row;
+    }
+
+    .detail-cell {
+      padding: 10px !important;
+      background: #faf5ff !important;
+    }
+
+    .mini-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    .mini-table th,
+    .mini-table td {
+      border: 1px solid #c7b3e6;
+      padding: 6px 8px;
+      white-space: nowrap;
+    }
+
+    .mini-table th {
+      background: #7e57c2;
+      color: #fff;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .mini-table tbody tr:nth-child(odd) {
+      background: #f3e5f5;
+    }
+
+    .mini-table tbody tr:nth-child(even) {
+      background: #ede7f6;
+    }
+
     @media (max-width: 900px) {
       .filters-grid,
       .filters-grid.extra {
@@ -511,6 +577,8 @@
         <table id="resultsTable">
           <thead>
             <tr>
+              <th style="width: 40px; text-align: center;">تفاصيل</th>
+
               <th data-key="invoiceNo">
                 الفاتورة
                 <span class="arrow" data-arrow="invoiceNo"></span>
@@ -973,7 +1041,7 @@
       for (let i = 0; i < 8; i++) {
         html += `
           <tr class="skeleton-row">
-            <td colspan="7">جاري التحميل...</td>
+            <td colspan="8">جاري التحميل...</td>
           </tr>
         `;
       }
@@ -1105,7 +1173,7 @@
             .innerHTML =
             `
               <tr>
-                <td colspan="7" class="no-results">
+                <td colspan="8" class="no-results">
                   تعذر تحميل البيانات.
                   تحقق من وجود الملف:
                   purchases-data/purchases.json
@@ -1204,6 +1272,50 @@
         totalsHtml;
     }
 
+    /*
+      دالة مساعدة لبناء جدول مصغّر لفاتورة معينة
+    */
+    function buildMiniTable(rows) {
+      if (!rows || !rows.length) {
+        return '';
+      }
+
+      const header = `
+        <tr>
+          <th>الفاتورة</th>
+          <th>التاريخ</th>
+          <th>العدد</th>
+          <th>العملة</th>
+          <th>السعر</th>
+          <th>الصنف</th>
+          <th>المورد</th>
+        </tr>
+      `;
+
+      const body = rows
+        .map(row => {
+          return `
+            <tr>
+              <td>${esc(row.invoiceNo)}</td>
+              <td>${esc(row.date)}</td>
+              <td>${numFmt(row.qty)}</td>
+              <td>${esc(row.currency)}</td>
+              <td>${priceFmt(row.uprice)}</td>
+              <td>${esc(row.item)}</td>
+              <td>${esc(row.supplier)}</td>
+            </tr>
+          `;
+        })
+        .join('');
+
+      return `
+        <table class="mini-table">
+          <thead>${header}</thead>
+          <tbody>${body}</tbody>
+        </table>
+      `;
+    }
+
     function render() {
       const tbody =
         document.getElementById('resultsBody');
@@ -1215,28 +1327,85 @@
         tbody.innerHTML =
           `
             <tr>
-              <td colspan="7" class="no-results">
+              <td colspan="8" class="no-results">
                 لا توجد نتائج مطابقة
               </td>
             </tr>
           `;
       } else {
-        tbody.innerHTML =
-          currentResults
-            .map(row => {
-              return `
-                <tr>
-                  <td>${esc(row.invoiceNo)}</td>
-                  <td>${esc(row.date)}</td>
-                  <td>${numFmt(row.qty)}</td>
-                  <td>${esc(row.currency)}</td>
-                  <td>${priceFmt(row.uprice)}</td>
-                  <td>${esc(row.item)}</td>
-                  <td>${esc(row.supplier)}</td>
-                </tr>
-              `;
-            })
-            .join('');
+        // تجميع الأصناف حسب رقم الفاتورة من كل البيانات
+        const invoiceMap = new Map();
+
+        allData.forEach(row => {
+          const inv = String(row.invoiceNo ?? '').trim();
+          if (!inv) return;
+
+          if (!invoiceMap.has(inv)) {
+            invoiceMap.set(inv, []);
+          }
+
+          invoiceMap.get(inv).push(row);
+        });
+
+        tbody.innerHTML = currentResults
+          .map((row, index) => {
+            const invoiceNo = String(row.invoiceNo ?? '').trim();
+            const invoiceRows = invoiceMap.get(invoiceNo) || [];
+
+            const miniHtml = buildMiniTable(invoiceRows);
+
+            const rowId = `detail-${index}`;
+
+            return `
+              <tr>
+                <td style="text-align: center;">
+                  <button
+                    class="toggle-detail-btn"
+                    type="button"
+                    data-target="${rowId}"
+                    title="عرض كل أصناف الفاتورة"
+                  >
+                    ➕
+                  </button>
+                </td>
+                <td>${esc(row.invoiceNo)}</td>
+                <td>${esc(row.date)}</td>
+                <td>${numFmt(row.qty)}</td>
+                <td>${esc(row.currency)}</td>
+                <td>${priceFmt(row.uprice)}</td>
+                <td>${esc(row.item)}</td>
+                <td>${esc(row.supplier)}</td>
+              </tr>
+              <tr class="detail-row" id="${rowId}">
+                <td colspan="8" class="detail-cell">
+                  ${miniHtml}
+                </td>
+              </tr>
+            `;
+          })
+          .join('');
+
+        // ربط أزرار التفاصيل
+        tbody
+          .querySelectorAll('.toggle-detail-btn')
+          .forEach(btn => {
+            btn.addEventListener('click', () => {
+              const targetId = btn.getAttribute('data-target');
+              const detailRow = document.getElementById(targetId);
+
+              if (!detailRow) return;
+
+              const isOpen = detailRow.classList.contains('open');
+
+              if (isOpen) {
+                detailRow.classList.remove('open');
+                btn.textContent = '➕';
+              } else {
+                detailRow.classList.add('open');
+                btn.textContent = '➖';
+              }
+            });
+          });
       }
 
       document.getElementById('countInfo')

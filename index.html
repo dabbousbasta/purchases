@@ -35,10 +35,6 @@
       color: var(--text);
     }
 
-    /*
-      زر تحديث البيانات
-      ثابت أعلى الصفحة ولا يأخذ مساحة من باقي التصميم
-    */
     #refreshBtn {
       position: fixed;
       top: 10px;
@@ -363,7 +359,6 @@
       margin-top: 2px;
     }
 
-    /* تنسيق زر التفاصيل */
     .toggle-detail-btn {
       background: #5e35b1;
       color: #fff;
@@ -387,7 +382,6 @@
       transform: scale(0.96);
     }
 
-    /* الصف المدمج للتفاصيل */
     .detail-row {
       display: none;
     }
@@ -477,7 +471,6 @@
 
 <body>
 
-  <!-- زر تحديث البيانات -->
   <button id="refreshBtn" type="button" disabled>
     <span class="refresh-icon">🔄</span>
     <span class="refresh-text">تحديث</span>
@@ -756,6 +749,26 @@
       }
 
       return year * 10000 + month * 100 + day;
+    }
+
+    /*
+      دالة لاستخراج السنة من التاريخ بصيغة DD/MM/YYYY
+    */
+    function getYearFromDate(dateValue) {
+      if (!dateValue) {
+        return null;
+      }
+
+      const parts = normalizeForSearch(String(dateValue))
+        .split('/');
+
+      if (parts.length !== 3) {
+        return null;
+      }
+
+      const year = parseInt(parts[2], 10);
+
+      return Number.isNaN(year) ? null : year;
     }
 
     function isoToComparable(isoDate) {
@@ -1080,9 +1093,6 @@
       }
     }
 
-    /*
-      تحميل البيانات من ملف JSON
-    */
     async function loadData() {
       const status =
         document.getElementById('status');
@@ -1135,9 +1145,6 @@
           );
         }
 
-        /*
-          استبدال البيانات القديمة بالجديدة
-        */
         allData = json;
 
         populateCurrencyOptions();
@@ -1151,9 +1158,6 @@
           '✅ تم تحديث البيانات بنجاح';
         status.style.display = 'block';
 
-        /*
-          استرجاع الفلاتر ثم إعادة عرض النتائج
-        */
         restoreFiltersState();
         search();
         showLastFileUpdate();
@@ -1272,9 +1276,6 @@
         totalsHtml;
     }
 
-    /*
-      دالة مساعدة لبناء جدول مصغّر لفاتورة معينة
-    */
     function buildMiniTable(rows) {
       if (!rows || !rows.length) {
         return '';
@@ -1333,24 +1334,31 @@
             </tr>
           `;
       } else {
-        // تجميع الأصناف حسب رقم الفاتورة من كل البيانات
+        // تجميع الفواتير حسب (رقم الفاتورة + السنة)
         const invoiceMap = new Map();
 
         allData.forEach(row => {
           const inv = String(row.invoiceNo ?? '').trim();
-          if (!inv) return;
+          const year = getYearFromDate(row.date);
 
-          if (!invoiceMap.has(inv)) {
-            invoiceMap.set(inv, []);
+          if (!inv || !year) return;
+
+          const key = `${inv}__${year}`;
+
+          if (!invoiceMap.has(key)) {
+            invoiceMap.set(key, []);
           }
 
-          invoiceMap.get(inv).push(row);
+          invoiceMap.get(key).push(row);
         });
 
         tbody.innerHTML = currentResults
           .map((row, index) => {
             const invoiceNo = String(row.invoiceNo ?? '').trim();
-            const invoiceRows = invoiceMap.get(invoiceNo) || [];
+            const year = getYearFromDate(row.date);
+            const key = `${invoiceNo}__${year}`;
+
+            const invoiceRows = invoiceMap.get(key) || [];
 
             const miniHtml = buildMiniTable(invoiceRows);
 
@@ -1363,7 +1371,7 @@
                     class="toggle-detail-btn"
                     type="button"
                     data-target="${rowId}"
-                    title="عرض كل أصناف الفاتورة"
+                    title="عرض كل أصناف الفاتورة بنفس السنة"
                   >
                     ➕
                   </button>
@@ -1385,7 +1393,6 @@
           })
           .join('');
 
-        // ربط أزرار التفاصيل
         tbody
           .querySelectorAll('.toggle-detail-btn')
           .forEach(btn => {
@@ -1660,9 +1667,6 @@
         exportExcel
       );
 
-    /*
-      تشغيل زر التحديث
-    */
     document
       .getElementById('refreshBtn')
       .addEventListener(
@@ -1694,9 +1698,6 @@
         );
       });
 
-    /*
-      التحميل الأول للبيانات
-    */
     loadData();
   </script>
 </body>

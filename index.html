@@ -494,6 +494,14 @@
         align-items: stretch;
       }
     }
+    .search-highlight {
+  background: #ffeb3b;
+  color: #000;
+  padding: 1px 3px;
+  border-radius: 4px;
+  font-weight: 900;
+  box-shadow: 0 0 0 1px rgba(255, 193, 7, .35);
+}
   </style>
 </head>
 
@@ -743,7 +751,68 @@
           "'": '&#39;'
         })[character]);
     }
+function highlightText(value, words) {
+  const text = String(value ?? '');
 
+  if (!text || !words || !words.length) {
+    return esc(text);
+  }
+
+  const normalizedText = normalizeForSearch(text);
+  const matches = [];
+
+  for (const word of words) {
+    const normalizedWord = normalizeForSearch(word).trim();
+
+    if (!normalizedWord) continue;
+
+    let startIndex = 0;
+
+    while (true) {
+      const index = normalizedText.indexOf(normalizedWord, startIndex);
+
+      if (index === -1) break;
+
+      matches.push({
+        start: index,
+        end: index + normalizedWord.length
+      });
+
+      startIndex = index + normalizedWord.length;
+    }
+  }
+
+  if (!matches.length) {
+    return esc(text);
+  }
+
+  matches.sort((a, b) => a.start - b.start);
+
+  const mergedMatches = [];
+
+  for (const match of matches) {
+    const lastMatch = mergedMatches[mergedMatches.length - 1];
+
+    if (!lastMatch || match.start > lastMatch.end) {
+      mergedMatches.push({ ...match });
+    } else if (match.end > lastMatch.end) {
+      lastMatch.end = match.end;
+    }
+  }
+
+  let result = '';
+  let lastIndex = 0;
+
+  for (const match of mergedMatches) {
+    result += esc(text.slice(lastIndex, match.start));
+    result += `<mark class="search-highlight">${esc(text.slice(match.start, match.end))}</mark>`;
+    lastIndex = match.end;
+  }
+
+  result += esc(text.slice(lastIndex));
+
+  return result;
+}
     function toNumber(value) {
       if (value === null || value === undefined || value === '') {
         return NaN;
@@ -1269,34 +1338,45 @@
     }
 
     function buildMiniTable(rows) {
-      if (!rows || !rows.length) return '';
+  if (!rows || !rows.length) return '';
 
-      const header = `
-        <tr>
-          <th>الفاتورة</th>
-          <th>التاريخ</th>
-          <th>العدد</th>
-          <th>العملة</th>
-          <th>السعر</th>
-          <th>الصنف</th>
-          <th>المورد</th>
-        </tr>
-      `;
+  const itemSearchWords = normalizeForSearch(
+    document.getElementById('searchItem').value.trim()
+  )
+    .split(/\s+/)
+    .filter(Boolean);
 
-      const body = rows.map(row => `
-        <tr>
-          <td>${esc(row.invoiceNo)}</td>
-          <td>${esc(row.date)}</td>
-          <td>${numFmtVal(row._qtyNum, row.qty)}</td>
-          <td>${esc(row.currency)}</td>
-          <td>${priceFmtVal(row._priceNum, row.uprice)}</td>
-          <td>${esc(row.item)}</td>
-          <td>${esc(row.supplier)}</td>
-        </tr>
-      `).join('');
+  const header = `
+    <tr>
+      <th>الفاتورة</th>
+      <th>التاريخ</th>
+      <th>العدد</th>
+      <th>العملة</th>
+      <th>السعر</th>
+      <th>الصنف</th>
+      <th>المورد</th>
+    </tr>
+  `;
 
-      return `<table class="mini-table"><thead>${header}</thead><tbody>${body}</tbody></table>`;
-    }
+  const body = rows.map(row => `
+    <tr>
+      <td>${esc(row.invoiceNo)}</td>
+      <td>${esc(row.date)}</td>
+      <td>${numFmtVal(row._qtyNum, row.qty)}</td>
+      <td>${esc(row.currency)}</td>
+      <td>${priceFmtVal(row._priceNum, row.uprice)}</td>
+      <td>${highlightText(row.item, itemSearchWords)}</td>
+      <td>${esc(row.supplier)}</td>
+    </tr>
+  `).join('');
+
+  return `
+    <table class="mini-table">
+      <thead>${header}</thead>
+      <tbody>${body}</tbody>
+    </table>
+  `;
+}
 
     function openDetailPanel(invoiceNo, year) {
       const key = String(invoiceNo).trim() + '__' + (year || '');
@@ -1320,27 +1400,33 @@
     }
 
     function rowHtml(row) {
-      return `
-        <tr>
-          <td style="text-align: center;">
-            <button
-              class="toggle-detail-btn"
-              type="button"
-              data-inv="${esc(row.invoiceNo)}"
-              data-year="${esc(row._year)}"
-              title="عرض كل أصناف الفاتورة بنفس السنة"
-            >➕</button>
-          </td>
-          <td>${esc(row.invoiceNo)}</td>
-          <td>${esc(row.date)}</td>
-          <td>${numFmtVal(row._qtyNum, row.qty)}</td>
-          <td>${esc(row.currency)}</td>
-          <td>${priceFmtVal(row._priceNum, row.uprice)}</td>
-          <td>${esc(row.item)}</td>
-          <td>${esc(row.supplier)}</td>
-        </tr>
-      `;
-    }
+  const itemSearchWords = normalizeForSearch(
+    document.getElementById('searchItem').value.trim()
+  )
+    .split(/\s+/)
+    .filter(Boolean);
+
+  return `
+    <tr>
+      <td style="text-align: center;">
+        <button
+          class="toggle-detail-btn"
+          type="button"
+          data-inv="${esc(row.invoiceNo)}"
+          data-year="${esc(row._year)}"
+          title="عرض كل أصناف الفاتورة بنفس السنة"
+        >➕</button>
+      </td>
+      <td>${esc(row.invoiceNo)}</td>
+      <td>${esc(row.date)}</td>
+      <td>${numFmtVal(row._qtyNum, row.qty)}</td>
+      <td>${esc(row.currency)}</td>
+      <td>${priceFmtVal(row._priceNum, row.uprice)}</td>
+      <td>${highlightText(row.item, itemSearchWords)}</td>
+      <td>${esc(row.supplier)}</td>
+    </tr>
+  `;
+}
 
     /* ============================================================
        Virtual Scrolling: نرسم فقط الصفوف الظاهرة في النافذة

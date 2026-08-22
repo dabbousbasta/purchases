@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
 
-  <script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
+  <script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js" integrity="sha384-6oPmvXOsCsKtxHvz62yUOc2Tw2LlKA0EguSzHmuXXVXo1WgtypDeSuGCnbjS9BAV" crossorigin="anonymous"></script>
 
   <style>
     :root {
@@ -242,6 +242,7 @@
       vertical-align: top;
       white-space: nowrap;
       width: 1%;
+      min-width: 64px;
     }
 
     th {
@@ -254,6 +255,12 @@
       user-select: none;
       font-weight: 700;
       letter-spacing: .2px;
+    }
+
+    th[data-key]:focus-visible {
+      outline: 2px solid #fff;
+      outline-offset: -3px;
+      background: #7e57c2;
     }
 
     th .arrow {
@@ -275,6 +282,12 @@
       outline-offset: -2px;
     }
 
+    tbody tr.row-open {
+      outline: 2px solid var(--primary);
+      outline-offset: -2px;
+      background: #ede7f6 !important;
+    }
+
     /* صفوف الـ spacer الخاصة بالـ virtual scrolling يجب ألا تُلوَّن أو تُحدَّد */
     tr.va-spacer,
     tr.va-spacer:nth-child(odd),
@@ -289,6 +302,7 @@
     tr.va-spacer td {
       border: none !important;
       padding: 0 !important;
+      min-width: 0 !important;
     }
 
     .no-results {
@@ -365,13 +379,21 @@
       margin-top: 2px;
     }
 
-    .toggle-detail-btn {
+    .row-actions-cell {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .toggle-detail-btn,
+    .copy-row-btn {
       background: #5e35b1;
       color: #fff;
       border: none;
       border-radius: 6px;
       padding: 4px 8px;
-      font-size: 16px;
+      font-size: 15px;
       line-height: 1;
       cursor: pointer;
       font-weight: 700;
@@ -379,12 +401,24 @@
       transition: transform .12s ease, background .12s ease;
     }
 
+    .copy-row-btn {
+      background: #ede7f6;
+      color: var(--primary-dark);
+      font-size: 13px;
+    }
+
     .toggle-detail-btn:hover {
       background: #4527a0;
       transform: scale(1.06);
     }
 
-    .toggle-detail-btn:active {
+    .copy-row-btn:hover {
+      background: #d8cdf0;
+      transform: scale(1.06);
+    }
+
+    .toggle-detail-btn:active,
+    .copy-row-btn:active {
       transform: scale(0.96);
     }
 
@@ -446,6 +480,118 @@
       background: #ede7f6;
     }
 
+    /* ============ لوحة تحليل الصنف (Product Intelligence) ============ */
+    #productIntelPanel[hidden] {
+      display: none;
+    }
+
+    .intel-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+
+    .intel-item-name {
+      font-weight: 900;
+      color: var(--primary-dark);
+      font-size: 1rem;
+    }
+
+    .intel-currency-block {
+      margin-bottom: 14px;
+      padding-bottom: 12px;
+      border-bottom: 1px dashed var(--border);
+    }
+
+    .intel-currency-block:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .intel-currency-label {
+      display: inline-block;
+      background: #ede7f6;
+      color: var(--primary-dark);
+      font-weight: 700;
+      font-size: .78rem;
+      padding: 3px 10px;
+      border-radius: 999px;
+      margin-bottom: 8px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .stat-card {
+      background: #faf9fd;
+      border: 1px solid #eae3f7;
+      border-radius: 10px;
+      padding: 9px 10px;
+      min-width: 0;
+    }
+
+    .stat-label {
+      font-size: .72rem;
+      color: #777;
+      font-weight: 700;
+      margin-bottom: 3px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .stat-value {
+      font-size: .95rem;
+      font-weight: 900;
+      color: #222;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .stat-value.up { color: #c0392b; }
+    .stat-value.down { color: #198754; }
+
+    .stat-sub {
+      font-size: .7rem;
+      color: #999;
+      margin-top: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* ============ Toast ============ */
+    #toast {
+      position: fixed;
+      bottom: 18px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: #212529;
+      color: #fff;
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-size: .85rem;
+      font-weight: 700;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .2s ease, transform .2s ease;
+      z-index: 10000;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, .25);
+    }
+
+    #toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
     @media (max-width: 900px) {
       .filters-grid,
       .filters-grid.extra {
@@ -454,6 +600,10 @@
 
       .extra-filters .filters-grid.extra {
         grid-template-columns: 1fr 1fr;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
     }
 
@@ -473,6 +623,7 @@
       td {
         font-size: 13px;
         padding: 8px 9px;
+        min-width: 56px;
       }
 
       .table-wrap {
@@ -493,6 +644,16 @@
         flex-direction: column;
         align-items: stretch;
       }
+
+      .toggle-detail-btn,
+      .copy-row-btn {
+        padding: 8px 10px;
+        font-size: 16px;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
     }
     .search-highlight {
   background: #ffeb3b;
@@ -511,6 +672,8 @@
     <span class="refresh-icon">🔄</span>
     <span class="refresh-text">تحديث</span>
   </button>
+
+  <div id="toast" role="status" aria-live="polite"></div>
 
   <main>
     <section class="card">
@@ -599,6 +762,14 @@
       <div class="summary-bar" id="summaryBar"></div>
     </section>
 
+    <section class="card" id="productIntelPanel" hidden>
+      <div class="intel-header">
+        <div class="intel-item-name" id="intelItemName"></div>
+        <div class="small" id="intelMeta"></div>
+      </div>
+      <div id="intelBody"></div>
+    </section>
+
     <section class="card">
       <div class="title">النتائج</div>
 
@@ -606,39 +777,39 @@
         <table id="resultsTable">
           <thead>
             <tr>
-              <th style="width: 40px; text-align: center;">تفاصيل</th>
+              <th style="width: 64px; text-align: center;">إجراءات</th>
 
-              <th data-key="invoiceNo">
+              <th data-key="invoiceNo" tabindex="0" role="button" aria-sort="none">
                 الفاتورة
                 <span class="arrow" data-arrow="invoiceNo"></span>
               </th>
 
-              <th data-key="date">
+              <th data-key="date" tabindex="0" role="button" aria-sort="none">
                 التاريخ
                 <span class="arrow" data-arrow="date"></span>
               </th>
 
-              <th data-key="qty">
+              <th data-key="qty" tabindex="0" role="button" aria-sort="none">
                 العدد
                 <span class="arrow" data-arrow="qty"></span>
               </th>
 
-              <th data-key="currency">
+              <th data-key="currency" tabindex="0" role="button" aria-sort="none">
                 العملة
                 <span class="arrow" data-arrow="currency"></span>
               </th>
 
-              <th data-key="uprice">
+              <th data-key="uprice" tabindex="0" role="button" aria-sort="none">
                 السعر
                 <span class="arrow" data-arrow="uprice"></span>
               </th>
 
-              <th data-key="item">
+              <th data-key="item" tabindex="0" role="button" aria-sort="none">
                 الصنف
                 <span class="arrow" data-arrow="item"></span>
               </th>
 
-              <th data-key="supplier">
+              <th data-key="supplier" tabindex="0" role="button" aria-sort="none">
                 المورد
                 <span class="arrow" data-arrow="supplier"></span>
               </th>
@@ -671,6 +842,8 @@
     let invoiceMap = new Map();
     let sortKey = null;
     let sortDir = 1;
+    let openDetailKey = null;   // مفتاح الفاتورة+السنة المفتوحة حالياً، لتمييز الصف في الجدول
+    let urlFiltersConsumed = false; // لضمان قراءة فلاتر الرابط مرة واحدة فقط عند أول تحميل
 
     // Intl.Collator أسرع بكثير من استدعاء localeCompare مرات كثيرة
     const collator = new Intl.Collator(undefined, {
@@ -845,31 +1018,27 @@ function highlightText(value, words) {
       return num.toLocaleString('en-US', { maximumSignificantDigits: 6 });
     }
 
-    function parseDate(dateValue) {
-      if (!dateValue) return 0;
+    /* ============================================================
+       دمج parseDate() و getYearFromDate() السابقتين في دالة واحدة:
+       كلتاهما كانتا تُطبّقان normalizeForSearch() و split('/') على
+       نفس النص بشكل منفصل لكل صف أثناء preprocess() — توحيدهما
+       يزيل هذا التكرار.
+       ============================================================ */
+    function parseArabicDate(dateValue) {
+      if (!dateValue) return { dateNum: 0, year: null };
 
       const parts = normalizeForSearch(dateValue).split('/');
-      if (parts.length !== 3) return 0;
+      if (parts.length !== 3) return { dateNum: 0, year: null };
 
       const day = parseInt(parts[0], 10);
       const month = parseInt(parts[1], 10);
       const year = parseInt(parts[2], 10);
 
-      if (Number.isNaN(day) || Number.isNaN(month) || Number.isNaN(year)) {
-        return 0;
+      if ([day, month, year].some(Number.isNaN)) {
+        return { dateNum: 0, year: null };
       }
 
-      return year * 10000 + month * 100 + day;
-    }
-
-    function getYearFromDate(dateValue) {
-      if (!dateValue) return null;
-
-      const parts = normalizeForSearch(String(dateValue)).split('/');
-      if (parts.length !== 3) return null;
-
-      const year = parseInt(parts[2], 10);
-      return Number.isNaN(year) ? null : year;
+      return { dateNum: year * 10000 + month * 100 + day, year };
     }
 
     function isoToComparable(isoDate) {
@@ -901,16 +1070,14 @@ function highlightText(value, words) {
 
     /* ============================================================
        المعالجة المسبقة (Preprocessing) — تُنفَّذ مرة واحدة فقط
-       بعد كل تحميل ناجح للبيانات. كل الحقول المشتقة (normalize،
-       أرقام، تاريخ مُحوَّل، مفتاح الفاتورة+السنة) تُحسب هنا فقط،
-       وليس عند كل بحث/فرز.
+       بعد كل تحميل ناجح للبيانات.
        ============================================================ */
     function preprocess(rawArray) {
       const processed = new Array(rawArray.length);
 
       for (let i = 0; i < rawArray.length; i++) {
         const row = rawArray[i];
-        const year = getYearFromDate(row.date);
+        const { dateNum, year } = parseArabicDate(row.date);
 
         processed[i] = {
           invoiceNo: row.invoiceNo,
@@ -924,7 +1091,7 @@ function highlightText(value, words) {
           _itemNorm: normalizeForSearch(row.item || ''),
           _invoiceNorm: normalizeForSearch(row.invoiceNo || ''),
           _supplierNorm: normalizeForSearch(row.supplier || ''),
-          _dateNum: parseDate(row.date),
+          _dateNum: dateNum,
           _qtyNum: toNumber(row.qty),
           _priceNum: toNumber(row.uprice),
           _year: year,
@@ -951,9 +1118,6 @@ function highlightText(value, words) {
 
     /* ============================================================
        تخزين مؤقت عبر IndexedDB
-       GitHub Pages لا يسمح بضبط Cache-Control/ETag لملف ثابت، لذلك
-       نستخدم تاريخ آخر commit من GitHub API (نفس المصدر المستخدم
-       لعرض "آخر تحديث") كمؤشر تحقّق من صلاحية النسخة المخزّنة.
        ============================================================ */
     const DB_NAME = 'purchasesCacheDB';
     const STORE_NAME = 'cache';
@@ -1003,22 +1167,30 @@ function highlightText(value, words) {
       }
     }
 
-    async function fetchLatestCommitDate() {
-      const response = await fetch(
-        'https://api.github.com/repos/dabbousbasta/purchases/commits?path=purchases-data/purchases.json&per_page=1',
-        { cache: 'no-store' }
-      );
+    /* ============================================================
+       فحص وجود تحديث عبر purchases-data/meta.json بدل GitHub Commits
+       API — يزيل الاعتماد على حصة api.github.com (60 طلب/ساعة لكل
+       IP) المشتركة بين كل مستخدمي المكتب. الملف يجب أن يحتوي:
+       { "version": "...", "lastUpdate": "2026-08-22T10:00:00+03:00" }
+       ويجب تحديث "version" (أو "lastUpdate") مع كل رفع لبيانات جديدة.
+       ============================================================ */
+    async function fetchLatestMeta() {
+      const response = await fetch('purchases-data/meta.json?v=' + Date.now(), {
+        cache: 'no-store'
+      });
 
       if (!response.ok) throw new Error('HTTP ' + response.status);
 
-      const commits = await response.json();
-      const dateString =
-        commits && commits[0] && commits[0].commit && commits[0].commit.committer
-          ? commits[0].commit.committer.date
-          : null;
+      const meta = await response.json();
 
-      if (!dateString) throw new Error('لا يوجد تاريخ');
-      return dateString;
+      if (!meta || (!meta.version && !meta.lastUpdate)) {
+        throw new Error('meta.json لا يحتوي بيانات صالحة');
+      }
+
+      return {
+        version: meta.version || meta.lastUpdate,
+        lastUpdate: meta.lastUpdate || null
+      };
     }
 
     // تحميل النص الخام لملف البيانات فقط (بدون parse)، مع قياس وقت التحميل
@@ -1034,9 +1206,26 @@ function highlightText(value, words) {
       return { text, fetchTime: performance.now() - t0 };
     }
 
-    // الحد الأدنى بين استدعاءين لـ GitHub Commits API لنفس الجهاز،
-    // لتفادي استهلاك حصة الـ API بلا داعٍ عند إعادة فتح الصفحة مراراً
-    const COMMIT_CHECK_MIN_INTERVAL_MS = 3 * 60 * 1000;
+    // الحد الأدنى بين استدعاءين لفحص meta.json لنفس الجهاز، لتفادي
+    // إزعاج الشبكة بلا داعٍ عند إعادة فتح الصفحة مراراً خلال دقائق
+    const META_CHECK_MIN_INTERVAL_MS = 3 * 60 * 1000;
+
+    // تصنيف أخطاء التحميل إلى رسائل واضحة ومختلفة بدل رسالة عامة واحدة
+    function classifyLoadError(error) {
+      if (typeof navigator !== 'undefined' && navigator.onLine === false) {
+        return 'لا يوجد اتصال بالإنترنت حالياً. سيتم الاعتماد على آخر نسخة محفوظة إن وجدت.';
+      }
+      if (error instanceof SyntaxError) {
+        return 'تعذّرت قراءة ملف البيانات — تنسيق JSON غير صالح.';
+      }
+      if (error && typeof error.message === 'string' && error.message.startsWith('HTTP ')) {
+        return `تعذّر تحميل ملف البيانات من الخادم (${error.message}).`;
+      }
+      if (error instanceof TypeError) {
+        return 'تعذّر الاتصال بالخادم — تحقق من اتصال الإنترنت.';
+      }
+      return 'حدث خطأ غير متوقع أثناء تحديث البيانات: ' + (error && error.message ? error.message : error);
+    }
 
     function showLastFileUpdate(dateString) {
       const element = document.getElementById('lastUpdated');
@@ -1044,7 +1233,10 @@ function highlightText(value, words) {
         element.textContent = '';
         return;
       }
-      element.textContent = 'آخر تحديث للملف: ' + formatDateTime(new Date(dateString));
+      const parsed = new Date(dateString);
+      element.textContent = Number.isNaN(parsed.getTime())
+        ? ''
+        : 'آخر تحديث للملف: ' + formatDateTime(parsed);
     }
 
     const STORAGE_KEY = 'purchaseFiltersState_v1';
@@ -1094,6 +1286,82 @@ function highlightText(value, words) {
       }
     }
 
+    /* ============================================================
+       Shareable URL — يقرأ/يكتب الفلاتر كـ query params باستخدام
+       URLSearchParams، بمفاتيح مختصرة، وبلا أي قيم فارغة في الرابط.
+       ============================================================ */
+    const URL_PARAM_MAP = {
+      searchItem: 'q',
+      searchInvoice: 'inv',
+      searchSupplier: 'sup',
+      dateFrom: 'from',
+      dateTo: 'to',
+      currencyFilter: 'cur'
+    };
+
+    function getFiltersFromURL() {
+      const params = new URLSearchParams(location.search);
+      const result = {};
+      let hasAny = false;
+
+      for (const [fieldId, paramKey] of Object.entries(URL_PARAM_MAP)) {
+        if (params.has(paramKey)) {
+          result[fieldId] = params.get(paramKey) || '';
+          hasAny = true;
+        }
+      }
+
+      return hasAny ? result : null;
+    }
+
+    function applyFiltersToInputs(state) {
+      if (state.searchItem !== undefined) document.getElementById('searchItem').value = state.searchItem;
+      if (state.searchInvoice !== undefined) document.getElementById('searchInvoice').value = state.searchInvoice;
+      if (state.searchSupplier !== undefined) document.getElementById('searchSupplier').value = state.searchSupplier;
+      if (state.dateFrom !== undefined) document.getElementById('dateFrom').value = state.dateFrom;
+      if (state.dateTo !== undefined) document.getElementById('dateTo').value = state.dateTo;
+      if (state.currencyFilter !== undefined) document.getElementById('currencyFilter').value = state.currencyFilter;
+
+      if (state.searchInvoice || state.searchSupplier || state.dateFrom || state.dateTo || state.currencyFilter) {
+        setExtraFiltersOpen(true);
+      }
+    }
+
+    // تُستخدم مرة واحدة فقط عند أول تحميل: تُفضَّل فلاتر الرابط إن
+    // وُجدت، وإلا يُستخدم آخر فلتر محفوظ محلياً كالسابق تماماً.
+    function restoreFiltersOnLoad() {
+      if (!urlFiltersConsumed) {
+        urlFiltersConsumed = true;
+        const urlState = getFiltersFromURL();
+        if (urlState) {
+          applyFiltersToInputs(urlState);
+          return;
+        }
+      }
+      restoreFiltersState();
+    }
+
+    function updateURLFromFilters() {
+      const params = new URLSearchParams();
+
+      const values = {
+        searchItem: document.getElementById('searchItem').value.trim(),
+        searchInvoice: document.getElementById('searchInvoice').value.trim(),
+        searchSupplier: document.getElementById('searchSupplier').value.trim(),
+        dateFrom: document.getElementById('dateFrom').value,
+        dateTo: document.getElementById('dateTo').value,
+        currencyFilter: document.getElementById('currencyFilter').value
+      };
+
+      for (const [fieldId, paramKey] of Object.entries(URL_PARAM_MAP)) {
+        if (values[fieldId]) params.set(paramKey, values[fieldId]);
+      }
+
+      const query = params.toString();
+      const newURL = query ? `${location.pathname}?${query}` : location.pathname;
+      history.replaceState(null, '', newURL);
+    }
+
     function setExtraFiltersOpen(open) {
       const wrapper = document.getElementById('extraFiltersWrap');
       const button = document.getElementById('toggleFiltersBtn');
@@ -1134,9 +1402,7 @@ function highlightText(value, words) {
     }
 
     /* ============================================================
-       تحميل البيانات: يحاول أولاً القراءة من IndexedDB لعرض فوري،
-       ثم يتحقق من GitHub Commits API إن كانت هناك نسخة أحدث.
-       زر "تحديث" يفرض تحميلاً كاملاً جديداً دائماً.
+       تحميل البيانات
        ============================================================ */
     async function loadData(options = {}) {
       const forceFresh = !!options.forceFresh;
@@ -1169,13 +1435,13 @@ function highlightText(value, words) {
           perfStats.parse = 0;
 
           populateCurrencyOptions();
-          restoreFiltersState();
+          restoreFiltersOnLoad();
           search();
 
           document.getElementById('countInfo').textContent =
             `تم تحميل ${allData.length} سجل (من نسخة محفوظة مسبقاً).`;
 
-          showLastFileUpdate(cachedEntry.commitDate || null);
+          showLastFileUpdate(cachedEntry.metaLastUpdate || null);
         }
       }
 
@@ -1184,13 +1450,11 @@ function highlightText(value, words) {
         document.getElementById('countInfo').textContent = '... جاري تحميل البيانات';
       }
 
-      // إن كانت لدينا نسخة محفوظة تم التحقق منها حديثاً (خلال آخر بضع
-      // دقائق)، لا داعٍ لإزعاج الشبكة أو GitHub API إطلاقاً هذه المرة.
       const withinThrottle =
         !forceFresh &&
         cachedEntry &&
         cachedEntry.checkedAt &&
-        (Date.now() - cachedEntry.checkedAt) < COMMIT_CHECK_MIN_INTERVAL_MS;
+        (Date.now() - cachedEntry.checkedAt) < META_CHECK_MIN_INTERVAL_MS;
 
       try {
         if (withinThrottle) {
@@ -1200,21 +1464,21 @@ function highlightText(value, words) {
           return;
         }
 
-        // إن كنا سنُحمّل JSON جديداً حتماً (أول زيارة أو زر تحديث)، ابدأ
-        // تحميله بالتوازي مع التحقق من GitHub بدلاً من الانتظار بالتسلسل
         const willAlwaysFetchFresh = forceFresh || !cachedEntry;
         const jsonRawPromise = willAlwaysFetchFresh ? fetchPurchasesJsonRaw() : null;
 
-        let remoteCommitDate = null;
+        let remoteMeta = null;
         try {
-          remoteCommitDate = await fetchLatestCommitDate();
+          remoteMeta = await fetchLatestMeta();
         } catch (error) {
-          remoteCommitDate = null;
+          // meta.json غير متاح أو غير صالح؛ سيُعتمد على جلب البيانات
+          // مباشرة كحل احتياطي دون كسر تجربة الاستخدام
+          remoteMeta = null;
         }
 
         const shouldFetchFresh =
           willAlwaysFetchFresh ||
-          (remoteCommitDate !== null && cachedEntry.commitDate !== remoteCommitDate);
+          (remoteMeta !== null && cachedEntry.metaVersion !== remoteMeta.version);
 
         if (shouldFetchFresh) {
           const { text, fetchTime } = jsonRawPromise
@@ -1243,24 +1507,32 @@ function highlightText(value, words) {
 
           document.getElementById('countInfo').textContent = `تم تحميل ${allData.length} سجل.`;
 
-          status.className = 'status ok';
-          status.textContent = '✅ تم تحديث البيانات بنجاح';
+          if (json.length === 0) {
+            status.className = 'status err';
+            status.textContent = '⚠️ ملف البيانات فارغ حالياً (0 سجل).';
+          } else {
+            status.className = 'status ok';
+            status.textContent = '✅ تم تحديث البيانات بنجاح';
+          }
           status.style.display = 'block';
 
-          restoreFiltersState();
+          restoreFiltersOnLoad();
           search();
-          showLastFileUpdate(remoteCommitDate);
+          showLastFileUpdate(remoteMeta ? remoteMeta.lastUpdate : null);
 
-          idbSet(CACHE_KEY, { json, commitDate: remoteCommitDate, checkedAt: Date.now() });
+          idbSet(CACHE_KEY, {
+            json,
+            metaVersion: remoteMeta ? remoteMeta.version : null,
+            metaLastUpdate: remoteMeta ? remoteMeta.lastUpdate : null,
+            checkedAt: Date.now()
+          });
 
         } else if (cachedEntry) {
-          showLastFileUpdate(cachedEntry.commitDate || remoteCommitDate);
+          showLastFileUpdate(cachedEntry.metaLastUpdate || (remoteMeta ? remoteMeta.lastUpdate : null));
           status.className = 'status ok';
           status.textContent = '✅ البيانات محدثة (من الذاكرة المؤقتة)';
           status.style.display = 'block';
 
-          // لم تتغيّر البيانات، لكن حدّث وقت آخر تحقق حتى لا نستدعي
-          // GitHub API مجدداً قبل انتهاء فترة الـ throttle
           idbSet(CACHE_KEY, { ...cachedEntry, checkedAt: Date.now() });
         }
 
@@ -1268,7 +1540,7 @@ function highlightText(value, words) {
         console.error(error);
 
         status.className = 'status err';
-        status.textContent = '❌ خطأ في تحديث البيانات: ' + (error.message || error);
+        status.textContent = '❌ ' + classifyLoadError(error);
         status.style.display = 'block';
 
         if (!allData.length) {
@@ -1291,9 +1563,17 @@ function highlightText(value, words) {
     }
 
     function updateArrows() {
-      document.querySelectorAll('.arrow').forEach(element => {
-        const key = element.getAttribute('data-arrow');
-        element.textContent = key === sortKey ? (sortDir === 1 ? '▲' : '▼') : '';
+      document.querySelectorAll('th[data-key]').forEach(th => {
+        const key = th.getAttribute('data-key');
+        const arrowEl = th.querySelector('.arrow');
+
+        if (key === sortKey) {
+          arrowEl.textContent = sortDir === 1 ? '▲' : '▼';
+          th.setAttribute('aria-sort', sortDir === 1 ? 'ascending' : 'descending');
+        } else {
+          arrowEl.textContent = '';
+          th.setAttribute('aria-sort', 'none');
+        }
       });
     }
 
@@ -1335,6 +1615,181 @@ function highlightText(value, words) {
           <b>${totalQuantity.toLocaleString('en-US', { maximumFractionDigits: 2 })}</b>
         </span>
       ` + totalsHtml;
+    }
+
+    /* ============================================================
+       Product Intelligence — إحصائيات صنف محدد بناءً على نتائج
+       البحث الحالية فقط (currentResults)، وليس كامل allData، لذلك
+       التكلفة منخفضة دائماً بغض النظر عن حجم البيانات الكلي.
+
+       شرط الظهور: حقل بحث الصنف غير فارغ + كل صفوف currentResults
+       تعود لنفس اسم الصنف بالضبط (بعد trim) — أي بحث محدد فعلياً.
+       كل الحسابات مفصولة حسب العملة ولا تُخلط أبداً بين عملتين.
+       ============================================================ */
+    function getItemGroupKey(itemValue) {
+      return String(itemValue ?? '').trim();
+    }
+
+    function computeProductIntelligence(rows) {
+      if (!rows.length) return null;
+
+      const searchItemValue = document.getElementById('searchItem').value.trim();
+      if (!searchItemValue) return null;
+
+      const groupKeys = new Set(rows.map(row => getItemGroupKey(row.item)));
+      if (groupKeys.size !== 1) return null;
+
+      const itemName = rows[0].item || '';
+      const byCurrency = new Map();
+
+      for (const row of rows) {
+        const currency = (row.currency || 'بدون عملة').trim() || 'بدون عملة';
+        if (!byCurrency.has(currency)) byCurrency.set(currency, []);
+        byCurrency.get(currency).push(row);
+      }
+
+      const currencyStats = [];
+
+      for (const [currency, currencyRows] of byCurrency.entries()) {
+        const validPriceRows = currencyRows.filter(row => !Number.isNaN(row._priceNum));
+        if (!validPriceRows.length) continue;
+
+        // ترتيب تنازلي حسب التاريخ الحقيقي لتحديد آخر عملية شراء والتي قبلها
+        const sortedByDateDesc = validPriceRows.slice().sort((a, b) => b._dateNum - a._dateNum);
+        const lastPurchase = sortedByDateDesc[0];
+        const previousPurchase = sortedByDateDesc.find(row => row._dateNum < lastPurchase._dateNum) || null;
+
+        const prices = validPriceRows.map(row => row._priceNum);
+        const minPrice = prices.reduce((min, p) => Math.min(min, p), Infinity);
+        const maxPrice = prices.reduce((max, p) => Math.max(max, p), -Infinity);
+        const avgPrice = prices.reduce((sum, p) => sum + p, 0) / prices.length;
+
+        // أفضل مورد سعراً = أقل متوسط سعر لنفس الصنف ونفس العملة
+        // (وليس أقل سعر مفرد، لتفادي تحيّز حالة استثنائية لمرة واحدة).
+        // عند التعادل بالمتوسط: يُفضَّل المورد الأكثر عدد عمليات شراء.
+        const bySupplier = new Map();
+        for (const row of validPriceRows) {
+          const supplier = (row.supplier || '').trim() || 'غير محدد';
+          if (!bySupplier.has(supplier)) bySupplier.set(supplier, []);
+          bySupplier.get(supplier).push(row._priceNum);
+        }
+
+        let bestSupplier = null;
+        let bestSupplierAvg = Infinity;
+        let bestSupplierCount = 0;
+
+        for (const [supplier, supplierPrices] of bySupplier.entries()) {
+          const supplierAvg = supplierPrices.reduce((sum, p) => sum + p, 0) / supplierPrices.length;
+          const isBetter =
+            supplierAvg < bestSupplierAvg - 1e-9 ||
+            (Math.abs(supplierAvg - bestSupplierAvg) < 1e-9 && supplierPrices.length > bestSupplierCount);
+
+          if (isBetter) {
+            bestSupplier = supplier;
+            bestSupplierAvg = supplierAvg;
+            bestSupplierCount = supplierPrices.length;
+          }
+        }
+
+        let priceChange = null;
+        if (previousPurchase) {
+          const diff = lastPurchase._priceNum - previousPurchase._priceNum;
+          const pct = previousPurchase._priceNum !== 0 ? (diff / previousPurchase._priceNum) * 100 : null;
+          priceChange = { diff, pct, direction: diff > 0 ? 'up' : (diff < 0 ? 'down' : 'flat') };
+        }
+
+        currencyStats.push({
+          currency,
+          count: validPriceRows.length,
+          lastPrice: lastPurchase._priceNum,
+          lastSupplier: (lastPurchase.supplier || '').trim() || 'غير محدد',
+          lastDate: lastPurchase.date,
+          minPrice,
+          maxPrice,
+          avgPrice,
+          bestSupplier,
+          bestSupplierAvg,
+          priceChange
+        });
+      }
+
+      if (!currencyStats.length) return null;
+
+      return { itemName, currencyStats };
+    }
+
+    function renderProductIntelligence() {
+      const panel = document.getElementById('productIntelPanel');
+      const intel = computeProductIntelligence(currentResults);
+
+      if (!intel) {
+        panel.hidden = true;
+        return;
+      }
+
+      document.getElementById('intelItemName').textContent = `📊 تحليل الصنف: ${intel.itemName}`;
+      document.getElementById('intelMeta').textContent =
+        intel.currencyStats.length > 1 ? 'إحصائيات منفصلة لكل عملة' : '';
+
+      const blocksHtml = intel.currencyStats.map(stats => {
+        let changeHtml;
+
+        if (!stats.priceChange) {
+          changeHtml = `<div class="stat-value">—</div><div class="stat-sub">لا توجد عملية شراء سابقة للمقارنة</div>`;
+        } else {
+          const { diff, pct, direction } = stats.priceChange;
+          const arrow = direction === 'up' ? '↑' : (direction === 'down' ? '↓' : '→');
+          const cls = direction === 'up' ? 'up' : (direction === 'down' ? 'down' : '');
+          const sign = diff > 0 ? '+' : '';
+          const pctText = pct !== null ? ` (${sign}${pct.toFixed(1)}%)` : '';
+          changeHtml = `<div class="stat-value ${cls}">${arrow} ${sign}${priceFmtVal(diff)}${pctText}</div>`;
+        }
+
+        return `
+          <div class="intel-currency-block">
+            ${intel.currencyStats.length > 1 ? `<span class="intel-currency-label">${esc(stats.currency)}</span>` : ''}
+            <div class="stats-grid">
+              <div class="stat-card">
+                <div class="stat-label">آخر سعر شراء</div>
+                <div class="stat-value">${priceFmtVal(stats.lastPrice)} ${esc(stats.currency)}</div>
+                <div class="stat-sub">${esc(stats.lastDate)}</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-label">تغيّر السعر</div>
+                ${changeHtml}
+              </div>
+              <div class="stat-card">
+                <div class="stat-label">أقل سعر</div>
+                <div class="stat-value">${priceFmtVal(stats.minPrice)} ${esc(stats.currency)}</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-label">أعلى سعر</div>
+                <div class="stat-value">${priceFmtVal(stats.maxPrice)} ${esc(stats.currency)}</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-label">متوسط السعر</div>
+                <div class="stat-value">${priceFmtVal(stats.avgPrice)} ${esc(stats.currency)}</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-label">عدد مرات الشراء</div>
+                <div class="stat-value">${stats.count}</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-label">آخر مورد</div>
+                <div class="stat-value">${esc(stats.lastSupplier)}</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-label">أفضل مورد سعراً</div>
+                <div class="stat-value">${esc(stats.bestSupplier || '—')}</div>
+                <div class="stat-sub">${stats.bestSupplier ? 'متوسط ' + priceFmtVal(stats.bestSupplierAvg) + ' ' + esc(stats.currency) : ''}</div>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      document.getElementById('intelBody').innerHTML = blocksHtml;
+      panel.hidden = false;
     }
 
     function buildMiniTable(rows) {
@@ -1382,40 +1837,117 @@ function highlightText(value, words) {
       const key = String(invoiceNo).trim() + '__' + (year || '');
       const rows = invoiceMap.get(key) || [];
 
+      openDetailKey = key;
+
       document.getElementById('detailTitle').textContent =
         `تفاصيل الفاتورة رقم ${invoiceNo} — سنة ${year || ''} (${rows.length} صنف)`;
 
-      document.getElementById('detailTableWrap').innerHTML = buildMiniTable(rows);
+      if (!rows.length) {
+        document.getElementById('detailTableWrap').innerHTML = `
+          <div class="no-results">
+            تعذّر عرض تفاصيل هذه الفاتورة — تاريخ الفاتورة غير صالح أو البيانات ناقصة.
+          </div>
+        `;
+      } else {
+        document.getElementById('detailTableWrap').innerHTML = buildMiniTable(rows);
+      }
 
       const panel = document.getElementById('detailPanel');
       panel.hidden = false;
       panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+      renderVirtual(); // لتحديث تمييز الصف المفتوح في الجدول الرئيسي
     }
 
     // تُغلَق لوحة التفاصيل تلقائياً عند أي بحث/فرز/فلترة جديدة حتى لا
-    // تبقى تعرض تفاصيل فاتورة لم تعد ذات صلة بالنتائج الحالية
+    // تبقى تعرض تفاصيل فاتورة لم تعد ذات صلة بالنتائج الحالية.
+    // ملاحظة: لا تستدعي renderVirtual() هنا كي لا يتكرر الرسم في
+    // المسارات (مثل search()) التي أصلاً ستستدعي renderVirtual() بعدها.
     function closeDetailPanel() {
       const panel = document.getElementById('detailPanel');
       if (panel) panel.hidden = true;
+      openDetailKey = null;
     }
 
-    function rowHtml(row) {
+    /* ============================================================
+       Nice-to-have: نسخ بيانات الصف بصيغة نصية جاهزة للصق في
+       واتساب/إكسل/البريد.
+       ============================================================ */
+    function formatRowForCopy(row) {
+      return [
+        `رقم الفاتورة: ${row.invoiceNo || ''}`,
+        `التاريخ: ${row.date || ''}`,
+        `الصنف: ${row.item || ''}`,
+        `المورد: ${row.supplier || ''}`,
+        `الكمية: ${row.qty || ''}`,
+        `السعر: ${row.uprice || ''}`,
+        `العملة: ${row.currency || ''}`
+      ].join('\n');
+    }
+
+    let toastTimer = null;
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.classList.add('show');
+
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        toast.classList.remove('show');
+      }, 1800);
+    }
+
+    async function copyRowToClipboard(row) {
+      const text = formatRowForCopy(row);
+
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          await navigator.clipboard.writeText(text);
+        } else {
+          // fallback للمتصفحات القديمة أو الاتصال غير الآمن (http بدون https)
+          const textarea = document.createElement('textarea');
+          textarea.value = text;
+          textarea.style.position = 'fixed';
+          textarea.style.opacity = '0';
+          document.body.appendChild(textarea);
+          textarea.focus();
+          textarea.select();
+          document.execCommand('copy');
+          document.body.removeChild(textarea);
+        }
+        showToast('تم النسخ ✓');
+      } catch (error) {
+        showToast('تعذّر النسخ');
+      }
+    }
+
+    function rowHtml(row, index) {
   const itemSearchWords = normalizeForSearch(
     document.getElementById('searchItem').value.trim()
   )
     .split(/\s+/)
     .filter(Boolean);
 
+  const isOpen = openDetailKey !== null && row._invYearKey === openDetailKey;
+
   return `
-    <tr>
+    <tr class="${isOpen ? 'row-open' : ''}">
       <td style="text-align: center;">
-        <button
-          class="toggle-detail-btn"
-          type="button"
-          data-inv="${esc(row.invoiceNo)}"
-          data-year="${esc(row._year)}"
-          title="عرض كل أصناف الفاتورة بنفس السنة"
-        >➕</button>
+        <div class="row-actions-cell">
+          <button
+            class="toggle-detail-btn"
+            type="button"
+            data-inv="${esc(row.invoiceNo)}"
+            data-year="${esc(row._year)}"
+            title="عرض كل أصناف الفاتورة بنفس السنة"
+          >➕</button>
+          <button
+            class="copy-row-btn"
+            type="button"
+            data-row-idx="${index}"
+            title="نسخ بيانات الصف"
+          >📋</button>
+        </div>
       </td>
       <td>${esc(row.invoiceNo)}</td>
       <td>${esc(row.date)}</td>
@@ -1429,9 +1961,7 @@ function highlightText(value, words) {
 }
 
     /* ============================================================
-       Virtual Scrolling: نرسم فقط الصفوف الظاهرة في النافذة
-       المرئية (+ هامش overscan) بدلاً من آلاف الصفوف دفعة واحدة.
-       صفّان "spacer" فارغان يحافظان على ارتفاع التمرير الصحيح.
+       Virtual Scrolling
        ============================================================ */
     function renderVirtual() {
       const container = document.getElementById('tableScroll');
@@ -1439,8 +1969,12 @@ function highlightText(value, words) {
       const total = currentResults.length;
 
       if (!total) {
+        const message = allData.length === 0
+          ? 'لا توجد بيانات محمّلة حالياً'
+          : 'لا توجد نتائج مطابقة لبحثك الحالي';
+
         tbody.innerHTML = `
-          <tr><td colspan="8" class="no-results">لا توجد نتائج مطابقة</td></tr>
+          <tr><td colspan="8" class="no-results">${message}</td></tr>
         `;
         document.getElementById('countInfo').textContent =
           `عدد النتائج: 0 من إجمالي ${allData.length}`;
@@ -1467,7 +2001,7 @@ function highlightText(value, words) {
       parts.push(`<tr class="va-spacer" style="height:${topHeight}px"><td colspan="8"></td></tr>`);
 
       for (let i = startIndex; i < endIndex; i++) {
-        parts.push(rowHtml(currentResults[i]));
+        parts.push(rowHtml(currentResults[i], i));
       }
 
       parts.push(`<tr class="va-spacer" style="height:${bottomHeight}px"><td colspan="8"></td></tr>`);
@@ -1569,9 +2103,11 @@ function highlightText(value, words) {
 
       const tRender0 = performance.now();
       renderVirtual();
+      renderProductIntelligence();
       perfStats.render = performance.now() - tRender0;
 
       saveFiltersState();
+      updateURLFromFilters();
       perfLog();
     }
 
@@ -1632,19 +2168,28 @@ function highlightText(value, words) {
     document.getElementById('exportExcel').addEventListener('click', exportExcel);
     document.getElementById('refreshBtn').addEventListener('click', () => loadData({ forceFresh: true }));
     document.getElementById('closeDetailBtn').addEventListener('click', () => {
-      document.getElementById('detailPanel').hidden = true;
+      closeDetailPanel();
+      renderVirtual();
     });
 
     // Event delegation: مستمع واحد فقط على tbody بدلاً من زر لكل صف
     document.getElementById('resultsBody').addEventListener('click', event => {
-      const button = event.target.closest('.toggle-detail-btn');
-      if (!button) return;
+      const detailBtn = event.target.closest('.toggle-detail-btn');
+      if (detailBtn) {
+        openDetailPanel(detailBtn.getAttribute('data-inv'), detailBtn.getAttribute('data-year'));
+        return;
+      }
 
-      openDetailPanel(button.getAttribute('data-inv'), button.getAttribute('data-year'));
+      const copyBtn = event.target.closest('.copy-row-btn');
+      if (copyBtn) {
+        const idx = parseInt(copyBtn.getAttribute('data-row-idx'), 10);
+        const row = currentResults[idx];
+        if (row) copyRowToClipboard(row);
+      }
     });
 
     document.querySelectorAll('th[data-key]').forEach(th => {
-      th.addEventListener('click', () => {
+      const activateSort = () => {
         const key = th.getAttribute('data-key');
 
         if (sortKey === key) {
@@ -1668,6 +2213,14 @@ function highlightText(value, words) {
         perfStats.render = performance.now() - tRender0;
 
         perfLog();
+      };
+
+      th.addEventListener('click', activateSort);
+      th.addEventListener('keydown', event => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          activateSort();
+        }
       });
     });
 
@@ -1685,9 +2238,6 @@ function highlightText(value, words) {
       }
     });
 
-    // عند تغيّر حجم النافذة قد يتغيّر ارتفاع الصف الفعلي (مثلاً عند
-    // عبور حدّ الـ breakpoint المسؤول عن تصغير الـ padding على الموبايل)،
-    // لذلك نعيد قياسه بدلاً من الاعتماد على قيمة قديمة قد تُخرِّب التمرير.
     window.addEventListener('resize', debounce(() => {
       rowHeightMeasured = false;
       renderVirtual();

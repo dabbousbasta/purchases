@@ -480,7 +480,29 @@
       background: #ede7f6;
     }
 
-    /* ============ لوحة تحليل الصنف (Product Intelligence) ============ */
+    /* ============ زر ولوحة تحليل البيانات الحالية (Product Intelligence) ============ */
+    .intel-trigger-card {
+      padding: 10px 14px;
+    }
+
+    .intel-trigger-btn {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-size: .95rem;
+    }
+
+    .intel-trigger-btn:disabled {
+      background: #c9bfe0;
+    }
+
+    #intelTriggerCount {
+      font-weight: 700;
+      opacity: .85;
+    }
+
     #productIntelPanel[hidden] {
       display: none;
     }
@@ -762,10 +784,16 @@
       <div class="summary-bar" id="summaryBar"></div>
     </section>
 
+    <section class="card intel-trigger-card">
+      <button type="button" id="intelTriggerBtn" class="btn-primary intel-trigger-btn" disabled>
+        📊 تحليل البيانات الحالية <span id="intelTriggerCount">(0 عملية)</span>
+      </button>
+    </section>
+
     <section class="card" id="productIntelPanel" hidden>
       <div class="intel-header">
         <div class="intel-item-name" id="intelItemName"></div>
-        <div class="small" id="intelMeta"></div>
+        <button type="button" class="close-btn" id="intelCloseBtn">✕ إغلاق التحليل</button>
       </div>
       <div id="intelBody"></div>
     </section>
@@ -1095,7 +1123,11 @@ function highlightText(value, words) {
           _qtyNum: toNumber(row.qty),
           _priceNum: toNumber(row.uprice),
           _year: year,
-          _invYearKey: String(row.invoiceNo ?? '').trim() + '__' + (year ?? '')
+          _invYearKey: String(row.invoiceNo ?? '').trim() + '__' + (year ?? ''),
+          // موضع الصف الثابت في ملف purchases.json الأصلي — يُستخدم فقط
+          // كقاعدة تعادل (tie-breaker) حتمية عند تساوي التاريخ في تحليل
+          // Product Intelligence، ولا علاقة له بترتيب الجدول أو الفرز.
+          _rowIndex: i
         };
       }
 
@@ -1618,28 +1650,27 @@ function highlightText(value, words) {
     }
 
     /* ============================================================
-       Product Intelligence — إحصائيات صنف محدد بناءً على نتائج
-       البحث الحالية فقط (currentResults)، وليس كامل allData، لذلك
-       التكلفة منخفضة دائماً بغض النظر عن حجم البيانات الكلي.
+       Product Intelligence — تحليل يدوي بالكامل، يُحسب فقط عند
+       ضغط المستخدم على زر "📊 تحليل البيانات الحالية"، ولا يُحسب
+       تلقائياً أثناء الكتابة/البحث/الفرز/التمرير (صفر تكلفة أداء
+       في المسار الحرج). لا يوجد أي شرط على تطابق اسم الصنف — يتم
+       تحليل currentResults كما هي تماماً، مقسّمة حسب العملة فقط.
 
-       شرط الظهور: حقل بحث الصنف غير فارغ + كل صفوف currentResults
-       تعود لنفس اسم الصنف بالضبط (بعد trim) — أي بحث محدد فعلياً.
-       كل الحسابات مفصولة حسب العملة ولا تُخلط أبداً بين عملتين.
+       الترتيب الزمني: يعتمد حصراً على _dateNum الحقيقي، وليس على
+       ترتيب currentResults الحالي (الذي يتغيّر بفرز الأعمدة). عند
+       تساوي عدة عمليات بنفس التاريخ، يُستخدم _rowIndex (موضع الصف
+       الثابت في ملف purchases.json الأصلي) كقاعدة تعادل حتمية —
+       الأحدث بينها = صاحب أكبر _rowIndex، وهو ثابت دائماً بصرف
+       النظر عن أي فرز أو فلترة.
        ============================================================ */
-    function getItemGroupKey(itemValue) {
-      return String(itemValue ?? '').trim();
+    function compareForRecency(a, b) {
+      if (b._dateNum !== a._dateNum) return b._dateNum - a._dateNum;
+      return b._rowIndex - a._rowIndex;
     }
 
     function computeProductIntelligence(rows) {
       if (!rows.length) return null;
 
-      const searchItemValue = document.getElementById('searchItem').value.trim();
-      if (!searchItemValue) return null;
-
-      const groupKeys = new Set(rows.map(row => getItemGroupKey(row.item)));
-      if (groupKeys.size !== 1) return null;
-
-      const itemName = rows[0].item || '';
       const byCurrency = new Map();
 
       for (const row of rows) {
@@ -1654,8 +1685,9 @@ function highlightText(value, words) {
         const validPriceRows = currencyRows.filter(row => !Number.isNaN(row._priceNum));
         if (!validPriceRows.length) continue;
 
-        // ترتيب تنازلي حسب التاريخ الحقيقي لتحديد آخر عملية شراء والتي قبلها
-        const sortedByDateDesc = validPriceRows.slice().sort((a, b) => b._dateNum - a._dateNum);
+        // ترتيب تنازلي حسب (التاريخ الحقيقي، ثم _rowIndex عند التعادل)
+        // — نتيجة حتمية 100% بصرف النظر عن ترتيب currentResults المُدخَل.
+        const sortedByDateDesc = validPriceRows.slice().sort(compareForRecency);
         const lastPurchase = sortedByDateDesc[0];
         const previousPurchase = sortedByDateDesc.find(row => row._dateNum < lastPurchase._dateNum) || null;
 
@@ -1664,9 +1696,10 @@ function highlightText(value, words) {
         const maxPrice = prices.reduce((max, p) => Math.max(max, p), -Infinity);
         const avgPrice = prices.reduce((sum, p) => sum + p, 0) / prices.length;
 
-        // أفضل مورد سعراً = أقل متوسط سعر لنفس الصنف ونفس العملة
-        // (وليس أقل سعر مفرد، لتفادي تحيّز حالة استثنائية لمرة واحدة).
-        // عند التعادل بالمتوسط: يُفضَّل المورد الأكثر عدد عمليات شراء.
+        // أفضل مورد سعراً = أقل متوسط سعر ضمن النتائج المحلَّلة، لنفس
+        // العملة فقط (وليس أقل سعر مفرد، لتفادي تحيّز حالة استثنائية).
+        // عند التعادل بالمتوسط: عدد عمليات أكبر، ثم اسم المورد أبجدياً
+        // (Intl.Collator) كقاعدة تعادل نهائية حتمية.
         const bySupplier = new Map();
         for (const row of validPriceRows) {
           const supplier = (row.supplier || '').trim() || 'غير محدد';
@@ -1674,22 +1707,19 @@ function highlightText(value, words) {
           bySupplier.get(supplier).push(row._priceNum);
         }
 
-        let bestSupplier = null;
-        let bestSupplierAvg = Infinity;
-        let bestSupplierCount = 0;
+        const supplierEntries = Array.from(bySupplier.entries()).map(([supplier, supplierPrices]) => ({
+          supplier,
+          avg: supplierPrices.reduce((sum, p) => sum + p, 0) / supplierPrices.length,
+          count: supplierPrices.length
+        }));
 
-        for (const [supplier, supplierPrices] of bySupplier.entries()) {
-          const supplierAvg = supplierPrices.reduce((sum, p) => sum + p, 0) / supplierPrices.length;
-          const isBetter =
-            supplierAvg < bestSupplierAvg - 1e-9 ||
-            (Math.abs(supplierAvg - bestSupplierAvg) < 1e-9 && supplierPrices.length > bestSupplierCount);
+        supplierEntries.sort((a, b) => {
+          if (Math.abs(a.avg - b.avg) > 1e-9) return a.avg - b.avg;
+          if (a.count !== b.count) return b.count - a.count;
+          return collator.compare(a.supplier, b.supplier);
+        });
 
-          if (isBetter) {
-            bestSupplier = supplier;
-            bestSupplierAvg = supplierAvg;
-            bestSupplierCount = supplierPrices.length;
-          }
-        }
+        const bestSupplierEntry = supplierEntries[0] || null;
 
         let priceChange = null;
         if (previousPurchase) {
@@ -1707,29 +1737,32 @@ function highlightText(value, words) {
           minPrice,
           maxPrice,
           avgPrice,
-          bestSupplier,
-          bestSupplierAvg,
+          bestSupplier: bestSupplierEntry ? bestSupplierEntry.supplier : null,
+          bestSupplierAvg: bestSupplierEntry ? bestSupplierEntry.avg : null,
           priceChange
         });
       }
 
       if (!currencyStats.length) return null;
 
-      return { itemName, currencyStats };
+      return { totalCount: rows.length, currencyStats };
     }
 
-    function renderProductIntelligence() {
-      const panel = document.getElementById('productIntelPanel');
+    // تُستدعى فقط عند ضغط زر "تحليل البيانات الحالية" — وليس أثناء
+    // الكتابة/البحث/الفرز/التمرير.
+    function computeAndShowProductIntelligence() {
+      if (!currentResults.length) return; // الزر معطَّل أصلاً في هذه الحالة، حماية إضافية فقط
+
       const intel = computeProductIntelligence(currentResults);
+      const panel = document.getElementById('productIntelPanel');
 
       if (!intel) {
         panel.hidden = true;
         return;
       }
 
-      document.getElementById('intelItemName').textContent = `📊 تحليل الصنف: ${intel.itemName}`;
-      document.getElementById('intelMeta').textContent =
-        intel.currencyStats.length > 1 ? 'إحصائيات منفصلة لكل عملة' : '';
+      document.getElementById('intelItemName').textContent =
+        `📊 تحليل النتائج الحالية (${intel.totalCount} عملية)`;
 
       const blocksHtml = intel.currencyStats.map(stats => {
         let changeHtml;
@@ -1790,6 +1823,24 @@ function highlightText(value, words) {
 
       document.getElementById('intelBody').innerHTML = blocksHtml;
       panel.hidden = false;
+      panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function hideProductIntelligence() {
+      const panel = document.getElementById('productIntelPanel');
+      if (panel) panel.hidden = true;
+    }
+
+    // تُحدَّث في كل مرة تتغيّر فيها currentResults (أي داخل search()
+    // فقط) — تعرض عدد النتائج الحالية على الزر وتُعطِّله عند عدم
+    // وجود نتائج، دون حساب أي تحليل فعلي.
+    function updateIntelTriggerButton() {
+      const btn = document.getElementById('intelTriggerBtn');
+      const countLabel = document.getElementById('intelTriggerCount');
+      const count = currentResults.length;
+
+      countLabel.textContent = `(${count} عملية)`;
+      btn.disabled = count === 0;
     }
 
     function buildMiniTable(rows) {
@@ -2103,8 +2154,12 @@ function highlightText(value, words) {
 
       const tRender0 = performance.now();
       renderVirtual();
-      renderProductIntelligence();
       perfStats.render = performance.now() - tRender0;
+
+      // أي تغيير في البحث/الفلاتر يُبطل التحليل المعروض سابقاً فوراً؛
+      // لا يُعاد حسابه تلقائياً — يجب أن يضغط المستخدم الزر من جديد.
+      hideProductIntelligence();
+      updateIntelTriggerButton();
 
       saveFiltersState();
       updateURLFromFilters();
@@ -2167,6 +2222,8 @@ function highlightText(value, words) {
 
     document.getElementById('exportExcel').addEventListener('click', exportExcel);
     document.getElementById('refreshBtn').addEventListener('click', () => loadData({ forceFresh: true }));
+    document.getElementById('intelTriggerBtn').addEventListener('click', computeAndShowProductIntelligence);
+    document.getElementById('intelCloseBtn').addEventListener('click', hideProductIntelligence);
     document.getElementById('closeDetailBtn').addEventListener('click', () => {
       closeDetailPanel();
       renderVirtual();

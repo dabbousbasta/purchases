@@ -1,19 +1,5 @@
 [
   {
-    "invoiceNo": "PI - 997",
-    "invoiceYear": 2026,
-    "date": "28/9/2026",
-    "dateSort": 20260928,
-    "currency": "EUR",
-    "supplier": "شركة ابراهيم الطبش- يورو 1459",
-    "item": "بالون ضغط 100 ليتر AQS-EXPANSION VESSEL",
-    "qty": "1.00",
-    "uprice": "109.89",
-    "printStamp": "260902_090458",
-    "sourceFile": "PI-997_400068_260902_090458.DOCX",
-    "itemOrder": 1
-  },
-  {
     "invoiceNo": "PI - 998",
     "invoiceYear": 2026,
     "date": "1/9/2026",
@@ -628,6 +614,20 @@
     "printStamp": "260902_090228",
     "sourceFile": "PI1-192_400214_260902_090228.DOCX",
     "itemOrder": 9
+  },
+  {
+    "invoiceNo": "PI - 997",
+    "invoiceYear": 2026,
+    "date": "28/8/2026",
+    "dateSort": 20260828,
+    "currency": "EUR",
+    "supplier": "شركة ابراهيم الطبش- يورو 1459",
+    "item": "بالون ضغط 100 ليتر AQS-EXPANSION VESSEL",
+    "qty": "1.00",
+    "uprice": "109.89",
+    "printStamp": "260902_091633",
+    "sourceFile": "PI-997_400068_260902_091633.DOCX",
+    "itemOrder": 1
   },
   {
     "invoiceNo": "PI - 995",

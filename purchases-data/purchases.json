@@ -1,5 +1,915 @@
 [
   {
+    "invoiceNo": "PI - 1024",
+    "invoiceYear": 2026,
+    "date": "5/9/2026",
+    "dateSort": 20260905,
+    "currency": "USD",
+    "supplier": "عوض",
+    "item": "رولو خرطوشة اطلس",
+    "qty": "8.00",
+    "uprice": "1.50",
+    "printStamp": "260905_155350",
+    "sourceFile": "PI-1024_400091_260905_155350.DOCX",
+    "itemOrder": 1
+  },
+  {
+    "invoiceNo": "PI - 1024",
+    "invoiceYear": 2026,
+    "date": "5/9/2026",
+    "dateSort": 20260905,
+    "currency": "USD",
+    "supplier": "عوض",
+    "item": "نفط قنينة",
+    "qty": "24.00",
+    "uprice": "1.42",
+    "printStamp": "260905_155350",
+    "sourceFile": "PI-1024_400091_260905_155350.DOCX",
+    "itemOrder": 2
+  },
+  {
+    "invoiceNo": "PI - 1024",
+    "invoiceYear": 2026,
+    "date": "5/9/2026",
+    "dateSort": 20260905,
+    "currency": "USD",
+    "supplier": "عوض",
+    "item": "فرشاية 2\" زاوية",
+    "qty": "2.00",
+    "uprice": "11.00",
+    "printStamp": "260905_155350",
+    "sourceFile": "PI-1024_400091_260905_155350.DOCX",
+    "itemOrder": 3
+  },
+  {
+    "invoiceNo": "PI - 1024",
+    "invoiceYear": 2026,
+    "date": "5/9/2026",
+    "dateSort": 20260905,
+    "currency": "USD",
+    "supplier": "عوض",
+    "item": "فرشاية 3\" زاوية",
+    "qty": "2.00",
+    "uprice": "8.00",
+    "printStamp": "260905_155350",
+    "sourceFile": "PI-1024_400091_260905_155350.DOCX",
+    "itemOrder": 4
+  },
+  {
+    "invoiceNo": "PI - 1021",
+    "invoiceYear": 2026,
+    "date": "4/9/2026",
+    "dateSort": 20260904,
+    "currency": "USD",
+    "supplier": "الصندوق CEDRO سيدرو 26003975-7983",
+    "item": "70*70 غطاء ريغار مربع مع برواز",
+    "qty": "4.00",
+    "uprice": "31.50",
+    "printStamp": "260905_155422",
+    "sourceFile": "PI-1021_53000101_260905_155422.DOCX",
+    "itemOrder": 1
+  },
+  {
+    "invoiceNo": "PI - 1021",
+    "invoiceYear": 2026,
+    "date": "4/9/2026",
+    "dateSort": 20260904,
+    "currency": "USD",
+    "supplier": "الصندوق CEDRO سيدرو 26003975-7983",
+    "item": "40*40 غطاء ريغار مربع مع برواز",
+    "qty": "4.00",
+    "uprice": "8.55",
+    "printStamp": "260905_155422",
+    "sourceFile": "PI-1021_53000101_260905_155422.DOCX",
+    "itemOrder": 2
+  },
+  {
+    "invoiceNo": "PI - 1021",
+    "invoiceYear": 2026,
+    "date": "4/9/2026",
+    "dateSort": 20260904,
+    "currency": "USD",
+    "supplier": "الصندوق CEDRO سيدرو 26003975-7983",
+    "item": "30*30 غطاء ريغار مربع مع برواز",
+    "qty": "5.00",
+    "uprice": "4.55",
+    "printStamp": "260905_155422",
+    "sourceFile": "PI-1021_53000101_260905_155422.DOCX",
+    "itemOrder": 3
+  },
+  {
+    "invoiceNo": "PI - 1020",
+    "invoiceYear": 2026,
+    "date": "4/9/2026",
+    "dateSort": 20260904,
+    "currency": "USD",
+    "supplier": "Lecico the lebanese ceramic industries co. s.a.l Lecico 630535",
+    "item": "مغسلة 60سم لاغونا تعليق ابيض",
+    "qty": "1.00",
+    "uprice": "85.34",
+    "printStamp": "260905_155429",
+    "sourceFile": "PI-1020_400207_260905_155429.DOCX",
+    "itemOrder": 1
+  },
+  {
+    "invoiceNo": "PI - 1020",
+    "invoiceYear": 2026,
+    "date": "4/9/2026",
+    "dateSort": 20260904,
+    "currency": "USD",
+    "supplier": "Lecico the lebanese ceramic industries co. s.a.l Lecico 630535",
+    "item": "كرسي ايفو ابيض",
+    "qty": "1.00",
+    "uprice": "262.89",
+    "printStamp": "260905_155429",
+    "sourceFile": "PI-1020_400207_260905_155429.DOCX",
+    "itemOrder": 2
+  },
+  {
+    "invoiceNo": "PI - 1020",
+    "invoiceYear": 2026,
+    "date": "4/9/2026",
+    "dateSort": 20260904,
+    "currency": "USD",
+    "supplier": "Lecico the lebanese ceramic industries co. s.a.l Lecico 630535",
+    "item": "نصف عامود لاغونا تعليق ابيض",
+    "qty": "1.00",
+    "uprice": "28.22",
+    "printStamp": "260905_155429",
+    "sourceFile": "PI-1020_400207_260905_155429.DOCX",
+    "itemOrder": 3
+  },
+  {
+    "invoiceNo": "PI - 1020",
+    "invoiceYear": 2026,
+    "date": "4/9/2026",
+    "dateSort": 20260904,
+    "currency": "USD",
+    "supplier": "Lecico the lebanese ceramic industries co. s.a.l Lecico 630535",
+    "item": "MUREX غطاء لاغونا بيكاليت ابيض FREE",
+    "qty": "1.00",
+    "uprice": "0.00",
+    "printStamp": "260905_155429",
+    "sourceFile": "PI-1020_400207_260905_155429.DOCX",
+    "itemOrder": 4
+  },
+  {
+    "invoiceNo": "PI - 1018",
+    "invoiceYear": 2026,
+    "date": "4/9/2026",
+    "dateSort": 20260904,
+    "currency": "USD",
+    "supplier": "الصندوق قباقيبي",
+    "item": "نفط غالون بلا ريحة",
+    "qty": "4.00",
+    "uprice": "7.00",
+    "printStamp": "260905_155445",
+    "sourceFile": "PI-1018_53000101_260905_155445.DOCX",
+    "itemOrder": 1
+  },
+  {
+    "invoiceNo": "PI - 1017",
+    "invoiceYear": 2026,
+    "date": "4/9/2026",
+    "dateSort": 20260904,
+    "currency": "USD",
+    "supplier": "غنوم 7354",
+    "item": "لقطة مراية رصور",
+    "qty": "40.00",
+    "uprice": "0.85",
+    "printStamp": "260905_155453",
+    "sourceFile": "PI-1017_400017_260905_155453.DOCX",
+    "itemOrder": 1
+  },
+  {
+    "invoiceNo": "PI - 1017",
+    "invoiceYear": 2026,
+    "date": "4/9/2026",
+    "dateSort": 20260904,
+    "currency": "USD",
+    "supplier": "غنوم 7354",
+    "item": "زاوية حديد 15سم",
+    "qty": "24.00",
+    "uprice": "0.50",
+    "printStamp": "260905_155453",
+    "sourceFile": "PI-1017_400017_260905_155453.DOCX",
+    "itemOrder": 2
+  },
+  {
+    "invoiceNo": "PI - 1017",
+    "invoiceYear": 2026,
+    "date": "4/9/2026",
+    "dateSort": 20260904,
+    "currency": "USD",
+    "supplier": "غنوم 7354",
+    "item": "زاوية حديد 20سم",
+    "qty": "24.00",
+    "uprice": "0.65",
+    "printStamp": "260905_155453",
+    "sourceFile": "PI-1017_400017_260905_155453.DOCX",
+    "itemOrder": 3
+  },
+  {
+    "invoiceNo": "PI - 1017",
+    "invoiceYear": 2026,
+    "date": "4/9/2026",
+    "dateSort": 20260904,
+    "currency": "USD",
+    "supplier": "غنوم 7354",
+    "item": "زاوية حديد 25سم",
+    "qty": "24.00",
+    "uprice": "0.75",
+    "printStamp": "260905_155453",
+    "sourceFile": "PI-1017_400017_260905_155453.DOCX",
+    "itemOrder": 4
+  },
+  {
+    "invoiceNo": "PI - 1017",
+    "invoiceYear": 2026,
+    "date": "4/9/2026",
+    "dateSort": 20260904,
+    "currency": "USD",
+    "supplier": "غنوم 7354",
+    "item": "زاوية حديد 30سم",
+    "qty": "24.00",
+    "uprice": "0.90",
+    "printStamp": "260905_155453",
+    "sourceFile": "PI-1017_400017_260905_155453.DOCX",
+    "itemOrder": 5
+  },
+  {
+    "invoiceNo": "PI - 1017",
+    "invoiceYear": 2026,
+    "date": "4/9/2026",
+    "dateSort": 20260904,
+    "currency": "USD",
+    "supplier": "غنوم 7354",
+    "item": "زاوية حديد 35سم",
+    "qty": "24.00",
+    "uprice": "1.00",
+    "printStamp": "260905_155453",
+    "sourceFile": "PI-1017_400017_260905_155453.DOCX",
+    "itemOrder": 6
+  },
+  {
+    "invoiceNo": "PI - 1016",
+    "invoiceYear": 2026,
+    "date": "4/9/2026",
+    "dateSort": 20260904,
+    "currency": "USD",
+    "supplier": "هيثم شريف هيثم شريف 14771",
+    "item": "27541 طاسة دوش غروهي 20سم Ntem cosmopolitan200 headshower",
+    "qty": "5.00",
+    "uprice": "55.00",
+    "printStamp": "260905_155501",
+    "sourceFile": "PI-1016_400056_260905_155501.DOCX",
+    "itemOrder": 1
+  },
+  {
+    "invoiceNo": "PI - 1023",
+    "invoiceYear": 2026,
+    "date": "3/9/2026",
+    "dateSort": 20260903,
+    "currency": "USD",
+    "supplier": "السادة شركة عبد الحليم شهاب واولاده ش.م.م 6849",
+    "item": "25 سكر انكستريه تلحيم SOLERAD",
+    "qty": "33.00",
+    "uprice": "5.50",
+    "printStamp": "260905_155406",
+    "sourceFile": "PI-1023_410302_260905_155406.DOCX",
+    "itemOrder": 1
+  },
+  {
+    "invoiceNo": "PI - 1019",
+    "invoiceYear": 2026,
+    "date": "3/9/2026",
+    "dateSort": 20260903,
+    "currency": "USD",
+    "supplier": "غنوم 5507",
+    "item": "براغي 70*6 بريفون",
+    "qty": "150.00",
+    "uprice": "0.04",
+    "printStamp": "260905_155437",
+    "sourceFile": "PI-1019_400017_260905_155437.DOCX",
+    "itemOrder": 1
+  },
+  {
+    "invoiceNo": "PI - 1019",
+    "invoiceYear": 2026,
+    "date": "3/9/2026",
+    "dateSort": 20260903,
+    "currency": "USD",
+    "supplier": "غنوم 5507",
+    "item": "رندال 6ملم كيلو",
+    "qty": "5.00",
+    "uprice": "2.25",
+    "printStamp": "260905_155437",
+    "sourceFile": "PI-1019_400017_260905_155437.DOCX",
+    "itemOrder": 2
+  },
+  {
+    "invoiceNo": "PI - 1019",
+    "invoiceYear": 2026,
+    "date": "3/9/2026",
+    "dateSort": 20260903,
+    "currency": "USD",
+    "supplier": "غنوم 5507",
+    "item": "اسافين كيس",
+    "qty": "1.00",
+    "uprice": "1.50",
+    "printStamp": "260905_155437",
+    "sourceFile": "PI-1019_400017_260905_155437.DOCX",
+    "itemOrder": 3
+  },
+  {
+    "invoiceNo": "PI - 1015",
+    "invoiceYear": 2026,
+    "date": "3/9/2026",
+    "dateSort": 20260903,
+    "currency": "USD",
+    "supplier": "علي بازون علي بازون 8391",
+    "item": "فيش كهرباء ذكر",
+    "qty": "24.00",
+    "uprice": "0.40",
+    "printStamp": "260905_155509",
+    "sourceFile": "PI-1015_400158_260905_155509.DOCX",
+    "itemOrder": 1
+  },
+  {
+    "invoiceNo": "PI - 1015",
+    "invoiceYear": 2026,
+    "date": "3/9/2026",
+    "dateSort": 20260903,
+    "currency": "USD",
+    "supplier": "علي بازون علي بازون 8391",
+    "item": "فيش كهرباء انتاية",
+    "qty": "16.00",
+    "uprice": "0.45",
+    "printStamp": "260905_155509",
+    "sourceFile": "PI-1015_400158_260905_155509.DOCX",
+    "itemOrder": 2
+  },
+  {
+    "invoiceNo": "PI - 1015",
+    "invoiceYear": 2026,
+    "date": "3/9/2026",
+    "dateSort": 20260903,
+    "currency": "USD",
+    "supplier": "علي بازون علي بازون 8391",
+    "item": "جوزة خريطة 7سم",
+    "qty": "30.00",
+    "uprice": "2.00",
+    "printStamp": "260905_155509",
+    "sourceFile": "PI-1015_400158_260905_155509.DOCX",
+    "itemOrder": 3
+  },
+  {
+    "invoiceNo": "PI - 1015",
+    "invoiceYear": 2026,
+    "date": "3/9/2026",
+    "dateSort": 20260903,
+    "currency": "USD",
+    "supplier": "علي بازون علي بازون 8391",
+    "item": "مرشة ABC 2لتر موديل عادي",
+    "qty": "20.00",
+    "uprice": "1.75",
+    "printStamp": "260905_155509",
+    "sourceFile": "PI-1015_400158_260905_155509.DOCX",
+    "itemOrder": 4
+  },
+  {
+    "invoiceNo": "PI - 1015",
+    "invoiceYear": 2026,
+    "date": "3/9/2026",
+    "dateSort": 20260903,
+    "currency": "USD",
+    "supplier": "علي بازون علي بازون 8391",
+    "item": "شادر 8*6 متر ابيض سميك",
+    "qty": "5.00",
+    "uprice": "13.44",
+    "printStamp": "260905_155509",
+    "sourceFile": "PI-1015_400158_260905_155509.DOCX",
+    "itemOrder": 5
+  },
+  {
+    "invoiceNo": "PI - 1015",
+    "invoiceYear": 2026,
+    "date": "3/9/2026",
+    "dateSort": 20260903,
+    "currency": "USD",
+    "supplier": "علي بازون علي بازون 8391",
+    "item": "شادر 6*5 متر ابيض سميك",
+    "qty": "8.00",
+    "uprice": "8.40",
+    "printStamp": "260905_155509",
+    "sourceFile": "PI-1015_400158_260905_155509.DOCX",
+    "itemOrder": 6
+  },
+  {
+    "invoiceNo": "PI - 1015",
+    "invoiceYear": 2026,
+    "date": "3/9/2026",
+    "dateSort": 20260903,
+    "currency": "USD",
+    "supplier": "علي بازون علي بازون 8391",
+    "item": "شادر 4*4 متر ابيض سميك",
+    "qty": "12.00",
+    "uprice": "4.48",
+    "printStamp": "260905_155509",
+    "sourceFile": "PI-1015_400158_260905_155509.DOCX",
+    "itemOrder": 7
+  },
+  {
+    "invoiceNo": "PI - 1014",
+    "invoiceYear": 2026,
+    "date": "3/9/2026",
+    "dateSort": 20260903,
+    "currency": "USD",
+    "supplier": "السادة شركة عبد الحليم شهاب واولاده ش.م.م 6827",
+    "item": "32*25*32 تيه مخالف تلحيم SOLERAD",
+    "qty": "6.00",
+    "uprice": "0.45",
+    "printStamp": "260905_155516",
+    "sourceFile": "PI-1014_410302_260905_155516.DOCX",
+    "itemOrder": 1
+  },
+  {
+    "invoiceNo": "PI - 1014",
+    "invoiceYear": 2026,
+    "date": "3/9/2026",
+    "dateSort": 20260903,
+    "currency": "USD",
+    "supplier": "السادة شركة عبد الحليم شهاب واولاده ش.م.م 6827",
+    "item": "25 سكر انكستريه تلحيم SOLERAD سميك",
+    "qty": "6.00",
+    "uprice": "9.00",
+    "printStamp": "260905_155516",
+    "sourceFile": "PI-1014_410302_260905_155516.DOCX",
+    "itemOrder": 2
+  },
+  {
+    "invoiceNo": "PI - 1007",
+    "invoiceYear": 2026,
+    "date": "3/9/2026",
+    "dateSort": 20260903,
+    "currency": "USD",
+    "supplier": "ايهم",
+    "item": "دواء صراصير ديازتيون مع ريحة",
+    "qty": "35.00",
+    "uprice": "2.71",
+    "printStamp": "260905_155611",
+    "sourceFile": "PI-1007_400133_260905_155611.DOCX",
+    "itemOrder": 1
+  },
+  {
+    "invoiceNo": "PI - 1006",
+    "invoiceYear": 2026,
+    "date": "3/9/2026",
+    "dateSort": 20260903,
+    "currency": "USD",
+    "supplier": "الصندوق 819قاضي باقي 130.75",
+    "item": "اكياس شنط مشكل كيلو",
+    "qty": "44.00",
+    "uprice": "2.50",
+    "printStamp": "260905_155619",
+    "sourceFile": "PI-1006_53000101_260905_155619.DOCX",
+    "itemOrder": 1
+  },
+  {
+    "invoiceNo": "PI - 1003",
+    "invoiceYear": 2026,
+    "date": "3/9/2026",
+    "dateSort": 20260903,
+    "currency": "USD",
+    "supplier": "حسن المقداد",
+    "item": "25*3/4 قطع وصل ذكر تلحيم",
+    "qty": "150.00",
+    "uprice": "2.35",
+    "printStamp": "260905_155643",
+    "sourceFile": "PI-1003_400061_260905_155643.DOCX",
+    "itemOrder": 1
+  },
+  {
+    "invoiceNo": "PI - 1003",
+    "invoiceYear": 2026,
+    "date": "3/9/2026",
+    "dateSort": 20260903,
+    "currency": "USD",
+    "supplier": "حسن المقداد",
+    "item": "1/2 نربيج زراعي اسود 50متر 10بار",
+    "qty": "5.00",
+    "uprice": "7.00",
+    "printStamp": "260905_155643",
+    "sourceFile": "PI-1003_400061_260905_155643.DOCX",
+    "itemOrder": 2
+  },
+  {
+    "invoiceNo": "PI - 1003",
+    "invoiceYear": 2026,
+    "date": "3/9/2026",
+    "dateSort": 20260903,
+    "currency": "USD",
+    "supplier": "حسن المقداد",
+    "item": "1/2 نربيج زراعي اسود 25متر 10بار",
+    "qty": "15.00",
+    "uprice": "3.50",
+    "printStamp": "260905_155643",
+    "sourceFile": "PI-1003_400061_260905_155643.DOCX",
+    "itemOrder": 3
+  },
+  {
+    "invoiceNo": "PI - 1003",
+    "invoiceYear": 2026,
+    "date": "3/9/2026",
+    "dateSort": 20260903,
+    "currency": "USD",
+    "supplier": "حسن المقداد",
+    "item": "3/4 نربيج زراعي اسود 25متر 10بار",
+    "qty": "10.00",
+    "uprice": "5.00",
+    "printStamp": "260905_155643",
+    "sourceFile": "PI-1003_400061_260905_155643.DOCX",
+    "itemOrder": 4
+  },
+  {
+    "invoiceNo": "PI - 1003",
+    "invoiceYear": 2026,
+    "date": "3/9/2026",
+    "dateSort": 20260903,
+    "currency": "USD",
+    "supplier": "حسن المقداد",
+    "item": "1 نربيج زراعي اسود 25متر 10بار",
+    "qty": "5.00",
+    "uprice": "9.00",
+    "printStamp": "260905_155643",
+    "sourceFile": "PI-1003_400061_260905_155643.DOCX",
+    "itemOrder": 5
+  },
+  {
+    "invoiceNo": "PI - 1003",
+    "invoiceYear": 2026,
+    "date": "3/9/2026",
+    "dateSort": 20260903,
+    "currency": "USD",
+    "supplier": "حسن المقداد",
+    "item": "1 1/4 نربيج زراعي اسود 25متر 10بار",
+    "qty": "2.00",
+    "uprice": "17.50",
+    "printStamp": "260905_155643",
+    "sourceFile": "PI-1003_400061_260905_155643.DOCX",
+    "itemOrder": 6
+  },
+  {
+    "invoiceNo": "PI - 1003",
+    "invoiceYear": 2026,
+    "date": "3/9/2026",
+    "dateSort": 20260903,
+    "currency": "USD",
+    "supplier": "حسن المقداد",
+    "item": "1/2 نربيج زراعي اسود 16 بار 50متر",
+    "qty": "2.00",
+    "uprice": "10.00",
+    "printStamp": "260905_155643",
+    "sourceFile": "PI-1003_400061_260905_155643.DOCX",
+    "itemOrder": 7
+  },
+  {
+    "invoiceNo": "PI - 1003",
+    "invoiceYear": 2026,
+    "date": "3/9/2026",
+    "dateSort": 20260903,
+    "currency": "USD",
+    "supplier": "حسن المقداد",
+    "item": "3/4 نربيج زراعي اسود 16 بار 50متر",
+    "qty": "2.00",
+    "uprice": "16.00",
+    "printStamp": "260905_155643",
+    "sourceFile": "PI-1003_400061_260905_155643.DOCX",
+    "itemOrder": 8
+  },
+  {
+    "invoiceNo": "PI - 1001",
+    "invoiceYear": 2026,
+    "date": "3/9/2026",
+    "dateSort": 20260903,
+    "currency": "USD",
+    "supplier": "الصندوق صعب 1303-1152",
+    "item": "ترابة جاهزة SAB E-Z MIX 25كيلو رمادي",
+    "qty": "40.00",
+    "uprice": "2.50",
+    "printStamp": "260905_155658",
+    "sourceFile": "PI-1001_53000101_260905_155658.DOCX",
+    "itemOrder": 1
+  },
+  {
+    "invoiceNo": "PI - 1001",
+    "invoiceYear": 2026,
+    "date": "3/9/2026",
+    "dateSort": 20260903,
+    "currency": "USD",
+    "supplier": "الصندوق صعب 1303-1152",
+    "item": "ترابة جاهزة SAB E-Z MIX 25كيلو رمادي",
+    "qty": "3.00",
+    "uprice": ".25000446157719E-11",
+    "printStamp": "260905_155658",
+    "sourceFile": "PI-1001_53000101_260905_155658.DOCX",
+    "itemOrder": 2
+  },
+  {
+    "invoiceNo": "PI - 1000",
+    "invoiceYear": 2026,
+    "date": "3/9/2026",
+    "dateSort": 20260903,
+    "currency": "USD",
+    "supplier": "عوض",
+    "item": "معجونة 1كيلو",
+    "qty": "12.00",
+    "uprice": "2.58",
+    "printStamp": "260905_155706",
+    "sourceFile": "PI-1000_400091_260905_155706.DOCX",
+    "itemOrder": 1
+  },
+  {
+    "invoiceNo": "PI - 1000",
+    "invoiceYear": 2026,
+    "date": "3/9/2026",
+    "dateSort": 20260903,
+    "currency": "USD",
+    "supplier": "عوض",
+    "item": "معجونة 2كيلو",
+    "qty": "6.00",
+    "uprice": "4.17",
+    "printStamp": "260905_155706",
+    "sourceFile": "PI-1000_400091_260905_155706.DOCX",
+    "itemOrder": 2
+  },
+  {
+    "invoiceNo": "PI - 1000",
+    "invoiceYear": 2026,
+    "date": "3/9/2026",
+    "dateSort": 20260903,
+    "currency": "USD",
+    "supplier": "عوض",
+    "item": "ايبوكسي",
+    "qty": "20.00",
+    "uprice": "3.25",
+    "printStamp": "260905_155706",
+    "sourceFile": "PI-1000_400091_260905_155706.DOCX",
+    "itemOrder": 3
+  },
+  {
+    "invoiceNo": "PI - 1000",
+    "invoiceYear": 2026,
+    "date": "3/9/2026",
+    "dateSort": 20260903,
+    "currency": "USD",
+    "supplier": "عوض",
+    "item": "ورق حف ابيض 150",
+    "qty": "3.00",
+    "uprice": "14.00",
+    "printStamp": "260905_155706",
+    "sourceFile": "PI-1000_400091_260905_155706.DOCX",
+    "itemOrder": 4
+  },
+  {
+    "invoiceNo": "PI - 1000",
+    "invoiceYear": 2026,
+    "date": "3/9/2026",
+    "dateSort": 20260903,
+    "currency": "USD",
+    "supplier": "عوض",
+    "item": "قنينة تلوين",
+    "qty": "10.00",
+    "uprice": "0.80",
+    "printStamp": "260905_155706",
+    "sourceFile": "PI-1000_400091_260905_155706.DOCX",
+    "itemOrder": 5
+  },
+  {
+    "invoiceNo": "PI - 1000",
+    "invoiceYear": 2026,
+    "date": "3/9/2026",
+    "dateSort": 20260903,
+    "currency": "USD",
+    "supplier": "عوض",
+    "item": "قنينة تلوين",
+    "qty": "10.00",
+    "uprice": "1.00",
+    "printStamp": "260905_155706",
+    "sourceFile": "PI-1000_400091_260905_155706.DOCX",
+    "itemOrder": 6
+  },
+  {
+    "invoiceNo": "PI1 - 194",
+    "invoiceYear": 2026,
+    "date": "2/9/2026",
+    "dateSort": 20260902,
+    "currency": "USD",
+    "supplier": "خوري انترناشونال - دولار / محل زين خوري زين 14227",
+    "item": "38825 صندوق غروهي 12 سم UNISET WHITECOVER",
+    "qty": "30.00",
+    "uprice": "119.88",
+    "printStamp": "260905_155332",
+    "sourceFile": "PI1-194_400227_260905_155332.DOCX",
+    "itemOrder": 1
+  },
+  {
+    "invoiceNo": "PI - 1005",
+    "invoiceYear": 2026,
+    "date": "2/9/2026",
+    "dateSort": 20260902,
+    "currency": "USD",
+    "supplier": "جعفر مراد جعفر مراد 8338",
+    "item": "50 كوع زاوية ذكر بجوان",
+    "qty": "50.00",
+    "uprice": "1.12",
+    "printStamp": "260905_155627",
+    "sourceFile": "PI-1005_400226_260905_155627.DOCX",
+    "itemOrder": 1
+  },
+  {
+    "invoiceNo": "PI - 1005",
+    "invoiceYear": 2026,
+    "date": "2/9/2026",
+    "dateSort": 20260902,
+    "currency": "USD",
+    "supplier": "جعفر مراد جعفر مراد 8338",
+    "item": "50 كوع فاتح ذكر بجوان",
+    "qty": "50.00",
+    "uprice": "1.02",
+    "printStamp": "260905_155627",
+    "sourceFile": "PI-1005_400226_260905_155627.DOCX",
+    "itemOrder": 2
+  },
+  {
+    "invoiceNo": "PI - 1002",
+    "invoiceYear": 2026,
+    "date": "2/9/2026",
+    "dateSort": 20260902,
+    "currency": "USD",
+    "supplier": "KAMA كاما 1061001",
+    "item": "طبلية ANGOLA 120*100CM مفتوحة",
+    "qty": "10.00",
+    "uprice": "21.68",
+    "printStamp": "260905_155650",
+    "sourceFile": "PI-1002_400229_260905_155650.DOCX",
+    "itemOrder": 1
+  },
+  {
+    "invoiceNo": "PI - 1013",
+    "invoiceYear": 2026,
+    "date": "1/9/2026",
+    "dateSort": 20260901,
+    "currency": "USD",
+    "supplier": "محمد شهاب 28",
+    "item": "كرسي مع صندوق سعر طقم مبروم",
+    "qty": "30.00",
+    "uprice": "43.00",
+    "printStamp": "260905_155524",
+    "sourceFile": "PI-1013_400195_260905_155524.DOCX",
+    "itemOrder": 1
+  },
+  {
+    "invoiceNo": "PI - 1013",
+    "invoiceYear": 2026,
+    "date": "1/9/2026",
+    "dateSort": 20260901,
+    "currency": "USD",
+    "supplier": "محمد شهاب 28",
+    "item": "مغسلة مع عامود سعر طقم مبروم",
+    "qty": "0.00",
+    "uprice": "0.00",
+    "printStamp": "260905_155524",
+    "sourceFile": "PI-1013_400195_260905_155524.DOCX",
+    "itemOrder": 2
+  },
+  {
+    "invoiceNo": "PI - 1012",
+    "invoiceYear": 2026,
+    "date": "1/9/2026",
+    "dateSort": 20260901,
+    "currency": "USD",
+    "supplier": "محمد شهاب",
+    "item": "خزانة انكستريه بورسلان",
+    "qty": "3.00",
+    "uprice": "70.00",
+    "printStamp": "260905_155532",
+    "sourceFile": "PI-1012_400195_260905_155532.DOCX",
+    "itemOrder": 1
+  },
+  {
+    "invoiceNo": "PI - 1008",
+    "invoiceYear": 2026,
+    "date": "1/9/2026",
+    "dateSort": 20260901,
+    "currency": "USD",
+    "supplier": "غنوم 6627",
+    "item": "جوزة نحاس 6سم MEGA",
+    "qty": "24.00",
+    "uprice": "2.25",
+    "printStamp": "260905_155604",
+    "sourceFile": "PI-1008_400017_260905_155604.DOCX",
+    "itemOrder": 1
+  },
+  {
+    "invoiceNo": "PI - 1008",
+    "invoiceYear": 2026,
+    "date": "1/9/2026",
+    "dateSort": 20260901,
+    "currency": "USD",
+    "supplier": "غنوم 6627",
+    "item": "مفصلات باب خشب",
+    "qty": "20.00",
+    "uprice": "0.85",
+    "printStamp": "260905_155604",
+    "sourceFile": "PI-1008_400017_260905_155604.DOCX",
+    "itemOrder": 2
+  },
+  {
+    "invoiceNo": "PI - 1008",
+    "invoiceYear": 2026,
+    "date": "1/9/2026",
+    "dateSort": 20260901,
+    "currency": "USD",
+    "supplier": "غنوم 6627",
+    "item": "براشة 11.5 دوبل",
+    "qty": "15.00",
+    "uprice": "3.25",
+    "printStamp": "260905_155604",
+    "sourceFile": "PI-1008_400017_260905_155604.DOCX",
+    "itemOrder": 3
+  },
+  {
+    "invoiceNo": "PI - 1008",
+    "invoiceYear": 2026,
+    "date": "1/9/2026",
+    "dateSort": 20260901,
+    "currency": "USD",
+    "supplier": "غنوم 6627",
+    "item": "رفش",
+    "qty": "12.00",
+    "uprice": "2.25",
+    "printStamp": "260905_155604",
+    "sourceFile": "PI-1008_400017_260905_155604.DOCX",
+    "itemOrder": 4
+  },
+  {
+    "invoiceNo": "PI - 1004",
+    "invoiceYear": 2026,
+    "date": "1/9/2026",
+    "dateSort": 20260901,
+    "currency": "USD",
+    "supplier": "جعفر مراد جعفر مراد 8337",
+    "item": "50 كوع زاوية ذكر تلزيق",
+    "qty": "100.00",
+    "uprice": "1.13",
+    "printStamp": "260905_155635",
+    "sourceFile": "PI-1004_400226_260905_155635.DOCX",
+    "itemOrder": 1
+  },
+  {
+    "invoiceNo": "PI - 1004",
+    "invoiceYear": 2026,
+    "date": "1/9/2026",
+    "dateSort": 20260901,
+    "currency": "USD",
+    "supplier": "جعفر مراد جعفر مراد 8337",
+    "item": "50 وصل بلاستيك تلزيق",
+    "qty": "100.00",
+    "uprice": "0.74",
+    "printStamp": "260905_155635",
+    "sourceFile": "PI-1004_400226_260905_155635.DOCX",
+    "itemOrder": 2
+  },
+  {
+    "invoiceNo": "PI - 1004",
+    "invoiceYear": 2026,
+    "date": "1/9/2026",
+    "dateSort": 20260901,
+    "currency": "USD",
+    "supplier": "جعفر مراد جعفر مراد 8337",
+    "item": "110*75 تيه اكرك مخالف بلاستيك بجوان",
+    "qty": "20.00",
+    "uprice": "6.30",
+    "printStamp": "260905_155635",
+    "sourceFile": "PI-1004_400226_260905_155635.DOCX",
+    "itemOrder": 3
+  },
+  {
+    "invoiceNo": "PI - 999",
+    "invoiceYear": 2026,
+    "date": "1/9/2026",
+    "dateSort": 20260901,
+    "currency": "USD",
+    "supplier": "السادة محلات الحنون المحترمين 204995",
+    "item": "مجلى ستانلس HANS 121 150*50*0.4 جنب",
+    "qty": "5.00",
+    "uprice": "23.00",
+    "printStamp": "260905_155714",
+    "sourceFile": "PI-999_410120_260905_155714.DOCX",
+    "itemOrder": 1
+  },
+  {
     "invoiceNo": "PI - 998",
     "invoiceYear": 2026,
     "date": "1/9/2026",
@@ -9,8 +919,8 @@
     "item": "مبولة",
     "qty": "10.00",
     "uprice": "12.00",
-    "printStamp": "260902_090514",
-    "sourceFile": "PI-998_53000101_260902_090514.DOCX",
+    "printStamp": "260905_155721",
+    "sourceFile": "PI-998_53000101_260905_155721.DOCX",
     "itemOrder": 1
   },
   {
@@ -23,8 +933,8 @@
     "item": "ريشة BIT 5\" LASER WELDING450 كورينغ",
     "qty": "1.00",
     "uprice": "24.00",
-    "printStamp": "260902_090452",
-    "sourceFile": "PI-996_53000101_260902_090452.DOCX",
+    "printStamp": "260905_155736",
+    "sourceFile": "PI-996_53000101_260905_155736.DOCX",
     "itemOrder": 1
   },
   {
@@ -51,8 +961,8 @@
     "item": "100 قازان فيلوكس 3ملم مع شرحة",
     "qty": "1.00",
     "uprice": "105.45",
-    "printStamp": "260902_090410",
-    "sourceFile": "PI-990_400012_260902_090410.DOCX",
+    "printStamp": "260905_155821",
+    "sourceFile": "PI-990_400012_260905_155821.DOCX",
     "itemOrder": 1
   },
   {
@@ -65,8 +975,8 @@
     "item": "80 قازان فيلوكس 3ملم مع شرحة",
     "qty": "2.00",
     "uprice": "98.79",
-    "printStamp": "260902_090410",
-    "sourceFile": "PI-990_400012_260902_090410.DOCX",
+    "printStamp": "260905_155821",
+    "sourceFile": "PI-990_400012_260905_155821.DOCX",
     "itemOrder": 2
   },
   {
@@ -79,8 +989,8 @@
     "item": "50 قازان فيلوكس 3ملم مع شرحة",
     "qty": "3.00",
     "uprice": "76.59",
-    "printStamp": "260902_090410",
-    "sourceFile": "PI-990_400012_260902_090410.DOCX",
+    "printStamp": "260905_155821",
+    "sourceFile": "PI-990_400012_260905_155821.DOCX",
     "itemOrder": 3
   },
   {
@@ -93,8 +1003,8 @@
     "item": "50 - 1 1/2 سكر غله زراعي",
     "qty": "40.00",
     "uprice": "1.42",
-    "printStamp": "260902_090355",
-    "sourceFile": "PI-988_400203_260902_090355.DOCX",
+    "printStamp": "260905_155836",
+    "sourceFile": "PI-988_400203_260905_155836.DOCX",
     "itemOrder": 1
   },
   {
@@ -107,8 +1017,8 @@
     "item": "1/2 ركور ذكر زراعي",
     "qty": "600.00",
     "uprice": "0.22",
-    "printStamp": "260902_090355",
-    "sourceFile": "PI-988_400203_260902_090355.DOCX",
+    "printStamp": "260905_155836",
+    "sourceFile": "PI-988_400203_260905_155836.DOCX",
     "itemOrder": 2
   },
   {
@@ -121,8 +1031,8 @@
     "item": "1 1/4 ركور انتاية زراعي",
     "qty": "135.00",
     "uprice": "0.77",
-    "printStamp": "260902_090355",
-    "sourceFile": "PI-988_400203_260902_090355.DOCX",
+    "printStamp": "260905_155836",
+    "sourceFile": "PI-988_400203_260905_155836.DOCX",
     "itemOrder": 3
   },
   {
@@ -135,8 +1045,8 @@
     "item": "1 1/4 ركور ذكر زراعي",
     "qty": "135.00",
     "uprice": "0.69",
-    "printStamp": "260902_090355",
-    "sourceFile": "PI-988_400203_260902_090355.DOCX",
+    "printStamp": "260905_155836",
+    "sourceFile": "PI-988_400203_260905_155836.DOCX",
     "itemOrder": 4
   },
   {
@@ -149,8 +1059,8 @@
     "item": "1 1/4 وصل دوبل زراعي",
     "qty": "70.00",
     "uprice": "1.24",
-    "printStamp": "260902_090355",
-    "sourceFile": "PI-988_400203_260902_090355.DOCX",
+    "printStamp": "260905_155836",
+    "sourceFile": "PI-988_400203_260905_155836.DOCX",
     "itemOrder": 5
   },
   {
@@ -163,8 +1073,8 @@
     "item": "1 1/4 تيه زراعي دوبل",
     "qty": "35.00",
     "uprice": "2.02",
-    "printStamp": "260902_090355",
-    "sourceFile": "PI-988_400203_260902_090355.DOCX",
+    "printStamp": "260905_155836",
+    "sourceFile": "PI-988_400203_260905_155836.DOCX",
     "itemOrder": 6
   },
   {
@@ -177,8 +1087,8 @@
     "item": "1/2 كوع زراعي دوبل",
     "qty": "300.00",
     "uprice": "0.41",
-    "printStamp": "260902_090355",
-    "sourceFile": "PI-988_400203_260902_090355.DOCX",
+    "printStamp": "260905_155836",
+    "sourceFile": "PI-988_400203_260905_155836.DOCX",
     "itemOrder": 7
   },
   {
@@ -191,8 +1101,8 @@
     "item": "3/4 تيه زراعي/ او 25*25*25",
     "qty": "120.00",
     "uprice": "0.82",
-    "printStamp": "260902_090355",
-    "sourceFile": "PI-988_400203_260902_090355.DOCX",
+    "printStamp": "260905_155836",
+    "sourceFile": "PI-988_400203_260905_155836.DOCX",
     "itemOrder": 8
   },
   {
@@ -205,8 +1115,8 @@
     "item": "فوم 1 1/4 اسود 42 ملم KOKKI كوكي 25ملم متر",
     "qty": "50.40",
     "uprice": "5.33",
-    "printStamp": "260902_090348",
-    "sourceFile": "PI-987_400026_260902_090348.DOCX",
+    "printStamp": "260905_155844",
+    "sourceFile": "PI-987_400026_260905_155844.DOCX",
     "itemOrder": 1
   },
   {
@@ -219,8 +1129,8 @@
     "item": "وصلة كهرباء 50*2.5 IRON",
     "qty": "2.00",
     "uprice": "38.00",
-    "printStamp": "260902_090326",
-    "sourceFile": "PI-984_400139_260902_090326.DOCX",
+    "printStamp": "260905_155906",
+    "sourceFile": "PI-984_400139_260905_155906.DOCX",
     "itemOrder": 1
   },
   {
@@ -233,8 +1143,8 @@
     "item": "مغسلة فدار وسط",
     "qty": "30.00",
     "uprice": "10.33",
-    "printStamp": "260902_090431",
-    "sourceFile": "PI-993_53000101_260902_090431.DOCX",
+    "printStamp": "260905_155759",
+    "sourceFile": "PI-993_53000101_260905_155759.DOCX",
     "itemOrder": 1
   },
   {
@@ -247,8 +1157,8 @@
     "item": "مغسلة نوفا 45*36سم ابيض",
     "qty": "30.00",
     "uprice": "8.00",
-    "printStamp": "260902_090431",
-    "sourceFile": "PI-993_53000101_260902_090431.DOCX",
+    "printStamp": "260905_155759",
+    "sourceFile": "PI-993_53000101_260905_155759.DOCX",
     "itemOrder": 2
   },
   {
@@ -261,8 +1171,8 @@
     "item": "تنفيسة قازان OR 1/2 10BAR BABY",
     "qty": "24.00",
     "uprice": "5.00",
-    "printStamp": "260902_090424",
-    "sourceFile": "PI-992_400028_260902_090424.DOCX",
+    "printStamp": "260905_155806",
+    "sourceFile": "PI-992_400028_260905_155806.DOCX",
     "itemOrder": 1
   },
   {
@@ -275,8 +1185,8 @@
     "item": "LEO موتير 0.75 حصان ليو APM 60",
     "qty": "10.00",
     "uprice": "52.00",
-    "printStamp": "260902_090341",
-    "sourceFile": "PI-986_400046_260902_090341.DOCX",
+    "printStamp": "260905_155851",
+    "sourceFile": "PI-986_400046_260905_155851.DOCX",
     "itemOrder": 1
   },
   {
@@ -289,8 +1199,8 @@
     "item": "AQUA MKP70-1 موتير 0.75 حصان",
     "qty": "20.00",
     "uprice": "26.00",
-    "printStamp": "260902_090341",
-    "sourceFile": "PI-986_400046_260902_090341.DOCX",
+    "printStamp": "260905_155851",
+    "sourceFile": "PI-986_400046_260905_155851.DOCX",
     "itemOrder": 2
   },
   {
@@ -303,8 +1213,8 @@
     "item": "LEO موتير 1 حصان ليو APM 75 طلمبة ماء",
     "qty": "20.00",
     "uprice": "60.00",
-    "printStamp": "260902_090341",
-    "sourceFile": "PI-986_400046_260902_090341.DOCX",
+    "printStamp": "260905_155851",
+    "sourceFile": "PI-986_400046_260905_155851.DOCX",
     "itemOrder": 3
   },
   {
@@ -317,8 +1227,8 @@
     "item": "LEO موتير 0.5 حصان ليو APM37",
     "qty": "30.00",
     "uprice": "32.00",
-    "printStamp": "260902_090341",
-    "sourceFile": "PI-986_400046_260902_090341.DOCX",
+    "printStamp": "260905_155851",
+    "sourceFile": "PI-986_400046_260905_155851.DOCX",
     "itemOrder": 4
   },
   {
@@ -331,8 +1241,8 @@
     "item": "LEO موتير فرامة ليو LSWM300A 3HP",
     "qty": "2.00",
     "uprice": "219.70",
-    "printStamp": "260902_090341",
-    "sourceFile": "PI-986_400046_260902_090341.DOCX",
+    "printStamp": "260905_155851",
+    "sourceFile": "PI-986_400046_260905_155851.DOCX",
     "itemOrder": 5
   },
   {
@@ -345,8 +1255,8 @@
     "item": "LEO 0.15HP طلمبة موتير ليو",
     "qty": "12.00",
     "uprice": "29.00",
-    "printStamp": "260902_090341",
-    "sourceFile": "PI-986_400046_260902_090341.DOCX",
+    "printStamp": "260905_155851",
+    "sourceFile": "PI-986_400046_260905_155851.DOCX",
     "itemOrder": 6
   },
   {
@@ -359,8 +1269,8 @@
     "item": "مجموعة شطافة ITALIA 3064 اسود",
     "qty": "10.00",
     "uprice": "5.50",
-    "printStamp": "260902_090319",
-    "sourceFile": "PI-983_410120_260902_090319.DOCX",
+    "printStamp": "260905_155913",
+    "sourceFile": "PI-983_410120_260905_155913.DOCX",
     "itemOrder": 1
   },
   {
@@ -625,8 +1535,8 @@
     "item": "بالون ضغط 100 ليتر AQS-EXPANSION VESSEL",
     "qty": "1.00",
     "uprice": "109.89",
-    "printStamp": "260902_091633",
-    "sourceFile": "PI-997_400068_260902_091633.DOCX",
+    "printStamp": "260905_155729",
+    "sourceFile": "PI-997_400068_260905_155729.DOCX",
     "itemOrder": 1
   },
   {
@@ -639,8 +1549,8 @@
     "item": "4 وصل بلاستيك",
     "qty": "135.00",
     "uprice": "0.38",
-    "printStamp": "260902_090445",
-    "sourceFile": "PI-995_400045_260902_090445.DOCX",
+    "printStamp": "260905_155744",
+    "sourceFile": "PI-995_400045_260905_155744.DOCX",
     "itemOrder": 1
   },
   {
@@ -653,8 +1563,8 @@
     "item": "ترابة جاهزة SAB E-Z MIX 25كيلو رمادي",
     "qty": "40.00",
     "uprice": "2.50",
-    "printStamp": "260902_090438",
-    "sourceFile": "PI-994_53000101_260902_090438.DOCX",
+    "printStamp": "260905_155751",
+    "sourceFile": "PI-994_53000101_260905_155751.DOCX",
     "itemOrder": 1
   },
   {
@@ -667,8 +1577,8 @@
     "item": "ترابة جاهزة SAB E-Z MIX 25كيلو رمادي",
     "qty": "3.00",
     "uprice": ".25000446157719E-11",
-    "printStamp": "260902_090438",
-    "sourceFile": "PI-994_53000101_260902_090438.DOCX",
+    "printStamp": "260905_155751",
+    "sourceFile": "PI-994_53000101_260905_155751.DOCX",
     "itemOrder": 2
   },
   {
@@ -681,8 +1591,8 @@
     "item": "100 قنينة ماء 4ملم",
     "qty": "1.00",
     "uprice": "57.00",
-    "printStamp": "260902_090402",
-    "sourceFile": "PI-989_400130_260902_090402.DOCX",
+    "printStamp": "260905_155829",
+    "sourceFile": "PI-989_400130_260905_155829.DOCX",
     "itemOrder": 1
   },
   {
@@ -695,8 +1605,8 @@
     "item": "50 قنينة ماء 4ملم",
     "qty": "1.00",
     "uprice": "38.00",
-    "printStamp": "260902_090402",
-    "sourceFile": "PI-989_400130_260902_090402.DOCX",
+    "printStamp": "260905_155829",
+    "sourceFile": "PI-989_400130_260905_155829.DOCX",
     "itemOrder": 2
   },
   {
@@ -709,8 +1619,8 @@
     "item": "150 قنينة ماء 4ملم",
     "qty": "1.00",
     "uprice": "77.00",
-    "printStamp": "260902_090402",
-    "sourceFile": "PI-989_400130_260902_090402.DOCX",
+    "printStamp": "260905_155829",
+    "sourceFile": "PI-989_400130_260905_155829.DOCX",
     "itemOrder": 3
   },
   {
@@ -723,8 +1633,8 @@
     "item": "100 قنينة ماء 4ملم تعليق",
     "qty": "1.00",
     "uprice": "57.00",
-    "printStamp": "260902_090402",
-    "sourceFile": "PI-989_400130_260902_090402.DOCX",
+    "printStamp": "260905_155829",
+    "sourceFile": "PI-989_400130_260905_155829.DOCX",
     "itemOrder": 4
   },
   {
@@ -737,8 +1647,8 @@
     "item": "100 قنينة شوفاج 4ملم",
     "qty": "1.00",
     "uprice": "85.00",
-    "printStamp": "260902_090402",
-    "sourceFile": "PI-989_400130_260902_090402.DOCX",
+    "printStamp": "260905_155829",
+    "sourceFile": "PI-989_400130_260905_155829.DOCX",
     "itemOrder": 5
   },
   {
@@ -751,8 +1661,8 @@
     "item": "200 قنينة ماء 4ملم",
     "qty": "1.00",
     "uprice": "92.00",
-    "printStamp": "260902_090402",
-    "sourceFile": "PI-989_400130_260902_090402.DOCX",
+    "printStamp": "260905_155829",
+    "sourceFile": "PI-989_400130_260905_155829.DOCX",
     "itemOrder": 6
   },
   {
@@ -765,8 +1675,8 @@
     "item": "150 قنينة ماء 4ملم",
     "qty": "1.00",
     "uprice": "77.00",
-    "printStamp": "260902_090402",
-    "sourceFile": "PI-989_400130_260902_090402.DOCX",
+    "printStamp": "260905_155829",
+    "sourceFile": "PI-989_400130_260905_155829.DOCX",
     "itemOrder": 7
   },
   {
@@ -779,8 +1689,8 @@
     "item": "80 قازان ماء مرتجع",
     "qty": "-1.00",
     "uprice": "50.00",
-    "printStamp": "260902_090402",
-    "sourceFile": "PI-989_400130_260902_090402.DOCX",
+    "printStamp": "260905_155829",
+    "sourceFile": "PI-989_400130_260905_155829.DOCX",
     "itemOrder": 8
   },
   {
@@ -793,8 +1703,8 @@
     "item": "150 قنينة ماء 4ملم",
     "qty": "2.00",
     "uprice": "77.00",
-    "printStamp": "260902_090402",
-    "sourceFile": "PI-989_400130_260902_090402.DOCX",
+    "printStamp": "260905_155829",
+    "sourceFile": "PI-989_400130_260905_155829.DOCX",
     "itemOrder": 9
   },
   {
@@ -807,8 +1717,8 @@
     "item": "300 قنينة ماء 4ملم",
     "qty": "1.00",
     "uprice": "180.00",
-    "printStamp": "260902_090402",
-    "sourceFile": "PI-989_400130_260902_090402.DOCX",
+    "printStamp": "260905_155829",
+    "sourceFile": "PI-989_400130_260905_155829.DOCX",
     "itemOrder": 10
   },
   {
@@ -821,8 +1731,8 @@
     "item": "150 قنينة ماء 4ملم",
     "qty": "3.00",
     "uprice": "77.00",
-    "printStamp": "260902_090402",
-    "sourceFile": "PI-989_400130_260902_090402.DOCX",
+    "printStamp": "260905_155829",
+    "sourceFile": "PI-989_400130_260905_155829.DOCX",
     "itemOrder": 11
   },
   {
@@ -835,8 +1745,8 @@
     "item": "100 قنينة ماء 4ملم",
     "qty": "3.00",
     "uprice": "57.00",
-    "printStamp": "260902_090402",
-    "sourceFile": "PI-989_400130_260902_090402.DOCX",
+    "printStamp": "260905_155829",
+    "sourceFile": "PI-989_400130_260905_155829.DOCX",
     "itemOrder": 12
   },
   {
@@ -849,8 +1759,8 @@
     "item": "100 قنينة ماء 4ملم تعليق",
     "qty": "1.00",
     "uprice": "57.00",
-    "printStamp": "260902_090402",
-    "sourceFile": "PI-989_400130_260902_090402.DOCX",
+    "printStamp": "260905_155829",
+    "sourceFile": "PI-989_400130_260905_155829.DOCX",
     "itemOrder": 13
   },
   {
@@ -863,8 +1773,8 @@
     "item": "50 قنينة ماء 4ملم تعليق",
     "qty": "2.00",
     "uprice": "38.00",
-    "printStamp": "260902_090402",
-    "sourceFile": "PI-989_400130_260902_090402.DOCX",
+    "printStamp": "260905_155829",
+    "sourceFile": "PI-989_400130_260905_155829.DOCX",
     "itemOrder": 14
   },
   {
@@ -877,8 +1787,8 @@
     "item": "نربيج رجراج 38ملم",
     "qty": "1.00",
     "uprice": "35.00",
-    "printStamp": "260902_090333",
-    "sourceFile": "PI-985_400046_260902_090333.DOCX",
+    "printStamp": "260905_155858",
+    "sourceFile": "PI-985_400046_260905_155858.DOCX",
     "itemOrder": 1
   },
   {
@@ -891,8 +1801,8 @@
     "item": "LEO EVPM 2-9 2HP طلمبة ماء عامودية",
     "qty": "2.00",
     "uprice": "197.40",
-    "printStamp": "260902_090333",
-    "sourceFile": "PI-985_400046_260902_090333.DOCX",
+    "printStamp": "260905_155858",
+    "sourceFile": "PI-985_400046_260905_155858.DOCX",
     "itemOrder": 2
   },
   {
@@ -905,8 +1815,8 @@
     "item": "COMET موتير فرامة كومت WSD15-10-1.1CD(A) سكين",
     "qty": "1.00",
     "uprice": "133.38",
-    "printStamp": "260902_090333",
-    "sourceFile": "PI-985_400046_260902_090333.DOCX",
+    "printStamp": "260905_155858",
+    "sourceFile": "PI-985_400046_260905_155858.DOCX",
     "itemOrder": 3
   },
   {
@@ -919,8 +1829,8 @@
     "item": "فوم 1 1/4 اسود 42 ملم 2متر - 9ملم",
     "qty": "36.00",
     "uprice": "1.75",
-    "printStamp": "260902_090313",
-    "sourceFile": "PI-982_410302_260902_090313.DOCX",
+    "printStamp": "260905_155921",
+    "sourceFile": "PI-982_410302_260905_155921.DOCX",
     "itemOrder": 1
   },
   {
@@ -1003,8 +1913,8 @@
     "item": "راس مفك JC TOP",
     "qty": "10.00",
     "uprice": "0.35",
-    "printStamp": "260902_090306",
-    "sourceFile": "PI-981_400017_260902_090306.DOCX",
+    "printStamp": "260905_155928",
+    "sourceFile": "PI-981_400017_260905_155928.DOCX",
     "itemOrder": 1
   },
   {
@@ -1017,8 +1927,8 @@
     "item": "راس مفك TOP WAY",
     "qty": "20.00",
     "uprice": "0.35",
-    "printStamp": "260902_090306",
-    "sourceFile": "PI-981_400017_260902_090306.DOCX",
+    "printStamp": "260905_155928",
+    "sourceFile": "PI-981_400017_260905_155928.DOCX",
     "itemOrder": 2
   },
   {
@@ -1031,8 +1941,8 @@
     "item": "راس مفك POWER",
     "qty": "10.00",
     "uprice": "0.35",
-    "printStamp": "260902_090306",
-    "sourceFile": "PI-981_400017_260902_090306.DOCX",
+    "printStamp": "260905_155928",
+    "sourceFile": "PI-981_400017_260905_155928.DOCX",
     "itemOrder": 3
   },
   {
@@ -1045,8 +1955,8 @@
     "item": "راس مفك 10سم BU مع مغناطيس",
     "qty": "10.00",
     "uprice": "0.50",
-    "printStamp": "260902_090306",
-    "sourceFile": "PI-981_400017_260902_090306.DOCX",
+    "printStamp": "260905_155928",
+    "sourceFile": "PI-981_400017_260905_155928.DOCX",
     "itemOrder": 4
   },
   {
@@ -1059,8 +1969,8 @@
     "item": "بلاط 42*42 PRAGUE-HZP47 SMAR",
     "qty": "40.00",
     "uprice": "8.86",
-    "printStamp": "260902_090254",
-    "sourceFile": "PI-980_400207_260902_090254.DOCX",
+    "printStamp": "260905_155936",
+    "sourceFile": "PI-980_400207_260905_155936.DOCX",
     "itemOrder": 1
   },
   {
@@ -1171,8 +2081,8 @@
     "item": "1000 خزان ماء بلاستيك سومو مبروم طويل",
     "qty": "3.00",
     "uprice": "105.00",
-    "printStamp": "260902_090417",
-    "sourceFile": "PI-991_400011_260902_090417.DOCX",
+    "printStamp": "260905_155814",
+    "sourceFile": "PI-991_400011_260905_155814.DOCX",
     "itemOrder": 1
   },
   {
@@ -1185,8 +2095,8 @@
     "item": "1000 خزان ماء بلاستيك سومو مبروم H.D يوفو فاتح",
     "qty": "2.00",
     "uprice": "55.00",
-    "printStamp": "260902_090417",
-    "sourceFile": "PI-991_400011_260902_090417.DOCX",
+    "printStamp": "260905_155814",
+    "sourceFile": "PI-991_400011_260905_155814.DOCX",
     "itemOrder": 2
   },
   {
@@ -1199,8 +2109,8 @@
     "item": "2000 خزان ماء بلاستيك سومو مبروم H.D يوفو فاتح",
     "qty": "1.00",
     "uprice": "95.00",
-    "printStamp": "260902_090417",
-    "sourceFile": "PI-991_400011_260902_090417.DOCX",
+    "printStamp": "260905_155814",
+    "sourceFile": "PI-991_400011_260905_155814.DOCX",
     "itemOrder": 3
   },
   {
@@ -1213,8 +2123,8 @@
     "item": "1000 خزان ماء بلاستيك سومو مبروم H.D يوفو فاتح",
     "qty": "3.00",
     "uprice": "55.00",
-    "printStamp": "260902_090417",
-    "sourceFile": "PI-991_400011_260902_090417.DOCX",
+    "printStamp": "260905_155814",
+    "sourceFile": "PI-991_400011_260905_155814.DOCX",
     "itemOrder": 4
   },
   {
@@ -1227,8 +2137,8 @@
     "item": "500 خزان ماء بلاستيك سومو مبروم يوفو",
     "qty": "2.00",
     "uprice": "50.00",
-    "printStamp": "260902_090417",
-    "sourceFile": "PI-991_400011_260902_090417.DOCX",
+    "printStamp": "260905_155814",
+    "sourceFile": "PI-991_400011_260905_155814.DOCX",
     "itemOrder": 5
   },
   {
@@ -1241,8 +2151,8 @@
     "item": "400 خزان ماء بلاستيك سومو صهريج بطح",
     "qty": "2.00",
     "uprice": "59.00",
-    "printStamp": "260902_090417",
-    "sourceFile": "PI-991_400011_260902_090417.DOCX",
+    "printStamp": "260905_155814",
+    "sourceFile": "PI-991_400011_260905_155814.DOCX",
     "itemOrder": 6
   },
   {
@@ -1255,8 +2165,8 @@
     "item": "1000 خزان ماء بلاستيك سومو مبروم طويل",
     "qty": "1.00",
     "uprice": "105.00",
-    "printStamp": "260902_090417",
-    "sourceFile": "PI-991_400011_260902_090417.DOCX",
+    "printStamp": "260905_155814",
+    "sourceFile": "PI-991_400011_260905_155814.DOCX",
     "itemOrder": 7
   },
   {
@@ -1269,8 +2179,8 @@
     "item": "غطاء خزان ذكر سومو",
     "qty": "3.00",
     "uprice": "6.00",
-    "printStamp": "260902_090417",
-    "sourceFile": "PI-991_400011_260902_090417.DOCX",
+    "printStamp": "260905_155814",
+    "sourceFile": "PI-991_400011_260905_155814.DOCX",
     "itemOrder": 8
   },
   {
@@ -1283,8 +2193,8 @@
     "item": "2000 خزان ماء بلاستيك سومو مبروم H.D يوفو فاتح",
     "qty": "3.00",
     "uprice": "95.00",
-    "printStamp": "260902_090417",
-    "sourceFile": "PI-991_400011_260902_090417.DOCX",
+    "printStamp": "260905_155814",
+    "sourceFile": "PI-991_400011_260905_155814.DOCX",
     "itemOrder": 9
   },
   {
@@ -1297,8 +2207,8 @@
     "item": "1000 خزان ماء بلاستيك سومو مبروم H.D يوفو فاتح",
     "qty": "1.00",
     "uprice": "55.00",
-    "printStamp": "260902_090417",
-    "sourceFile": "PI-991_400011_260902_090417.DOCX",
+    "printStamp": "260905_155814",
+    "sourceFile": "PI-991_400011_260905_155814.DOCX",
     "itemOrder": 10
   },
   {
@@ -1311,8 +2221,8 @@
     "item": "500 خزان ماء بلاستيك سومو مبروم سوفو",
     "qty": "2.00",
     "uprice": "50.00",
-    "printStamp": "260902_090417",
-    "sourceFile": "PI-991_400011_260902_090417.DOCX",
+    "printStamp": "260905_155814",
+    "sourceFile": "PI-991_400011_260905_155814.DOCX",
     "itemOrder": 11
   },
   {
@@ -1325,8 +2235,8 @@
     "item": "2000 خزان ماء بلاستيك سومو مبروم H.D يوفو فاتح",
     "qty": "1.00",
     "uprice": "95.00",
-    "printStamp": "260902_090417",
-    "sourceFile": "PI-991_400011_260902_090417.DOCX",
+    "printStamp": "260905_155814",
+    "sourceFile": "PI-991_400011_260905_155814.DOCX",
     "itemOrder": 12
   },
   {
@@ -1339,8 +2249,8 @@
     "item": "فوم 1/2 اسود 22 ملم 2متر - 9ملم",
     "qty": "20.00",
     "uprice": "1.00",
-    "printStamp": "260827_143535",
-    "sourceFile": "PI-977_410302_260827_143535.DOCX",
+    "printStamp": "260905_155958",
+    "sourceFile": "PI-977_410302_260905_155958.DOCX",
     "itemOrder": 1
   },
   {
@@ -1353,8 +2263,8 @@
     "item": "فوم 1 1/4 اسود 42 ملم 2متر - 9ملم",
     "qty": "15.00",
     "uprice": "1.75",
-    "printStamp": "260827_143535",
-    "sourceFile": "PI-977_410302_260827_143535.DOCX",
+    "printStamp": "260905_155958",
+    "sourceFile": "PI-977_410302_260905_155958.DOCX",
     "itemOrder": 2
   },
   {
@@ -1535,8 +2445,8 @@
     "item": "32 وصل تلحيم",
     "qty": "100.00",
     "uprice": "0.20",
-    "printStamp": "260827_143542",
-    "sourceFile": "PI-976_410302_260827_143542.DOCX",
+    "printStamp": "260905_160006",
+    "sourceFile": "PI-976_410302_260905_160006.DOCX",
     "itemOrder": 1
   },
   {
@@ -1857,8 +2767,8 @@
     "item": "فوم 1 1/4 اسود 42 ملم 2متر - 9ملم",
     "qty": "20.00",
     "uprice": "1.75",
-    "printStamp": "260827_143550",
-    "sourceFile": "PI-975_410302_260827_143550.DOCX",
+    "printStamp": "260905_160013",
+    "sourceFile": "PI-975_410302_260905_160013.DOCX",
     "itemOrder": 1
   },
   {
@@ -1871,8 +2781,8 @@
     "item": "فوم 3/4 اسود 28 ملم 2متر - 9ملم",
     "qty": "12.00",
     "uprice": "1.10",
-    "printStamp": "260827_143558",
-    "sourceFile": "PI-974_410302_260827_143558.DOCX",
+    "printStamp": "260905_160021",
+    "sourceFile": "PI-974_410302_260905_160021.DOCX",
     "itemOrder": 1
   },
   {
@@ -1885,8 +2795,8 @@
     "item": "فوم 1 اسود 35 ملم 2متر - 9ملم",
     "qty": "10.00",
     "uprice": "1.35",
-    "printStamp": "260827_143558",
-    "sourceFile": "PI-974_410302_260827_143558.DOCX",
+    "printStamp": "260905_160021",
+    "sourceFile": "PI-974_410302_260905_160021.DOCX",
     "itemOrder": 2
   },
   {
@@ -1899,8 +2809,8 @@
     "item": "فوم 1 1/4 اسود 42 ملم 2متر - 9ملم",
     "qty": "34.00",
     "uprice": "1.75",
-    "printStamp": "260827_143558",
-    "sourceFile": "PI-974_410302_260827_143558.DOCX",
+    "printStamp": "260905_160021",
+    "sourceFile": "PI-974_410302_260905_160021.DOCX",
     "itemOrder": 3
   },
   {
@@ -4032,6 +4942,20 @@
     "itemOrder": 1
   },
   {
+    "invoiceNo": "PI - 1011",
+    "invoiceYear": 2026,
+    "date": "10/8/2026",
+    "dateSort": 20260810,
+    "currency": "USD",
+    "supplier": "محمد شهاب",
+    "item": "جرن مجلى انكستريه 60سم",
+    "qty": "30.00",
+    "uprice": "14.00",
+    "printStamp": "260905_155540",
+    "sourceFile": "PI-1011_400195_260905_155540.DOCX",
+    "itemOrder": 1
+  },
+  {
     "invoiceNo": "PI - 899",
     "invoiceYear": 2026,
     "date": "10/8/2026",
@@ -4478,6 +5402,20 @@
     "printStamp": "260812_161641",
     "sourceFile": "PI-881_400130_260812_161641.DOCX",
     "itemOrder": 7
+  },
+  {
+    "invoiceNo": "PI - 1010",
+    "invoiceYear": 2026,
+    "date": "9/8/2026",
+    "dateSort": 20260809,
+    "currency": "USD",
+    "supplier": "محمد شهاب",
+    "item": "قازان غاز",
+    "qty": "25.00",
+    "uprice": "68.00",
+    "printStamp": "260905_155548",
+    "sourceFile": "PI-1010_400195_260905_155548.DOCX",
+    "itemOrder": 1
   },
   {
     "invoiceNo": "PI - 883",
@@ -6076,6 +7014,62 @@
     "itemOrder": 4
   },
   {
+    "invoiceNo": "PI - 1009",
+    "invoiceYear": 2026,
+    "date": "3/8/2026",
+    "dateSort": 20260803,
+    "currency": "USD",
+    "supplier": "محمد شهاب",
+    "item": "HE 1/2 كوع ذكر",
+    "qty": "500.00",
+    "uprice": "0.14",
+    "printStamp": "260905_155556",
+    "sourceFile": "PI-1009_400195_260905_155556.DOCX",
+    "itemOrder": 1
+  },
+  {
+    "invoiceNo": "PI - 1009",
+    "invoiceYear": 2026,
+    "date": "3/8/2026",
+    "dateSort": 20260803,
+    "currency": "USD",
+    "supplier": "محمد شهاب",
+    "item": "HE 1/2 شريط بعزقة",
+    "qty": "500.00",
+    "uprice": "0.19",
+    "printStamp": "260905_155556",
+    "sourceFile": "PI-1009_400195_260905_155556.DOCX",
+    "itemOrder": 2
+  },
+  {
+    "invoiceNo": "PI - 1009",
+    "invoiceYear": 2026,
+    "date": "3/8/2026",
+    "dateSort": 20260803,
+    "currency": "USD",
+    "supplier": "محمد شهاب",
+    "item": "HE 2*1 1/2 شريط مخالف",
+    "qty": "69.00",
+    "uprice": "1.01",
+    "printStamp": "260905_155556",
+    "sourceFile": "PI-1009_400195_260905_155556.DOCX",
+    "itemOrder": 3
+  },
+  {
+    "invoiceNo": "PI - 1009",
+    "invoiceYear": 2026,
+    "date": "3/8/2026",
+    "dateSort": 20260803,
+    "currency": "USD",
+    "supplier": "محمد شهاب",
+    "item": "قازان ديجيتال",
+    "qty": "5.00",
+    "uprice": "100.00",
+    "printStamp": "260905_155556",
+    "sourceFile": "PI-1009_400195_260905_155556.DOCX",
+    "itemOrder": 4
+  },
+  {
     "invoiceNo": "PI - 972",
     "invoiceYear": 2026,
     "date": "3/8/2026",
@@ -6785,8 +7779,8 @@
     "item": "فوم 1 1/4 اسود 42 ملم 2متر - 9ملم",
     "qty": "20.00",
     "uprice": "1.75",
-    "printStamp": "260827_143505",
-    "sourceFile": "PI-979_410302_260827_143505.DOCX",
+    "printStamp": "260905_155943",
+    "sourceFile": "PI-979_410302_260905_155943.DOCX",
     "itemOrder": 1
   },
   {
@@ -12623,8 +13617,8 @@
     "item": "40*25*40 تيه مخالف تلحيم SOLERAD",
     "qty": "20.00",
     "uprice": "0.75",
-    "printStamp": "260827_143527",
-    "sourceFile": "PI-978_410302_260827_143527.DOCX",
+    "printStamp": "260905_155951",
+    "sourceFile": "PI-978_410302_260905_155951.DOCX",
     "itemOrder": 1
   },
   {
@@ -12637,8 +13631,8 @@
     "item": "32*25*32 تيه مخالف تلحيم SOLERAD",
     "qty": "20.00",
     "uprice": "0.45",
-    "printStamp": "260827_143527",
-    "sourceFile": "PI-978_410302_260827_143527.DOCX",
+    "printStamp": "260905_155951",
+    "sourceFile": "PI-978_410302_260905_155951.DOCX",
     "itemOrder": 2
   },
   {
@@ -12651,8 +13645,8 @@
     "item": "32*25 وصل مخالف تلحيم",
     "qty": "50.00",
     "uprice": "0.13",
-    "printStamp": "260827_143527",
-    "sourceFile": "PI-978_410302_260827_143527.DOCX",
+    "printStamp": "260905_155951",
+    "sourceFile": "PI-978_410302_260905_155951.DOCX",
     "itemOrder": 3
   },
   {
@@ -12665,8 +13659,8 @@
     "item": "فوم 1 اسود 35 ملم 2متر - 9ملم",
     "qty": "5.00",
     "uprice": "1.35",
-    "printStamp": "260827_143527",
-    "sourceFile": "PI-978_410302_260827_143527.DOCX",
+    "printStamp": "260905_155951",
+    "sourceFile": "PI-978_410302_260905_155951.DOCX",
     "itemOrder": 4
   },
   {
@@ -12679,8 +13673,8 @@
     "item": "فوم 3/4 اسود 28 ملم 2متر - 9ملم",
     "qty": "4.00",
     "uprice": "1.10",
-    "printStamp": "260827_143527",
-    "sourceFile": "PI-978_410302_260827_143527.DOCX",
+    "printStamp": "260905_155951",
+    "sourceFile": "PI-978_410302_260905_155951.DOCX",
     "itemOrder": 5
   },
   {
@@ -12693,8 +13687,8 @@
     "item": "25 سكر انكستريه تلحيم SOLERAD",
     "qty": "60.00",
     "uprice": "5.50",
-    "printStamp": "260827_143527",
-    "sourceFile": "PI-978_410302_260827_143527.DOCX",
+    "printStamp": "260905_155951",
+    "sourceFile": "PI-978_410302_260905_155951.DOCX",
     "itemOrder": 6
   },
   {
@@ -17302,6 +18296,48 @@
     "printStamp": "260804_154108",
     "sourceFile": "PI-617_400017_260804_154108.DOCX",
     "itemOrder": 2
+  },
+  {
+    "invoiceNo": "PI - 1022",
+    "invoiceYear": 2026,
+    "date": "26/6/2026",
+    "dateSort": 20260626,
+    "currency": "USD",
+    "supplier": "الصندوق 546",
+    "item": "مسكة بانيو احتياجات خاصة",
+    "qty": "8.00",
+    "uprice": "35.00",
+    "printStamp": "260905_155414",
+    "sourceFile": "PI-1022_53000101_260905_155414.DOCX",
+    "itemOrder": 1
+  },
+  {
+    "invoiceNo": "PI - 1022",
+    "invoiceYear": 2026,
+    "date": "26/6/2026",
+    "dateSort": 20260626,
+    "currency": "USD",
+    "supplier": "الصندوق 546",
+    "item": "كرسي مع صندوق احتياجات خاصة",
+    "qty": "1.00",
+    "uprice": "35.00",
+    "printStamp": "260905_155414",
+    "sourceFile": "PI-1022_53000101_260905_155414.DOCX",
+    "itemOrder": 2
+  },
+  {
+    "invoiceNo": "PI - 1022",
+    "invoiceYear": 2026,
+    "date": "26/6/2026",
+    "dateSort": 20260626,
+    "currency": "USD",
+    "supplier": "الصندوق 546",
+    "item": "مسكة بانيو فدار ستانلس",
+    "qty": "40.00",
+    "uprice": "5.00",
+    "printStamp": "260905_155414",
+    "sourceFile": "PI-1022_53000101_260905_155414.DOCX",
+    "itemOrder": 3
   },
   {
     "invoiceNo": "PI - 622",

@@ -1,5 +1,145 @@
 [
   {
+    "invoiceNo": "PI - 1090",
+    "invoiceYear": 2026,
+    "date": "18/9/2026",
+    "dateSort": 20260918,
+    "currency": "USD",
+    "supplier": "الصندوق",
+    "item": "18 باكس المنيوم متر",
+    "qty": "100.00",
+    "uprice": "0.40",
+    "printStamp": "260918_101026",
+    "sourceFile": "PI-1090_53000101_260918_101026.DOCX",
+    "itemOrder": 1
+  },
+  {
+    "invoiceNo": "PI - 1088",
+    "invoiceYear": 2026,
+    "date": "17/9/2026",
+    "dateSort": 20260917,
+    "currency": "USD",
+    "supplier": "ميوركس ميوركس 2715-123859",
+    "item": "MUREX غطاء فينيسيا بيكاليت ابيض",
+    "qty": "6.00",
+    "uprice": "21.70",
+    "printStamp": "260918_101040",
+    "sourceFile": "PI-1088_400010_260918_101040.DOCX",
+    "itemOrder": 1
+  },
+  {
+    "invoiceNo": "PI - 1088",
+    "invoiceYear": 2026,
+    "date": "17/9/2026",
+    "dateSort": 20260917,
+    "currency": "USD",
+    "supplier": "ميوركس ميوركس 2715-123859",
+    "item": "MUREX غطاء زغرتا بيكاليت ابيض",
+    "qty": "6.00",
+    "uprice": "23.59",
+    "printStamp": "260918_101040",
+    "sourceFile": "PI-1088_400010_260918_101040.DOCX",
+    "itemOrder": 2
+  },
+  {
+    "invoiceNo": "PI - 1088",
+    "invoiceYear": 2026,
+    "date": "17/9/2026",
+    "dateSort": 20260917,
+    "currency": "USD",
+    "supplier": "ميوركس ميوركس 2715-123859",
+    "item": "MUREX غطاء غاردينيا بيكاليت ابيض",
+    "qty": "3.00",
+    "uprice": "33.02",
+    "printStamp": "260918_101040",
+    "sourceFile": "PI-1088_400010_260918_101040.DOCX",
+    "itemOrder": 3
+  },
+  {
+    "invoiceNo": "PI - 1085",
+    "invoiceYear": 2026,
+    "date": "17/9/2026",
+    "dateSort": 20260917,
+    "currency": "USD",
+    "supplier": "السادة شركة عبد الحليم شهاب واولاده ش.م.م 7222",
+    "item": "فوم 3/4 اسود 28 ملم 2متر - 9ملم",
+    "qty": "20.00",
+    "uprice": "1.10",
+    "printStamp": "260918_101918",
+    "sourceFile": "PI-1085_410302_260918_101918.DOCX",
+    "itemOrder": 1
+  },
+  {
+    "invoiceNo": "PI - 1089",
+    "invoiceYear": 2026,
+    "date": "16/9/2026",
+    "dateSort": 20260916,
+    "currency": "USD",
+    "supplier": "الصندوق 11190",
+    "item": "عداد ماي 1/2",
+    "qty": "60.00",
+    "uprice": "5.35",
+    "printStamp": "260918_101032",
+    "sourceFile": "PI-1089_53000101_260918_101032.DOCX",
+    "itemOrder": 1
+  },
+  {
+    "invoiceNo": "PI - 1087",
+    "invoiceYear": 2026,
+    "date": "16/9/2026",
+    "dateSort": 20260916,
+    "currency": "USD",
+    "supplier": "هيثم شريف هيثم شريف 13750",
+    "item": "غروهي BAUEDGE خلاط دوش 233343",
+    "qty": "10.00",
+    "uprice": "66.00",
+    "printStamp": "260918_101554",
+    "sourceFile": "PI-1087_400056_260918_101554.DOCX",
+    "itemOrder": 1
+  },
+  {
+    "invoiceNo": "PI - 1087",
+    "invoiceYear": 2026,
+    "date": "16/9/2026",
+    "dateSort": 20260916,
+    "currency": "USD",
+    "supplier": "هيثم شريف هيثم شريف 13750",
+    "item": "BAUEDGE 23333 خلاط مغسلة فيتاس غروهي",
+    "qty": "10.00",
+    "uprice": "56.00",
+    "printStamp": "260918_101554",
+    "sourceFile": "PI-1087_400056_260918_101554.DOCX",
+    "itemOrder": 2
+  },
+  {
+    "invoiceNo": "PI - 1087",
+    "invoiceYear": 2026,
+    "date": "16/9/2026",
+    "dateSort": 20260916,
+    "currency": "USD",
+    "supplier": "هيثم شريف هيثم شريف 13750",
+    "item": "باردوش غروهي 27389 RAIN SHOWER",
+    "qty": "5.00",
+    "uprice": "145.00",
+    "printStamp": "260918_101554",
+    "sourceFile": "PI-1087_400056_260918_101554.DOCX",
+    "itemOrder": 3
+  },
+  {
+    "invoiceNo": "PI - 1086",
+    "invoiceYear": 2026,
+    "date": "16/9/2026",
+    "dateSort": 20260916,
+    "currency": "USD",
+    "supplier": "غنوم 2723",
+    "item": "فوم UPT سبراي",
+    "qty": "12.00",
+    "uprice": "2.25",
+    "printStamp": "260918_101911",
+    "sourceFile": "PI-1086_400017_260918_101911.DOCX",
+    "itemOrder": 1
+  },
+  {
     "invoiceNo": "PI - 1080",
     "invoiceYear": 2026,
     "date": "16/9/2026",
@@ -9,8 +149,8 @@
     "item": "قمر خلاط برغي 15سم طقم",
     "qty": "20.00",
     "uprice": "1.75",
-    "printStamp": "260916_141705",
-    "sourceFile": "PI-1080_400042_260916_141705.DOCX",
+    "printStamp": "260918_101953",
+    "sourceFile": "PI-1080_400042_260918_101953.DOCX",
     "itemOrder": 1
   },
   {
@@ -23,8 +163,8 @@
     "item": "1/2*2/8 شريط مخالف نحاس",
     "qty": "100.00",
     "uprice": "0.50",
-    "printStamp": "260916_141705",
-    "sourceFile": "PI-1080_400042_260916_141705.DOCX",
+    "printStamp": "260918_101953",
+    "sourceFile": "PI-1080_400042_260918_101953.DOCX",
     "itemOrder": 2
   },
   {
@@ -238,6 +378,20 @@
     "itemOrder": 1
   },
   {
+    "invoiceNo": "PI - 1084",
+    "invoiceYear": 2026,
+    "date": "15/9/2026",
+    "dateSort": 20260915,
+    "currency": "USD",
+    "supplier": "السادة شركة عبد الحليم شهاب واولاده ش.م.م 7176",
+    "item": "مقص 20-40 ملم",
+    "qty": "1.00",
+    "uprice": "7.00",
+    "printStamp": "260918_101926",
+    "sourceFile": "PI-1084_410302_260918_101926.DOCX",
+    "itemOrder": 1
+  },
+  {
     "invoiceNo": "PI - 1079",
     "invoiceYear": 2026,
     "date": "15/9/2026",
@@ -247,8 +401,8 @@
     "item": "مجموعة شطافة ماليزي ابيض VANOZ",
     "qty": "100.00",
     "uprice": "3.50",
-    "printStamp": "260916_141712",
-    "sourceFile": "PI-1079_400028_260916_141712.DOCX",
+    "printStamp": "260918_102008",
+    "sourceFile": "PI-1079_400028_260918_102008.DOCX",
     "itemOrder": 1
   },
   {
@@ -415,8 +569,8 @@
     "item": "110 قسطل بلاستيك",
     "qty": "20.00",
     "uprice": "18.58",
-    "printStamp": "260916_141649",
-    "sourceFile": "PI-1082_53000101_260916_141649.DOCX",
+    "printStamp": "260918_101940",
+    "sourceFile": "PI-1082_53000101_260918_101940.DOCX",
     "itemOrder": 1
   },
   {
@@ -429,8 +583,8 @@
     "item": "125 قسطل بلاستيك",
     "qty": "10.00",
     "uprice": "21.68",
-    "printStamp": "260916_141649",
-    "sourceFile": "PI-1082_53000101_260916_141649.DOCX",
+    "printStamp": "260918_101940",
+    "sourceFile": "PI-1082_53000101_260918_101940.DOCX",
     "itemOrder": 2
   },
   {
@@ -443,8 +597,8 @@
     "item": "75 قسطل بلاستيك",
     "qty": "20.00",
     "uprice": "14.45",
-    "printStamp": "260916_141649",
-    "sourceFile": "PI-1082_53000101_260916_141649.DOCX",
+    "printStamp": "260918_101940",
+    "sourceFile": "PI-1082_53000101_260918_101940.DOCX",
     "itemOrder": 3
   },
   {
@@ -1591,8 +1745,8 @@
     "item": "لاتكس برميل تيفولي",
     "qty": "1.00",
     "uprice": "38.00",
-    "printStamp": "260916_141640",
-    "sourceFile": "PI-1083_400032_260916_141640.DOCX",
+    "printStamp": "260918_101933",
+    "sourceFile": "PI-1083_400032_260918_101933.DOCX",
     "itemOrder": 1
   },
   {
@@ -1605,8 +1759,8 @@
     "item": "طرش 735 غالون سايبس",
     "qty": "1.00",
     "uprice": "25.25",
-    "printStamp": "260916_141640",
-    "sourceFile": "PI-1083_400032_260916_141640.DOCX",
+    "printStamp": "260918_101933",
+    "sourceFile": "PI-1083_400032_260918_101933.DOCX",
     "itemOrder": 2
   },
   {
@@ -1619,8 +1773,8 @@
     "item": "روبة بلاط B31 سوداب",
     "qty": "4.00",
     "uprice": "5.99",
-    "printStamp": "260916_141640",
-    "sourceFile": "PI-1083_400032_260916_141640.DOCX",
+    "printStamp": "260918_101933",
+    "sourceFile": "PI-1083_400032_260918_101933.DOCX",
     "itemOrder": 3
   },
   {
@@ -1633,8 +1787,8 @@
     "item": "طرش 704 كيلو سايبس",
     "qty": "2.00",
     "uprice": "3.90",
-    "printStamp": "260916_141640",
-    "sourceFile": "PI-1083_400032_260916_141640.DOCX",
+    "printStamp": "260918_101933",
+    "sourceFile": "PI-1083_400032_260918_101933.DOCX",
     "itemOrder": 4
   },
   {
@@ -1647,8 +1801,8 @@
     "item": "طرش 700 برميل سايبس",
     "qty": "1.00",
     "uprice": "64.00",
-    "printStamp": "260916_141640",
-    "sourceFile": "PI-1083_400032_260916_141640.DOCX",
+    "printStamp": "260918_101933",
+    "sourceFile": "PI-1083_400032_260918_101933.DOCX",
     "itemOrder": 5
   },
   {
@@ -1661,8 +1815,8 @@
     "item": "سيلير 1800 برميل سايبس لاتكس",
     "qty": "1.00",
     "uprice": "64.00",
-    "printStamp": "260916_141640",
-    "sourceFile": "PI-1083_400032_260916_141640.DOCX",
+    "printStamp": "260918_101933",
+    "sourceFile": "PI-1083_400032_260918_101933.DOCX",
     "itemOrder": 6
   },
   {
@@ -1675,8 +1829,8 @@
     "item": "اندركوت 313 غالون سايبس",
     "qty": "2.00",
     "uprice": "20.00",
-    "printStamp": "260916_141640",
-    "sourceFile": "PI-1083_400032_260916_141640.DOCX",
+    "printStamp": "260918_101933",
+    "sourceFile": "PI-1083_400032_260918_101933.DOCX",
     "itemOrder": 7
   },
   {
@@ -1689,8 +1843,8 @@
     "item": "طرش 700 غالون سايبس",
     "qty": "2.00",
     "uprice": "13.25",
-    "printStamp": "260916_141640",
-    "sourceFile": "PI-1083_400032_260916_141640.DOCX",
+    "printStamp": "260918_101933",
+    "sourceFile": "PI-1083_400032_260918_101933.DOCX",
     "itemOrder": 8
   },
   {
@@ -1703,8 +1857,8 @@
     "item": "بويا 400 غالون سايبس",
     "qty": "2.00",
     "uprice": "20.00",
-    "printStamp": "260916_141640",
-    "sourceFile": "PI-1083_400032_260916_141640.DOCX",
+    "printStamp": "260918_101933",
+    "sourceFile": "PI-1083_400032_260918_101933.DOCX",
     "itemOrder": 9
   },
   {
@@ -1717,8 +1871,8 @@
     "item": "بويا 403 غالون سايبس",
     "qty": "1.00",
     "uprice": "20.00",
-    "printStamp": "260916_141640",
-    "sourceFile": "PI-1083_400032_260916_141640.DOCX",
+    "printStamp": "260918_101933",
+    "sourceFile": "PI-1083_400032_260918_101933.DOCX",
     "itemOrder": 10
   },
   {
@@ -1731,8 +1885,8 @@
     "item": "بويا 400 برميل سايبس",
     "qty": "1.00",
     "uprice": "99.00",
-    "printStamp": "260916_141640",
-    "sourceFile": "PI-1083_400032_260916_141640.DOCX",
+    "printStamp": "260918_101933",
+    "sourceFile": "PI-1083_400032_260918_101933.DOCX",
     "itemOrder": 11
   },
   {
@@ -1745,8 +1899,8 @@
     "item": "عازل ماجيك بوند 3510 ابيض",
     "qty": "3.00",
     "uprice": "50.00",
-    "printStamp": "260916_141640",
-    "sourceFile": "PI-1083_400032_260916_141640.DOCX",
+    "printStamp": "260918_101933",
+    "sourceFile": "PI-1083_400032_260918_101933.DOCX",
     "itemOrder": 12
   },
   {
@@ -1759,8 +1913,8 @@
     "item": "معجونة برميل ناعمة 3400",
     "qty": "2.00",
     "uprice": "16.20",
-    "printStamp": "260916_141640",
-    "sourceFile": "PI-1083_400032_260916_141640.DOCX",
+    "printStamp": "260918_101933",
+    "sourceFile": "PI-1083_400032_260918_101933.DOCX",
     "itemOrder": 13
   },
   {
@@ -1773,8 +1927,8 @@
     "item": "معجونة غالون خشنة",
     "qty": "15.00",
     "uprice": "7.50",
-    "printStamp": "260916_141640",
-    "sourceFile": "PI-1083_400032_260916_141640.DOCX",
+    "printStamp": "260918_101933",
+    "sourceFile": "PI-1083_400032_260918_101933.DOCX",
     "itemOrder": 14
   },
   {
@@ -1787,8 +1941,8 @@
     "item": "معجونة غالون ناعمة",
     "qty": "10.00",
     "uprice": "7.50",
-    "printStamp": "260916_141640",
-    "sourceFile": "PI-1083_400032_260916_141640.DOCX",
+    "printStamp": "260918_101933",
+    "sourceFile": "PI-1083_400032_260918_101933.DOCX",
     "itemOrder": 15
   },
   {
@@ -1801,8 +1955,8 @@
     "item": "طرش 790 برميل سايبس",
     "qty": "1.00",
     "uprice": "64.00",
-    "printStamp": "260916_141640",
-    "sourceFile": "PI-1083_400032_260916_141640.DOCX",
+    "printStamp": "260918_101933",
+    "sourceFile": "PI-1083_400032_260918_101933.DOCX",
     "itemOrder": 16
   },
   {
@@ -1815,8 +1969,8 @@
     "item": "طرش 389 غالون",
     "qty": "1.00",
     "uprice": "24.00",
-    "printStamp": "260916_141640",
-    "sourceFile": "PI-1083_400032_260916_141640.DOCX",
+    "printStamp": "260918_101933",
+    "sourceFile": "PI-1083_400032_260918_101933.DOCX",
     "itemOrder": 17
   },
   {
@@ -1829,8 +1983,8 @@
     "item": "طرش 404 برميل سايبس",
     "qty": "1.00",
     "uprice": "99.00",
-    "printStamp": "260916_141640",
-    "sourceFile": "PI-1083_400032_260916_141640.DOCX",
+    "printStamp": "260918_101933",
+    "sourceFile": "PI-1083_400032_260918_101933.DOCX",
     "itemOrder": 18
   },
   {
@@ -1843,8 +1997,8 @@
     "item": "طرش 770 برميل سايبس",
     "qty": "1.00",
     "uprice": "64.00",
-    "printStamp": "260916_141640",
-    "sourceFile": "PI-1083_400032_260916_141640.DOCX",
+    "printStamp": "260918_101933",
+    "sourceFile": "PI-1083_400032_260918_101933.DOCX",
     "itemOrder": 19
   },
   {
@@ -1857,8 +2011,8 @@
     "item": "طرش 400 غالون سايبس",
     "qty": "1.00",
     "uprice": "20.00",
-    "printStamp": "260916_141640",
-    "sourceFile": "PI-1083_400032_260916_141640.DOCX",
+    "printStamp": "260918_101933",
+    "sourceFile": "PI-1083_400032_260918_101933.DOCX",
     "itemOrder": 20
   },
   {
@@ -1871,8 +2025,8 @@
     "item": "بويا 315 غالون سايبس",
     "qty": "1.00",
     "uprice": "24.00",
-    "printStamp": "260916_141640",
-    "sourceFile": "PI-1083_400032_260916_141640.DOCX",
+    "printStamp": "260918_101933",
+    "sourceFile": "PI-1083_400032_260918_101933.DOCX",
     "itemOrder": 21
   },
   {
@@ -1885,8 +2039,8 @@
     "item": "بويا 905 كيلو سايبس",
     "qty": "1.00",
     "uprice": "7.25",
-    "printStamp": "260916_141640",
-    "sourceFile": "PI-1083_400032_260916_141640.DOCX",
+    "printStamp": "260918_101933",
+    "sourceFile": "PI-1083_400032_260918_101933.DOCX",
     "itemOrder": 22
   },
   {
@@ -1899,8 +2053,8 @@
     "item": "بويا 318 غالون سايبس",
     "qty": "2.00",
     "uprice": "24.00",
-    "printStamp": "260916_141640",
-    "sourceFile": "PI-1083_400032_260916_141640.DOCX",
+    "printStamp": "260918_101933",
+    "sourceFile": "PI-1083_400032_260918_101933.DOCX",
     "itemOrder": 23
   },
   {
@@ -1913,8 +2067,8 @@
     "item": "طرش 402 برميلسايبس",
     "qty": "1.00",
     "uprice": "99.00",
-    "printStamp": "260916_141640",
-    "sourceFile": "PI-1083_400032_260916_141640.DOCX",
+    "printStamp": "260918_101933",
+    "sourceFile": "PI-1083_400032_260918_101933.DOCX",
     "itemOrder": 24
   },
   {
@@ -1927,8 +2081,8 @@
     "item": "سكة مجراية 3*3*2متر",
     "qty": "48.00",
     "uprice": "2.50",
-    "printStamp": "260916_141657",
-    "sourceFile": "PI-1081_400045_260916_141657.DOCX",
+    "printStamp": "260918_101947",
+    "sourceFile": "PI-1081_400045_260918_101947.DOCX",
     "itemOrder": 1
   },
   {
@@ -1941,8 +2095,8 @@
     "item": "6 رباط بجوان",
     "qty": "50.00",
     "uprice": "0.85",
-    "printStamp": "260916_141657",
-    "sourceFile": "PI-1081_400045_260916_141657.DOCX",
+    "printStamp": "260918_101947",
+    "sourceFile": "PI-1081_400045_260918_101947.DOCX",
     "itemOrder": 2
   },
   {
@@ -1955,8 +2109,8 @@
     "item": "60*60 ريغار فونت / رزين فونت سميك",
     "qty": "1.00",
     "uprice": "55.00",
-    "printStamp": "260916_141657",
-    "sourceFile": "PI-1081_400045_260916_141657.DOCX",
+    "printStamp": "260918_101947",
+    "sourceFile": "PI-1081_400045_260918_101947.DOCX",
     "itemOrder": 3
   },
   {

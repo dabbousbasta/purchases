@@ -11,6 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
 
 <script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <style>
     :root {
@@ -2300,7 +2301,37 @@ function highlightText(value, words) {
       renderVirtual();
     }, 150));
 
+   
+  const SUPABASE_URL = "https://iknywaocqwjxrvdlryac.supabase.co";
+
+  const SUPABASE_PUBLISHABLE_KEY =
+    "sb_publishable_Y1RZ34u5SNGwi-q2ntXYWQ_rTtDnU0q";
+
+  const supabaseClient = supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY
+  );
+
+  document.documentElement.style.visibility = "hidden";
+
+  async function openPurchasesOnlyForLoggedInUser() {
+    const {
+      data: { session },
+      error
+    } = await supabaseClient.auth.getSession();
+
+    if (error || !session) {
+      window.location.replace("index.html");
+      return;
+    }
+
+    document.documentElement.style.visibility = "visible";
+
     loadData();
+  }
+
+  openPurchasesOnlyForLoggedInUser();
+
   </script>
 </body>
 </html>

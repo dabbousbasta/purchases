@@ -23,9 +23,7 @@
       --border: #ddd;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -57,34 +55,17 @@
       transition: .15s ease;
     }
 
-    #refreshBtn:hover:not(:disabled) {
-      background: #146c43;
-      transform: translateY(-1px);
-    }
-
-    #refreshBtn:active:not(:disabled) {
-      transform: translateY(1px);
-    }
-
-    #refreshBtn:disabled {
-      opacity: .65;
-      cursor: not-allowed;
-    }
-
-    #refreshBtn.loading .refresh-icon {
-      animation: spin .8s linear infinite;
-    }
+    #refreshBtn:hover:not(:disabled) { background: #146c43; transform: translateY(-1px); }
+    #refreshBtn:active:not(:disabled) { transform: translateY(1px); }
+    #refreshBtn:disabled { opacity: .65; cursor: not-allowed; }
+    #refreshBtn.loading .refresh-icon { animation: spin .8s linear infinite; }
 
     @keyframes spin {
       from { transform: rotate(0deg); }
       to { transform: rotate(360deg); }
     }
 
-    main {
-      max-width: 1300px;
-      margin: 0 auto;
-      padding: 14px;
-    }
+    main { max-width: 1300px; margin: 0 auto; padding: 14px; }
 
     .card {
       background: var(--card);
@@ -109,9 +90,7 @@
       margin-bottom: 8px;
     }
 
-    .filters-grid.extra {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
+    .filters-grid.extra { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 
     .field label {
       display: block;
@@ -148,11 +127,7 @@
       margin-top: 8px;
     }
 
-    .actions-left {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
+    .actions-left { display: flex; gap: 8px; flex-wrap: wrap; }
 
     button {
       border: none;
@@ -164,25 +139,10 @@
       font-family: inherit;
     }
 
-    .btn-primary {
-      background: #5e35b1;
-      color: #fff;
-    }
-
-    .btn-secondary {
-      background: #ffe0b2;
-      color: #5d4037;
-    }
-
-    .btn-primary:active,
-    .btn-secondary:active {
-      transform: translateY(1px);
-    }
-
-    button:disabled {
-      opacity: .5;
-      cursor: not-allowed;
-    }
+    .btn-primary { background: #5e35b1; color: #fff; }
+    .btn-secondary { background: #ffe0b2; color: #5d4037; }
+    .btn-primary:active, .btn-secondary:active { transform: translateY(1px); }
+    button:disabled { opacity: .5; cursor: not-allowed; }
 
     .status {
       font-size: 13px;
@@ -192,19 +152,8 @@
       display: none;
     }
 
-    .status.ok {
-      display: block;
-      color: #155724;
-      background: #d4edda;
-      border: 1px solid #c3e6cb;
-    }
-
-    .status.err {
-      display: block;
-      color: #721c24;
-      background: #f8d7da;
-      border: 1px solid #f5c6cb;
-    }
+    .status.ok { display: block; color: #155724; background: #d4edda; border: 1px solid #c3e6cb; }
+    .status.err { display: block; color: #721c24; background: #f8d7da; border: 1px solid #f5c6cb; }
 
     .summary-bar {
       display: flex;
@@ -215,9 +164,7 @@
       color: #444;
     }
 
-    .summary-bar b {
-      color: var(--primary);
-    }
+    .summary-bar b { color: var(--primary); }
 
     .table-wrap {
       width: 100%;
@@ -235,8 +182,7 @@
       background-color: #fff;
     }
 
-    th,
-    td {
+    th, td {
       border: 1px solid var(--border);
       padding: 9px 11px;
       font-size: 14px;
@@ -264,24 +210,12 @@
       background: #7e57c2;
     }
 
-    th .arrow {
-      font-size: 11px;
-      opacity: .8;
-      margin-inline-start: 4px;
-    }
+    th .arrow { font-size: 11px; opacity: .8; margin-inline-start: 4px; }
 
-    tbody tr:nth-child(odd) {
-      background: #fff3e0;
-    }
+    tbody tr:nth-child(odd) { background: #fff3e0; }
+    tbody tr:nth-child(even) { background: #f3e5f5; }
 
-    tbody tr:nth-child(even) {
-      background: #f3e5f5;
-    }
-
-    tbody tr:hover {
-      outline: 2px solid rgba(94, 53, 177, .25);
-      outline-offset: -2px;
-    }
+    tbody tr:hover { outline: 2px solid rgba(94, 53, 177, .25); outline-offset: -2px; }
 
     tbody tr.row-open {
       outline: 2px solid var(--primary);
@@ -289,16 +223,11 @@
       background: #ede7f6 !important;
     }
 
-    /* صفوف الـ spacer الخاصة بالـ virtual scrolling يجب ألا تُلوَّن أو تُحدَّد */
     tr.va-spacer,
     tr.va-spacer:nth-child(odd),
-    tr.va-spacer:nth-child(even) {
-      background: transparent !important;
-    }
+    tr.va-spacer:nth-child(even) { background: transparent !important; }
 
-    tr.va-spacer:hover {
-      outline: none !important;
-    }
+    tr.va-spacer:hover { outline: none !important; }
 
     tr.va-spacer td {
       border: none !important;
@@ -306,25 +235,11 @@
       min-width: 0 !important;
     }
 
-    .no-results {
-      text-align: center;
-      color: #c00;
-      padding: 16px;
-    }
-
-    .small {
-      font-size: 12px;
-      color: #666;
-      margin-top: 6px;
-    }
+    .no-results { text-align: center; color: #c00; padding: 16px; }
+    .small { font-size: 12px; color: #666; margin-top: 6px; }
 
     .skeleton-row td {
-      background: linear-gradient(
-        90deg,
-        #f0f0f0 25%,
-        #e6e6e6 37%,
-        #f0f0f0 63%
-      );
+      background: linear-gradient(90deg, #f0f0f0 25%, #e6e6e6 37%, #f0f0f0 63%);
       background-size: 400% 100%;
       animation: shimmer 1.4s ease infinite;
       color: transparent;
@@ -350,14 +265,8 @@
       font-size: .9rem;
     }
 
-    .filters-toggle .arrow {
-      font-size: 11px;
-      transition: transform .15s ease;
-    }
-
-    .filters-toggle[aria-expanded="true"] .arrow {
-      transform: rotate(180deg);
-    }
+    .filters-toggle .arrow { font-size: 11px; transition: transform .15s ease; }
+    .filters-toggle[aria-expanded="true"] .arrow { transform: rotate(180deg); }
 
     .extra-filters {
       margin-top: 10px;
@@ -365,27 +274,12 @@
       border-top: 1px dashed var(--border);
     }
 
-    .extra-filters .filters-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
+    .extra-filters .filters-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .extra-filters .filters-grid.extra { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 10px; }
 
-    .extra-filters .filters-grid.extra {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      margin-top: 10px;
-    }
+    .last-updated { font-size: 11px; color: #888; margin-top: 2px; }
 
-    .last-updated {
-      font-size: 11px;
-      color: #888;
-      margin-top: 2px;
-    }
-
-    .row-actions-cell {
-      display: flex;
-      gap: 4px;
-      align-items: center;
-      justify-content: center;
-    }
+    .row-actions-cell { display: flex; gap: 4px; align-items: center; justify-content: center; }
 
     .toggle-detail-btn,
     .copy-row-btn {
@@ -402,26 +296,10 @@
       transition: transform .12s ease, background .12s ease;
     }
 
-    .copy-row-btn {
-      background: #ede7f6;
-      color: var(--primary-dark);
-      font-size: 13px;
-    }
-
-    .toggle-detail-btn:hover {
-      background: #4527a0;
-      transform: scale(1.06);
-    }
-
-    .copy-row-btn:hover {
-      background: #d8cdf0;
-      transform: scale(1.06);
-    }
-
-    .toggle-detail-btn:active,
-    .copy-row-btn:active {
-      transform: scale(0.96);
-    }
+    .copy-row-btn { background: #ede7f6; color: var(--primary-dark); font-size: 13px; }
+    .toggle-detail-btn:hover { background: #4527a0; transform: scale(1.06); }
+    .copy-row-btn:hover { background: #d8cdf0; transform: scale(1.06); }
+    .toggle-detail-btn:active, .copy-row-btn:active { transform: scale(0.96); }
 
     .detail-panel-header {
       display: flex;
@@ -444,19 +322,11 @@
       white-space: nowrap;
     }
 
-    .close-btn:hover {
-      background: #d0d0d0;
-    }
+    .close-btn:hover { background: #d0d0d0; }
 
-    #detailPanel[hidden] {
-      display: none;
-    }
+    #detailPanel[hidden] { display: none; }
 
-    .mini-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 13px;
-    }
+    .mini-table { width: 100%; border-collapse: collapse; font-size: 13px; }
 
     .mini-table th,
     .mini-table td {
@@ -473,18 +343,40 @@
       position: static;
     }
 
-    .mini-table tbody tr:nth-child(odd) {
-      background: #f3e5f5;
+    .mini-table tbody tr:nth-child(odd) { background: #f3e5f5; }
+    .mini-table tbody tr:nth-child(even) { background: #ede7f6; }
+
+    /* ===== مجاميع الفاتورة ===== */
+    .invoice-actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+    .invoice-actions button { padding: 10px 14px; font-size: .88rem; }
+    .btn-whatsapp { background: #25d366; color: #fff; }
+    .btn-excel-copy { background: #ede7f6; color: var(--primary-dark); }
+
+    .mini-table .col-total { font-weight: 700; background: #e8def8 !important; }
+
+    .mini-table tfoot td {
+      background: #5e35b1;
+      color: #fff;
+      font-weight: 900;
+      border-color: #4527a0;
     }
 
-    .mini-table tbody tr:nth-child(even) {
-      background: #ede7f6;
+    .invoice-summary {
+      margin-top: 10px;
+      padding: 10px 12px;
+      background: #faf9fd;
+      border: 1px solid #eae3f7;
+      border-radius: 10px;
+      font-size: 13px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
     }
 
-    /* ============ زر ولوحة تحليل البيانات الحالية (Product Intelligence) ============ */
-    .intel-trigger-card {
-      padding: 10px 14px;
-    }
+    .invoice-summary b { color: var(--primary); }
+
+    /* ============ Product Intelligence ============ */
+    .intel-trigger-card { padding: 10px 14px; }
 
     .intel-trigger-btn {
       width: 100%;
@@ -495,18 +387,9 @@
       font-size: .95rem;
     }
 
-    .intel-trigger-btn:disabled {
-      background: #c9bfe0;
-    }
-
-    #intelTriggerCount {
-      font-weight: 700;
-      opacity: .85;
-    }
-
-    #productIntelPanel[hidden] {
-      display: none;
-    }
+    .intel-trigger-btn:disabled { background: #c9bfe0; }
+    #intelTriggerCount { font-weight: 700; opacity: .85; }
+    #productIntelPanel[hidden] { display: none; }
 
     .intel-header {
       display: flex;
@@ -517,11 +400,7 @@
       margin-bottom: 10px;
     }
 
-    .intel-item-name {
-      font-weight: 900;
-      color: var(--primary-dark);
-      font-size: 1rem;
-    }
+    .intel-item-name { font-weight: 900; color: var(--primary-dark); font-size: 1rem; }
 
     .intel-currency-block {
       margin-bottom: 14px;
@@ -529,11 +408,7 @@
       border-bottom: 1px dashed var(--border);
     }
 
-    .intel-currency-block:last-child {
-      margin-bottom: 0;
-      padding-bottom: 0;
-      border-bottom: none;
-    }
+    .intel-currency-block:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
 
     .intel-currency-label {
       display: inline-block;
@@ -546,11 +421,7 @@
       margin-bottom: 8px;
     }
 
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 8px;
-    }
+    .stats-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
 
     .stat-card {
       background: #faf9fd;
@@ -591,7 +462,6 @@
       text-overflow: ellipsis;
     }
 
-    /* ============ Toast ============ */
     #toast {
       position: fixed;
       bottom: 18px;
@@ -610,82 +480,37 @@
       box-shadow: 0 4px 14px rgba(0, 0, 0, .25);
     }
 
-    #toast.show {
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
-    }
+    #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 
     @media (max-width: 900px) {
       .filters-grid,
-      .filters-grid.extra {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .extra-filters .filters-grid.extra {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .stats-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
+      .filters-grid.extra { grid-template-columns: 1fr 1fr; }
+      .extra-filters .filters-grid.extra { grid-template-columns: 1fr 1fr; }
+      .stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
 
     @media (max-width: 768px) {
-      main {
-        padding: 10px;
-      }
-
-      #refreshBtn {
-        top: 8px;
-        left: 8px;
-        padding: 7px 11px;
-        font-size: .78rem;
-      }
-
-      th,
-      td {
-        font-size: 13px;
-        padding: 8px 9px;
-        min-width: 56px;
-      }
-
-      .table-wrap {
-        max-height: 60vh;
-      }
-
+      main { padding: 10px; }
+      #refreshBtn { top: 8px; left: 8px; padding: 7px 11px; font-size: .78rem; }
+      th, td { font-size: 13px; padding: 8px 9px; min-width: 56px; }
+      .table-wrap { max-height: 60vh; }
       .filters-grid,
-      .filters-grid.extra {
-        grid-template-columns: 1fr;
-      }
-
-      .actions {
-        flex-direction: column;
-        align-items: stretch;
-      }
-
-      .detail-panel-header {
-        flex-direction: column;
-        align-items: stretch;
-      }
-
+      .filters-grid.extra { grid-template-columns: 1fr; }
+      .actions { flex-direction: column; align-items: stretch; }
+      .detail-panel-header { flex-direction: column; align-items: stretch; }
       .toggle-detail-btn,
-      .copy-row-btn {
-        padding: 8px 10px;
-        font-size: 16px;
-      }
-
-      .stats-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
+      .copy-row-btn { padding: 8px 10px; font-size: 16px; }
+      .stats-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
+
     .search-highlight {
-  background: #ffeb3b;
-  color: #000;
-  padding: 1px 3px;
-  border-radius: 4px;
-  font-weight: 900;
-  box-shadow: 0 0 0 1px rgba(255, 193, 7, .35);
-}
+      background: #ffeb3b;
+      color: #000;
+      padding: 1px 3px;
+      border-radius: 4px;
+      font-weight: 900;
+      box-shadow: 0 0 0 1px rgba(255, 193, 7, .35);
+    }
   </style>
 </head>
 
@@ -725,20 +550,12 @@
         <div class="filters-grid">
           <div class="field">
             <label for="searchInvoice">كلمات بحث عن الفاتورة</label>
-            <input
-              type="text"
-              id="searchInvoice"
-              placeholder="مثال: 796 أو PI 796"
-            />
+            <input type="text" id="searchInvoice" placeholder="مثال: 796 أو PI 796" />
           </div>
 
           <div class="field">
             <label for="searchSupplier">كلمات بحث عن المورد</label>
-            <input
-              type="text"
-              id="searchSupplier"
-              placeholder="مثال: الحنون 204160"
-            />
+            <input type="text" id="searchSupplier" placeholder="مثال: الحنون 204160" />
           </div>
         </div>
 
@@ -764,21 +581,14 @@
 
       <div class="actions">
         <div class="actions-left">
-          <button class="btn-primary" id="exportExcel">
-            تصدير Excel
-          </button>
-
-          <button class="btn-secondary" id="clearSearch">
-            مسح كل الفلاتر
-          </button>
+          <button class="btn-primary" id="exportExcel">تصدير Excel</button>
+          <button class="btn-secondary" id="clearSearch">مسح كل الفلاتر</button>
         </div>
       </div>
 
       <div id="status" class="status"></div>
 
-      <div class="small" id="countInfo">
-        ... جاري تحميل البيانات
-      </div>
+      <div class="small" id="countInfo">... جاري تحميل البيانات</div>
 
       <div class="last-updated" id="lastUpdated"></div>
 
@@ -809,38 +619,31 @@
               <th style="width: 64px; text-align: center;">إجراءات</th>
 
               <th data-key="invoiceNo" tabindex="0" role="button" aria-sort="none">
-                الفاتورة
-                <span class="arrow" data-arrow="invoiceNo"></span>
+                الفاتورة <span class="arrow" data-arrow="invoiceNo"></span>
               </th>
 
               <th data-key="date" tabindex="0" role="button" aria-sort="none">
-                التاريخ
-                <span class="arrow" data-arrow="date"></span>
+                التاريخ <span class="arrow" data-arrow="date"></span>
               </th>
 
               <th data-key="qty" tabindex="0" role="button" aria-sort="none">
-                العدد
-                <span class="arrow" data-arrow="qty"></span>
+                العدد <span class="arrow" data-arrow="qty"></span>
               </th>
 
               <th data-key="currency" tabindex="0" role="button" aria-sort="none">
-                العملة
-                <span class="arrow" data-arrow="currency"></span>
+                العملة <span class="arrow" data-arrow="currency"></span>
               </th>
 
               <th data-key="uprice" tabindex="0" role="button" aria-sort="none">
-                السعر
-                <span class="arrow" data-arrow="uprice"></span>
+                السعر <span class="arrow" data-arrow="uprice"></span>
               </th>
 
               <th data-key="item" tabindex="0" role="button" aria-sort="none">
-                الصنف
-                <span class="arrow" data-arrow="item"></span>
+                الصنف <span class="arrow" data-arrow="item"></span>
               </th>
 
               <th data-key="supplier" tabindex="0" role="button" aria-sort="none">
-                المورد
-                <span class="arrow" data-arrow="supplier"></span>
+                المورد <span class="arrow" data-arrow="supplier"></span>
               </th>
             </tr>
           </thead>
@@ -860,27 +663,17 @@
   </main>
 
   <script>
-    /* ============================================================
-       الحالة العامة
-       allData: البيانات بعد المعالجة المسبقة (preprocessing) — تُحسب
-       مرة واحدة فقط بعد التحميل، وليس عند كل بحث/فرز/رسم.
-       invoiceMap: خريطة (فاتورة+سنة) -> صفوفها، تُبنى مرة واحدة.
-       ============================================================ */
     let allData = [];
     let currentResults = [];
     let invoiceMap = new Map();
     let sortKey = null;
     let sortDir = 1;
-    let openDetailKey = null;   // مفتاح الفاتورة+السنة المفتوحة حالياً، لتمييز الصف في الجدول
-    let urlFiltersConsumed = false; // لضمان قراءة فلاتر الرابط مرة واحدة فقط عند أول تحميل
+    let openDetailKey = null;
+    let openInvoiceRows = [];
+    let urlFiltersConsumed = false;
 
-    // Intl.Collator أسرع بكثير من استدعاء localeCompare مرات كثيرة
-    const collator = new Intl.Collator(undefined, {
-      numeric: true,
-      sensitivity: 'base'
-    });
+    const collator = new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' });
 
-    // إعدادات الـ virtual scrolling
     const OVERSCAN = 8;
     let ROW_HEIGHT = 42;
     let rowHeightMeasured = false;
@@ -888,11 +681,6 @@
     const arabicDigits = ['٠','١','٢','٣','٤','٥','٦','٧','٨','٩'];
     const latinDigits = ['0','1','2','3','4','5','6','7','8','9'];
 
-    /* ============================================================
-       أداة قياس أداء اختيارية لأغراض التطوير فقط — لا تعمل ولا
-       تُضيف أي عبء في الإنتاج إلا إذا فعّلها المستخدم صراحة عبر
-       ?debug=1 في الرابط أو localStorage.setItem('perfDebug','1').
-       ============================================================ */
     const PERF_DEBUG =
       /[?&]debug=1(&|$)/.test(location.search) ||
       (() => { try { return localStorage.getItem('perfDebug') === '1'; } catch (e) { return false; } })();
@@ -953,68 +741,67 @@
           "'": '&#39;'
         })[character]);
     }
-function highlightText(value, words) {
-  const text = String(value ?? '');
 
-  if (!text || !words || !words.length) {
-    return esc(text);
-  }
+    function highlightText(value, words) {
+      const text = String(value ?? '');
 
-  const normalizedText = normalizeForSearch(text);
-  const matches = [];
+      if (!text || !words || !words.length) {
+        return esc(text);
+      }
 
-  for (const word of words) {
-    const normalizedWord = normalizeForSearch(word).trim();
+      const normalizedText = normalizeForSearch(text);
+      const matches = [];
 
-    if (!normalizedWord) continue;
+      for (const word of words) {
+        const normalizedWord = normalizeForSearch(word).trim();
 
-    let startIndex = 0;
+        if (!normalizedWord) continue;
 
-    while (true) {
-      const index = normalizedText.indexOf(normalizedWord, startIndex);
+        let startIndex = 0;
 
-      if (index === -1) break;
+        while (true) {
+          const index = normalizedText.indexOf(normalizedWord, startIndex);
 
-      matches.push({
-        start: index,
-        end: index + normalizedWord.length
-      });
+          if (index === -1) break;
 
-      startIndex = index + normalizedWord.length;
+          matches.push({ start: index, end: index + normalizedWord.length });
+
+          startIndex = index + normalizedWord.length;
+        }
+      }
+
+      if (!matches.length) {
+        return esc(text);
+      }
+
+      matches.sort((a, b) => a.start - b.start);
+
+      const mergedMatches = [];
+
+      for (const match of matches) {
+        const lastMatch = mergedMatches[mergedMatches.length - 1];
+
+        if (!lastMatch || match.start > lastMatch.end) {
+          mergedMatches.push({ ...match });
+        } else if (match.end > lastMatch.end) {
+          lastMatch.end = match.end;
+        }
+      }
+
+      let result = '';
+      let lastIndex = 0;
+
+      for (const match of mergedMatches) {
+        result += esc(text.slice(lastIndex, match.start));
+        result += `<mark class="search-highlight">${esc(text.slice(match.start, match.end))}</mark>`;
+        lastIndex = match.end;
+      }
+
+      result += esc(text.slice(lastIndex));
+
+      return result;
     }
-  }
 
-  if (!matches.length) {
-    return esc(text);
-  }
-
-  matches.sort((a, b) => a.start - b.start);
-
-  const mergedMatches = [];
-
-  for (const match of matches) {
-    const lastMatch = mergedMatches[mergedMatches.length - 1];
-
-    if (!lastMatch || match.start > lastMatch.end) {
-      mergedMatches.push({ ...match });
-    } else if (match.end > lastMatch.end) {
-      lastMatch.end = match.end;
-    }
-  }
-
-  let result = '';
-  let lastIndex = 0;
-
-  for (const match of mergedMatches) {
-    result += esc(text.slice(lastIndex, match.start));
-    result += `<mark class="search-highlight">${esc(text.slice(match.start, match.end))}</mark>`;
-    lastIndex = match.end;
-  }
-
-  result += esc(text.slice(lastIndex));
-
-  return result;
-}
     function toNumber(value) {
       if (value === null || value === undefined || value === '') {
         return NaN;
@@ -1047,12 +834,6 @@ function highlightText(value, words) {
       return num.toLocaleString('en-US', { maximumSignificantDigits: 6 });
     }
 
-    /* ============================================================
-       دمج parseDate() و getYearFromDate() السابقتين في دالة واحدة:
-       كلتاهما كانتا تُطبّقان normalizeForSearch() و split('/') على
-       نفس النص بشكل منفصل لكل صف أثناء preprocess() — توحيدهما
-       يزيل هذا التكرار.
-       ============================================================ */
     function parseArabicDate(dateValue) {
       if (!dateValue) return { dateNum: 0, year: null };
 
@@ -1097,10 +878,6 @@ function highlightText(value, words) {
       };
     }
 
-    /* ============================================================
-       المعالجة المسبقة (Preprocessing) — تُنفَّذ مرة واحدة فقط
-       بعد كل تحميل ناجح للبيانات.
-       ============================================================ */
     function preprocess(rawArray) {
       const processed = new Array(rawArray.length);
 
@@ -1125,9 +902,6 @@ function highlightText(value, words) {
           _priceNum: toNumber(row.uprice),
           _year: year,
           _invYearKey: String(row.invoiceNo ?? '').trim() + '__' + (year ?? ''),
-          // موضع الصف الثابت في ملف purchases.json الأصلي — يُستخدم فقط
-          // كقاعدة تعادل (tie-breaker) حتمية عند تساوي التاريخ في تحليل
-          // Product Intelligence، ولا علاقة له بترتيب الجدول أو الفرز.
           _rowIndex: i
         };
       }
@@ -1149,9 +923,6 @@ function highlightText(value, words) {
       return map;
     }
 
-    /* ============================================================
-       تخزين مؤقت عبر IndexedDB
-       ============================================================ */
     const DB_NAME = 'purchasesCacheDB';
     const STORE_NAME = 'cache';
     const CACHE_KEY = 'purchases_v1';
@@ -1200,13 +971,6 @@ function highlightText(value, words) {
       }
     }
 
-    /* ============================================================
-       فحص وجود تحديث عبر purchases-data/meta.json بدل GitHub Commits
-       API — يزيل الاعتماد على حصة api.github.com (60 طلب/ساعة لكل
-       IP) المشتركة بين كل مستخدمي المكتب. الملف يجب أن يحتوي:
-       { "version": "...", "lastUpdate": "2026-08-22T10:00:00+03:00" }
-       ويجب تحديث "version" (أو "lastUpdate") مع كل رفع لبيانات جديدة.
-       ============================================================ */
     async function fetchLatestMeta() {
       const response = await fetch('purchases-data/meta.json?v=' + Date.now(), {
         cache: 'no-store'
@@ -1226,7 +990,6 @@ function highlightText(value, words) {
       };
     }
 
-    // تحميل النص الخام لملف البيانات فقط (بدون parse)، مع قياس وقت التحميل
     async function fetchPurchasesJsonRaw() {
       const t0 = performance.now();
       const response = await fetch('purchases-data/purchases.json?v=' + Date.now(), {
@@ -1239,11 +1002,8 @@ function highlightText(value, words) {
       return { text, fetchTime: performance.now() - t0 };
     }
 
-    // الحد الأدنى بين استدعاءين لفحص meta.json لنفس الجهاز، لتفادي
-    // إزعاج الشبكة بلا داعٍ عند إعادة فتح الصفحة مراراً خلال دقائق
     const META_CHECK_MIN_INTERVAL_MS = 3 * 60 * 1000;
 
-    // تصنيف أخطاء التحميل إلى رسائل واضحة ومختلفة بدل رسالة عامة واحدة
     function classifyLoadError(error) {
       if (typeof navigator !== 'undefined' && navigator.onLine === false) {
         return 'لا يوجد اتصال بالإنترنت حالياً. سيتم الاعتماد على آخر نسخة محفوظة إن وجدت.';
@@ -1288,7 +1048,6 @@ function highlightText(value, words) {
 
         localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
       } catch (error) {
-        // تجاهل أخطاء التخزين
       }
     }
 
@@ -1319,10 +1078,6 @@ function highlightText(value, words) {
       }
     }
 
-    /* ============================================================
-       Shareable URL — يقرأ/يكتب الفلاتر كـ query params باستخدام
-       URLSearchParams، بمفاتيح مختصرة، وبلا أي قيم فارغة في الرابط.
-       ============================================================ */
     const URL_PARAM_MAP = {
       searchItem: 'q',
       searchInvoice: 'inv',
@@ -1360,8 +1115,6 @@ function highlightText(value, words) {
       }
     }
 
-    // تُستخدم مرة واحدة فقط عند أول تحميل: تُفضَّل فلاتر الرابط إن
-    // وُجدت، وإلا يُستخدم آخر فلتر محفوظ محلياً كالسابق تماماً.
     function restoreFiltersOnLoad() {
       if (!urlFiltersConsumed) {
         urlFiltersConsumed = true;
@@ -1434,9 +1187,6 @@ function highlightText(value, words) {
       }
     }
 
-    /* ============================================================
-       تحميل البيانات
-       ============================================================ */
     async function loadData(options = {}) {
       const forceFresh = !!options.forceFresh;
 
@@ -1504,8 +1254,6 @@ function highlightText(value, words) {
         try {
           remoteMeta = await fetchLatestMeta();
         } catch (error) {
-          // meta.json غير متاح أو غير صالح؛ سيُعتمد على جلب البيانات
-          // مباشرة كحل احتياطي دون كسر تجربة الاستخدام
           remoteMeta = null;
         }
 
@@ -1650,20 +1398,6 @@ function highlightText(value, words) {
       ` + totalsHtml;
     }
 
-    /* ============================================================
-       Product Intelligence — تحليل يدوي بالكامل، يُحسب فقط عند
-       ضغط المستخدم على زر "📊 تحليل البيانات الحالية"، ولا يُحسب
-       تلقائياً أثناء الكتابة/البحث/الفرز/التمرير (صفر تكلفة أداء
-       في المسار الحرج). لا يوجد أي شرط على تطابق اسم الصنف — يتم
-       تحليل currentResults كما هي تماماً، مقسّمة حسب العملة فقط.
-
-       الترتيب الزمني: يعتمد حصراً على _dateNum الحقيقي، وليس على
-       ترتيب currentResults الحالي (الذي يتغيّر بفرز الأعمدة). عند
-       تساوي عدة عمليات بنفس التاريخ، يُستخدم _rowIndex (موضع الصف
-       الثابت في ملف purchases.json الأصلي) كقاعدة تعادل حتمية —
-       الأحدث بينها = صاحب أكبر _rowIndex، وهو ثابت دائماً بصرف
-       النظر عن أي فرز أو فلترة.
-       ============================================================ */
     function compareForRecency(a, b) {
       if (b._dateNum !== a._dateNum) return b._dateNum - a._dateNum;
       return b._rowIndex - a._rowIndex;
@@ -1686,8 +1420,6 @@ function highlightText(value, words) {
         const validPriceRows = currencyRows.filter(row => !Number.isNaN(row._priceNum));
         if (!validPriceRows.length) continue;
 
-        // ترتيب تنازلي حسب (التاريخ الحقيقي، ثم _rowIndex عند التعادل)
-        // — نتيجة حتمية 100% بصرف النظر عن ترتيب currentResults المُدخَل.
         const sortedByDateDesc = validPriceRows.slice().sort(compareForRecency);
         const lastPurchase = sortedByDateDesc[0];
         const previousPurchase = sortedByDateDesc.find(row => row._dateNum < lastPurchase._dateNum) || null;
@@ -1697,10 +1429,6 @@ function highlightText(value, words) {
         const maxPrice = prices.reduce((max, p) => Math.max(max, p), -Infinity);
         const avgPrice = prices.reduce((sum, p) => sum + p, 0) / prices.length;
 
-        // أفضل مورد سعراً = أقل متوسط سعر ضمن النتائج المحلَّلة، لنفس
-        // العملة فقط (وليس أقل سعر مفرد، لتفادي تحيّز حالة استثنائية).
-        // عند التعادل بالمتوسط: عدد عمليات أكبر، ثم اسم المورد أبجدياً
-        // (Intl.Collator) كقاعدة تعادل نهائية حتمية.
         const bySupplier = new Map();
         for (const row of validPriceRows) {
           const supplier = (row.supplier || '').trim() || 'غير محدد';
@@ -1749,10 +1477,8 @@ function highlightText(value, words) {
       return { totalCount: rows.length, currencyStats };
     }
 
-    // تُستدعى فقط عند ضغط زر "تحليل البيانات الحالية" — وليس أثناء
-    // الكتابة/البحث/الفرز/التمرير.
     function computeAndShowProductIntelligence() {
-      if (!currentResults.length) return; // الزر معطَّل أصلاً في هذه الحالة، حماية إضافية فقط
+      if (!currentResults.length) return;
 
       const intel = computeProductIntelligence(currentResults);
       const panel = document.getElementById('productIntelPanel');
@@ -1832,9 +1558,6 @@ function highlightText(value, words) {
       if (panel) panel.hidden = true;
     }
 
-    // تُحدَّث في كل مرة تتغيّر فيها currentResults (أي داخل search()
-    // فقط) — تعرض عدد النتائج الحالية على الزر وتُعطِّله عند عدم
-    // وجود نتائج، دون حساب أي تحليل فعلي.
     function updateIntelTriggerButton() {
       const btn = document.getElementById('intelTriggerBtn');
       const countLabel = document.getElementById('intelTriggerCount');
@@ -1844,52 +1567,147 @@ function highlightText(value, words) {
       btn.disabled = count === 0;
     }
 
+    /* ============================================================
+       مجاميع الفاتورة (جديد)
+       ============================================================ */
+    function fmtMoney(n) {
+      return n.toLocaleString('en-US', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+    }
+
+    function calcInvoiceTotals(rows) {
+      const byCurrency = {};
+      let totalQty = 0;
+
+      const lines = rows.map(row => {
+        const qty = Number.isNaN(row._qtyNum) ? 0 : row._qtyNum;
+        const price = Number.isNaN(row._priceNum) ? 0 : row._priceNum;
+        const lineTotal = qty * price;
+        const cur = (row.currency || '').trim() || 'بدون عملة';
+
+        byCurrency[cur] = (byCurrency[cur] || 0) + lineTotal;
+        totalQty += qty;
+
+        return { row, qty, price, lineTotal, cur };
+      });
+
+      return { lines, byCurrency, totalQty };
+    }
+
     function buildMiniTable(rows) {
-  if (!rows || !rows.length) return '';
+      if (!rows || !rows.length) return '';
 
-  const itemSearchWords = normalizeForSearch(
-    document.getElementById('searchItem').value.trim()
-  )
-    .split(/\s+/)
-    .filter(Boolean);
+      const itemSearchWords = normalizeForSearch(
+        document.getElementById('searchItem').value.trim()
+      ).split(/\s+/).filter(Boolean);
 
-  const header = `
-    <tr>
-      <th>الفاتورة</th>
-      <th>التاريخ</th>
-      <th>العدد</th>
-      <th>العملة</th>
-      <th>السعر</th>
-      <th>الصنف</th>
-      <th>المورد</th>
-    </tr>
-  `;
+      const { lines, byCurrency, totalQty } = calcInvoiceTotals(rows);
 
-  const body = rows.map(row => `
-    <tr>
-      <td>${esc(row.invoiceNo)}</td>
-      <td>${esc(row.date)}</td>
-      <td>${numFmtVal(row._qtyNum, row.qty)}</td>
-      <td>${esc(row.currency)}</td>
-      <td>${priceFmtVal(row._priceNum, row.uprice)}</td>
-      <td>${highlightText(row.item, itemSearchWords)}</td>
-      <td>${esc(row.supplier)}</td>
-    </tr>
-  `).join('');
+      const header = `
+        <tr>
+          <th>الفاتورة</th>
+          <th>التاريخ</th>
+          <th>العدد</th>
+          <th>العملة</th>
+          <th>السعر</th>
+          <th>الصنف</th>
+          <th>المورد</th>
+          <th>المجموع</th>
+        </tr>
+      `;
 
-  return `
-    <table class="mini-table">
-      <thead>${header}</thead>
-      <tbody>${body}</tbody>
-    </table>
-  `;
-}
+      const body = lines.map(({ row, lineTotal }) => `
+        <tr>
+          <td>${esc(row.invoiceNo)}</td>
+          <td>${esc(row.date)}</td>
+          <td>${numFmtVal(row._qtyNum, row.qty)}</td>
+          <td>${esc(row.currency)}</td>
+          <td>${priceFmtVal(row._priceNum, row.uprice)}</td>
+          <td>${highlightText(row.item, itemSearchWords)}</td>
+          <td>${esc(row.supplier)}</td>
+          <td class="col-total">${fmtMoney(lineTotal)}</td>
+        </tr>
+      `).join('');
+
+      const footer = Object.entries(byCurrency).map(([cur, total]) => `
+        <tr>
+          <td colspan="7" style="text-align:left;">مجموع الفاتورة (${esc(cur)})</td>
+          <td>${fmtMoney(total)}</td>
+        </tr>
+      `).join('');
+
+      return `
+        <table class="mini-table">
+          <thead>${header}</thead>
+          <tbody>${body}</tbody>
+          <tfoot>${footer}</tfoot>
+        </table>
+
+        <div class="invoice-summary">
+          <span>عدد الأصناف: <b>${rows.length}</b></span>
+          <span>مجموع الكميات: <b>${totalQty.toLocaleString('en-US', { maximumFractionDigits: 2 })}</b></span>
+        </div>
+
+        <div class="invoice-actions">
+          <button type="button" class="btn-whatsapp" id="copyInvoiceWaBtn">📱 نسخ الفاتورة (واتساب)</button>
+          <button type="button" class="btn-excel-copy" id="copyInvoiceExcelBtn">📊 نسخ كأسطر (إكسل)</button>
+        </div>
+      `;
+    }
+
+    function invoiceToExcelText(rows) {
+      const { lines, byCurrency } = calcInvoiceTotals(rows);
+
+      const out = lines.map(({ row, lineTotal }) => [
+        row.invoiceNo || '',
+        row.date || '',
+        row.qty || '',
+        row.currency || '',
+        row.uprice || '',
+        row.item || '',
+        row.supplier || '',
+        lineTotal.toFixed(2)
+      ].join('\t'));
+
+      for (const [cur, total] of Object.entries(byCurrency)) {
+        out.push(['', '', '', cur, '', '', 'مجموع الفاتورة', total.toFixed(2)].join('\t'));
+      }
+
+      return out.join('\n');
+    }
+
+    function invoiceToWhatsAppText(rows) {
+      const { lines, byCurrency, totalQty } = calcInvoiceTotals(rows);
+      const first = rows[0];
+
+      const head =
+        `🧾 فاتورة: ${first.invoiceNo || ''}\n` +
+        `📅 التاريخ: ${first.date || ''}\n` +
+        `🏭 المورد: ${first.supplier || ''}\n`;
+
+      const body = lines.map(({ row, qty, lineTotal, cur }, i) =>
+        `${i + 1}) ${row.item || ''}\n` +
+        `    ${qty} × ${row.uprice || ''} = ${fmtMoney(lineTotal)} ${cur}`
+      ).join('\n');
+
+      const totals = Object.entries(byCurrency)
+        .map(([cur, total]) => `*مجموع الفاتورة: ${fmtMoney(total)} ${cur}*`)
+        .join('\n');
+
+      return `${head}\n${body}\n\n` +
+        `عدد الأصناف: ${rows.length}\n` +
+        `مجموع الكميات: ${totalQty}\n` +
+        totals;
+    }
 
     function openDetailPanel(invoiceNo, year) {
       const key = String(invoiceNo).trim() + '__' + (year || '');
       const rows = invoiceMap.get(key) || [];
 
       openDetailKey = key;
+      openInvoiceRows = rows;
 
       document.getElementById('detailTitle').textContent =
         `تفاصيل الفاتورة رقم ${invoiceNo} — سنة ${year || ''} (${rows.length} صنف)`;
@@ -1902,29 +1720,28 @@ function highlightText(value, words) {
         `;
       } else {
         document.getElementById('detailTableWrap').innerHTML = buildMiniTable(rows);
+
+        document.getElementById('copyInvoiceWaBtn').onclick = () =>
+          copyTextToClipboard(invoiceToWhatsAppText(openInvoiceRows));
+
+        document.getElementById('copyInvoiceExcelBtn').onclick = () =>
+          copyTextToClipboard(invoiceToExcelText(openInvoiceRows));
       }
 
       const panel = document.getElementById('detailPanel');
       panel.hidden = false;
       panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
-      renderVirtual(); // لتحديث تمييز الصف المفتوح في الجدول الرئيسي
+      renderVirtual();
     }
 
-    // تُغلَق لوحة التفاصيل تلقائياً عند أي بحث/فرز/فلترة جديدة حتى لا
-    // تبقى تعرض تفاصيل فاتورة لم تعد ذات صلة بالنتائج الحالية.
-    // ملاحظة: لا تستدعي renderVirtual() هنا كي لا يتكرر الرسم في
-    // المسارات (مثل search()) التي أصلاً ستستدعي renderVirtual() بعدها.
     function closeDetailPanel() {
       const panel = document.getElementById('detailPanel');
       if (panel) panel.hidden = true;
       openDetailKey = null;
+      openInvoiceRows = [];
     }
 
-    /* ============================================================
-       Nice-to-have: نسخ بيانات الصف بصيغة نصية جاهزة للصق في
-       واتساب/إكسل/البريد.
-       ============================================================ */
     function formatRowForCopy(row) {
       return [
         `رقم الفاتورة: ${row.invoiceNo || ''}`,
@@ -1949,14 +1766,11 @@ function highlightText(value, words) {
       }, 1800);
     }
 
-    async function copyRowToClipboard(row) {
-      const text = formatRowForCopy(row);
-
+    async function copyTextToClipboard(text) {
       try {
         if (navigator.clipboard && navigator.clipboard.writeText) {
           await navigator.clipboard.writeText(text);
         } else {
-          // fallback للمتصفحات القديمة أو الاتصال غير الآمن (http بدون https)
           const textarea = document.createElement('textarea');
           textarea.value = text;
           textarea.style.position = 'fixed';
@@ -1973,48 +1787,47 @@ function highlightText(value, words) {
       }
     }
 
+    function copyRowToClipboard(row) {
+      return copyTextToClipboard(formatRowForCopy(row));
+    }
+
     function rowHtml(row, index) {
-  const itemSearchWords = normalizeForSearch(
-    document.getElementById('searchItem').value.trim()
-  )
-    .split(/\s+/)
-    .filter(Boolean);
+      const itemSearchWords = normalizeForSearch(
+        document.getElementById('searchItem').value.trim()
+      ).split(/\s+/).filter(Boolean);
 
-  const isOpen = openDetailKey !== null && row._invYearKey === openDetailKey;
+      const isOpen = openDetailKey !== null && row._invYearKey === openDetailKey;
 
-  return `
-    <tr class="${isOpen ? 'row-open' : ''}">
-      <td style="text-align: center;">
-        <div class="row-actions-cell">
-          <button
-            class="toggle-detail-btn"
-            type="button"
-            data-inv="${esc(row.invoiceNo)}"
-            data-year="${esc(row._year)}"
-            title="عرض كل أصناف الفاتورة بنفس السنة"
-          >➕</button>
-          <button
-            class="copy-row-btn"
-            type="button"
-            data-row-idx="${index}"
-            title="نسخ بيانات الصف"
-          >📋</button>
-        </div>
-      </td>
-      <td>${esc(row.invoiceNo)}</td>
-      <td>${esc(row.date)}</td>
-      <td>${numFmtVal(row._qtyNum, row.qty)}</td>
-      <td>${esc(row.currency)}</td>
-      <td>${priceFmtVal(row._priceNum, row.uprice)}</td>
-      <td>${highlightText(row.item, itemSearchWords)}</td>
-      <td>${esc(row.supplier)}</td>
-    </tr>
-  `;
-}
+      return `
+        <tr class="${isOpen ? 'row-open' : ''}">
+          <td style="text-align: center;">
+            <div class="row-actions-cell">
+              <button
+                class="toggle-detail-btn"
+                type="button"
+                data-inv="${esc(row.invoiceNo)}"
+                data-year="${esc(row._year)}"
+                title="عرض كل أصناف الفاتورة بنفس السنة"
+              >➕</button>
+              <button
+                class="copy-row-btn"
+                type="button"
+                data-row-idx="${index}"
+                title="نسخ بيانات الصف"
+              >📋</button>
+            </div>
+          </td>
+          <td>${esc(row.invoiceNo)}</td>
+          <td>${esc(row.date)}</td>
+          <td>${numFmtVal(row._qtyNum, row.qty)}</td>
+          <td>${esc(row.currency)}</td>
+          <td>${priceFmtVal(row._priceNum, row.uprice)}</td>
+          <td>${highlightText(row.item, itemSearchWords)}</td>
+          <td>${esc(row.supplier)}</td>
+        </tr>
+      `;
+    }
 
-    /* ============================================================
-       Virtual Scrolling
-       ============================================================ */
     function renderVirtual() {
       const container = document.getElementById('tableScroll');
       const tbody = document.getElementById('resultsBody');
@@ -2060,7 +1873,6 @@ function highlightText(value, words) {
 
       tbody.innerHTML = parts.join('');
 
-      // قياس ارتفاع الصف الحقيقي مرة واحدة لضبط الـ virtual scrolling بدقة
       if (!rowHeightMeasured) {
         const firstDataRow = tbody.querySelector('tr:not(.va-spacer)');
         if (firstDataRow) {
@@ -2157,8 +1969,6 @@ function highlightText(value, words) {
       renderVirtual();
       perfStats.render = performance.now() - tRender0;
 
-      // أي تغيير في البحث/الفلاتر يُبطل التحليل المعروض سابقاً فوراً؛
-      // لا يُعاد حسابه تلقائياً — يجب أن يضغط المستخدم الزر من جديد.
       hideProductIntelligence();
       updateIntelTriggerButton();
 
@@ -2175,8 +1985,6 @@ function highlightText(value, words) {
         return;
       }
 
-      // التصدير يعمل دائماً على كل currentResults، وليس فقط الصفوف
-      // الظاهرة حالياً على الشاشة بفضل الـ virtual scrolling.
       const rows = currentResults.map(row => ({
         'الفاتورة': row.invoiceNo || '',
         'التاريخ': row.date || '',
@@ -2230,7 +2038,6 @@ function highlightText(value, words) {
       renderVirtual();
     });
 
-    // Event delegation: مستمع واحد فقط على tbody بدلاً من زر لكل صف
     document.getElementById('resultsBody').addEventListener('click', event => {
       const detailBtn = event.target.closest('.toggle-detail-btn');
       if (detailBtn) {
@@ -2282,7 +2089,6 @@ function highlightText(value, words) {
       });
     });
 
-    // إعادة الرسم عند التمرير (مع تحديد بـ requestAnimationFrame لتفادي إرهاق المتصفح)
     const tableScrollEl = document.getElementById('tableScroll');
     let scrollScheduled = false;
 
@@ -2301,37 +2107,35 @@ function highlightText(value, words) {
       renderVirtual();
     }, 150));
 
-   
-  const SUPABASE_URL = "https://iknywaocqwjxrvdlryac.supabase.co";
+    const SUPABASE_URL = "https://iknywaocqwjxrvdlryac.supabase.co";
 
-  const SUPABASE_PUBLISHABLE_KEY =
-    "sb_publishable_Y1RZ34u5SNGwi-q2ntXYWQ_rTtDnU0q";
+    const SUPABASE_PUBLISHABLE_KEY =
+      "sb_publishable_Y1RZ34u5SNGwi-q2ntXYWQ_rTtDnU0q";
 
-  const supabaseClient = supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_PUBLISHABLE_KEY
-  );
+    const supabaseClient = supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_PUBLISHABLE_KEY
+    );
 
-  document.documentElement.style.visibility = "hidden";
+    document.documentElement.style.visibility = "hidden";
 
-  async function openPurchasesOnlyForLoggedInUser() {
-    const {
-      data: { session },
-      error
-    } = await supabaseClient.auth.getSession();
+    async function openPurchasesOnlyForLoggedInUser() {
+      const {
+        data: { session },
+        error
+      } = await supabaseClient.auth.getSession();
 
-    if (error || !session) {
-      window.location.replace("index.html");
-      return;
+      if (error || !session) {
+        window.location.replace("index.html");
+        return;
+      }
+
+      document.documentElement.style.visibility = "visible";
+
+      loadData();
     }
 
-    document.documentElement.style.visibility = "visible";
-
-    loadData();
-  }
-
-  openPurchasesOnlyForLoggedInUser();
-
+    openPurchasesOnlyForLoggedInUser();
   </script>
 </body>
 </html>

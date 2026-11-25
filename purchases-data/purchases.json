@@ -672,6 +672,20 @@
     "itemOrder": 3
   },
   {
+    "invoiceNo": "PI1 - 268",
+    "invoiceYear": 2026,
+    "date": "19/11/2026",
+    "dateSort": 20261119,
+    "currency": "EUR",
+    "supplier": "خوري انترناشونال - يورو / محل زين 201917",
+    "item": "300 قنينة ماء ATLANTIC ELECTRIC 3000W",
+    "qty": "1.00",
+    "uprice": "479.80",
+    "printStamp": "261125_105105",
+    "sourceFile": "PI1-268_400219_261125_105105.DOCX",
+    "itemOrder": 1
+  },
+  {
     "invoiceNo": "PI - 1407",
     "invoiceYear": 2026,
     "date": "19/11/2026",
